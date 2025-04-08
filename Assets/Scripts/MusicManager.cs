@@ -55,7 +55,6 @@ public class MusicManager : MonoBehaviour
             if (currentBeat > lastBeat) //Simple comparison to see if we are after the current beat counter
             {
                 lastBeat = currentBeat;
-                print(currentBeat);
                 audioSource2.Play();
                 NewBeat();
             }

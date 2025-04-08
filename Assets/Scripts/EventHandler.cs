@@ -12,9 +12,19 @@ public class EventHandler : MonoBehaviour
     public event Action onBeat;
     public void NewBeat()
     {
-        if(onBeat!= null)
+        if(onBeat != null)
         {
             onBeat();
+        }
+    }
+
+
+    public event Action<int> onClickSequencerTile;
+    public void ClickSequencerTile(int id)
+    {
+        if(onClickSequencerTile != null)
+        {
+            onClickSequencerTile(id);
         }
     }
 

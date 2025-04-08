@@ -13,27 +13,26 @@ public class Sequencer : MonoBehaviour
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
-    private int[][] sequencerBoxStates;
+    [SerializeField] private int[] sequencerBoxStates;
     [SerializeField] private GameObject[] representations;
 
-    [SerializeField] private Material active_material;
-    [SerializeField] private Material inactive_material;
+    [SerializeField] private Material activeMaterial;
+    [SerializeField] private Material inactiveMaterial;
+
+    [SerializeField] private Material[] activationMaterials;
 
     private void Start()
     {
         markerIndex = -1;
-        sequencerBoxStates = new int[rows][];
-        for(int i = 0; i < rows; i++)
+        sequencerBoxStates = new int[rows*columns];
+        for (int i = 0; i < rows * columns; i++)
         {
-            sequencerBoxStates[i] = new int[columns];
-            for(int j = 0; j < columns; j++)
-            { 
-                sequencerBoxStates[i][j] = 0;
-            }
-         
+            sequencerBoxStates[i] = 0;
+            representations[i].GetComponent<SequencerTile>().SetID(i);
         }
         musicManager = MusicManager.instance;
         EventHandler.current.onBeat += OnNewBeat;
+        EventHandler.current.onClickSequencerTile += OnTileClicked;
     }
 
     private void OnNewBeat()
@@ -41,7 +40,7 @@ public class Sequencer : MonoBehaviour
         if(markerIndex != -1)
         for(int i = 0; i < rows; i++)
         {
-            representations[i*rows + markerIndex].GetComponent<Renderer>().material = inactive_material;
+            representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
         }
         markerIndex += 1;
         if(markerIndex > columns-1)
@@ -50,7 +49,18 @@ public class Sequencer : MonoBehaviour
         }
         for (int i = 0; i < rows; i++)
         {
-            representations[i*rows + markerIndex].GetComponent<Renderer>().material = active_material;
+            representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
         }
+    }
+
+    private void OnTileClicked(int id)
+    {
+        print("registered click!");
+        sequencerBoxStates[id] += 1;
+        if (sequencerBoxStates[id]>=activationMaterials.Length)
+        {
+            sequencerBoxStates[id] = 0;
+        }
+        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(activationMaterials[sequencerBoxStates[id]]);
     }
 }
