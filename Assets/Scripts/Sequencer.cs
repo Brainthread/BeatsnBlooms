@@ -10,7 +10,7 @@ public class Sequencer : MonoBehaviour
 {
     private MusicManager musicManager;
     private int markerIndex = 0;
-    private int availableTiles = 4;
+    [SerializeField] private int availableTiles = 4;
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
