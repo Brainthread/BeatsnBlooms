@@ -7,7 +7,6 @@ public class Plant : MonoBehaviour
     [SerializeField] private AudioSource shootAudio;
     public void Activate()
     {
-        print("Hell yeah, I am activated!!!");
         shootAudio.clip = shootSound;
         shootAudio.Play();
         emitter.FireProjectile();
