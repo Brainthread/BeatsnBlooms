@@ -28,7 +28,6 @@ public class SequencerClickHandler : MonoBehaviour
             if(hit.transform.GetComponent<SequencerTile>())
             {
                 hit.transform.GetComponent<SequencerTile>().ClickedTile();
-                print("found tile!");
             }
         }
     }

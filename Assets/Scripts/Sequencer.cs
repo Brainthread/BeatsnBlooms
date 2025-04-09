@@ -50,12 +50,15 @@ public class Sequencer : MonoBehaviour
         for (int i = 0; i < rows; i++)
         {
             representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
+            if (sequencerBoxStates[i*rows + markerIndex] != 0)
+            {
+                EventHandler.current.ActivatePlant(i);
+            }
         }
     }
 
     private void OnTileClicked(int id)
     {
-        print("registered click!");
         sequencerBoxStates[id] += 1;
         if (sequencerBoxStates[id]>=activationMaterials.Length)
         {

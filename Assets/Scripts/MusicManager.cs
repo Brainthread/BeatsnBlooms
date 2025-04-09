@@ -13,6 +13,9 @@ public class MusicManager : MonoBehaviour
     private Song currentSong;
     [SerializeField] private Song testSong;
     private int lastBeat = -1;
+
+    private float pcmDeltaTime;
+    private float pcmLastTime = 0;
     // Test implementation
     private void Start()
     {
@@ -30,7 +33,7 @@ public class MusicManager : MonoBehaviour
     }
     public float GetBeat(float bpm)
     {
-        return (float)bpm /(60f)*GetSampledTime();
+        return (float)bpm / (60f)*GetSampledTime();
     }
     public float GetBPM()
     {
@@ -40,7 +43,6 @@ public class MusicManager : MonoBehaviour
     {
         return (float)audioSource.timeSamples / ((float)audioSource.clip.frequency); //check PCM position
     }
-
     private void NewBeat()
     {
         EventHandler.current.NewBeat();
@@ -51,6 +53,9 @@ public class MusicManager : MonoBehaviour
     {
         if (currentSong != null)
         {
+            float pcmTime = GetSampledTime();
+            pcmDeltaTime = pcmLastTime-pcmTime;
+            pcmLastTime = pcmTime;
             int currentBeat = Mathf.RoundToInt(Mathf.Floor(GetBeat(currentSong.bpm)));
             if (currentBeat > lastBeat) //Simple comparison to see if we are after the current beat counter
             {
