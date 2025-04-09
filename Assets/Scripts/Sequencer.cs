@@ -10,6 +10,7 @@ public class Sequencer : MonoBehaviour
 {
     private MusicManager musicManager;
     private int markerIndex = 0;
+    private int availableTiles = 4;
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
@@ -59,10 +60,26 @@ public class Sequencer : MonoBehaviour
 
     private void OnTileClicked(int id)
     {
-        sequencerBoxStates[id] += 1;
-        if (sequencerBoxStates[id]>=activationMaterials.Length)
+        if (availableTiles > 0)
         {
-            sequencerBoxStates[id] = 0;
+            if (sequencerBoxStates[id] == 0)
+            {
+                availableTiles -= 1;
+            }
+            sequencerBoxStates[id] += 1;
+            if (sequencerBoxStates[id] >= activationMaterials.Length)
+            {
+                sequencerBoxStates[id] = 0;
+                availableTiles += 1;
+            }
+        }
+        else
+        {
+            if (sequencerBoxStates[id] + 1 >= activationMaterials.Length)
+            {
+                sequencerBoxStates[id] = 0;
+                availableTiles += 1;
+            }
         }
         representations[id].GetComponent<SequencerTile>().SetInnerMaterial(activationMaterials[sequencerBoxStates[id]]);
     }

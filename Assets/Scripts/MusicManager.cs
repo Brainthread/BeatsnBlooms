@@ -48,6 +48,10 @@ public class MusicManager : MonoBehaviour
     }
     public float GetSampledTime()
     {
+        if(audioSource.isPlaying!=true)
+        {
+            return 0.000001f;
+        }
         return (float)audioSource.timeSamples / ((float)audioSource.clip.frequency); //check PCM position
     }
     private void NewBeat()
