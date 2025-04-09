@@ -17,6 +17,6 @@ public class PlantManager : MonoBehaviour
 
     private void OnPlantActivation(int id)
     {
-        
+        plants[id].Activate();
     }
 }

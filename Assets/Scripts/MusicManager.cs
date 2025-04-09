@@ -9,7 +9,6 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance;
     private AudioSource audioSource;
-    [SerializeField] private AudioSource audioSource2;
     private Song currentSong;
     [SerializeField] private Song testSong;
     private int lastBeat = -1;
@@ -33,7 +32,15 @@ public class MusicManager : MonoBehaviour
     }
     public float GetBeat(float bpm)
     {
-        return (float)bpm / (60f)*GetSampledTime();
+        return GetBeatsPerSecond(bpm)*GetSampledTime();
+    }
+    public float GetBeatsPerSecond(float bpm)
+    {
+        return bpm / 60f;
+    }
+    public float GetBeatsPerSecond()
+    {
+        return currentSong.bpm / 60f;
     }
     public float GetBPM()
     {
@@ -46,6 +53,10 @@ public class MusicManager : MonoBehaviour
     private void NewBeat()
     {
         EventHandler.current.NewBeat();
+    }
+    private float GetPCMDeltaTime()
+    {
+        return pcmDeltaTime;
     }
 
     // Update is called once per frame
@@ -60,7 +71,6 @@ public class MusicManager : MonoBehaviour
             if (currentBeat > lastBeat) //Simple comparison to see if we are after the current beat counter
             {
                 lastBeat = currentBeat;
-                audioSource2.Play();
                 NewBeat();
             }
         }
