@@ -3,17 +3,26 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     private int beatsTillNextEnemy = 3;
-    [SerializeField]private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject[] enemyPrefabs;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EventHandler.current.onBeat += onNewBeat;
+        EventHandler.current.onStartSong += OnStartSong;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnStartSong()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 
     void onNewBeat()
@@ -26,7 +35,8 @@ public class EnemyManager : MonoBehaviour
             float[] laneHeights = LaneManager.current.GetLaneHeights();
             float height = laneHeights[Random.Range(0, laneHeights.Length)];
             Vector3 pos = new Vector3(87.24001f, height, 0);
-            Instantiate(enemy, pos, Quaternion.Euler(new Vector3(180, 90, 0)));
+            GameObject spawnedEnemy = Instantiate(enemy, pos, Quaternion.Euler(new Vector3(180, 90, 0)));
+            spawnedEnemy.transform.parent = this.transform;
         }
     }
 }

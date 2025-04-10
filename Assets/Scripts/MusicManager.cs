@@ -29,6 +29,7 @@ public class MusicManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.resource = currentSong.audio;
         audioSource.Play();
+        EventHandler.current.StartSong();
     }
     public float GetBeat(float bpm)
     {
@@ -66,6 +67,10 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Initialize();
+        }
         if (currentSong != null)
         {
             float pcmTime = GetSampledTime();

@@ -921,7 +921,7 @@ MonoBehaviour:
   - {fileID: 1573070283}
   activeMaterial: {fileID: 2100000, guid: 7b569d160146980418cbe143fca295a8, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 41530ca87ae5e584dadcb30c513e0bce, type: 2}
-  activationMaterials:
+  stateMaterials:
   - {fileID: 2100000, guid: ee06d776f999e5c49a63d42d8af6158a, type: 2}
   - {fileID: 2100000, guid: 8b4de2b1544379544821f9814891c2e6, type: 2}
 --- !u!114 &585302602

@@ -20,20 +20,30 @@ public class Sequencer : MonoBehaviour
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inactiveMaterial;
 
-    [SerializeField] private Material[] activationMaterials;
+    [SerializeField] private Material[] stateMaterials;
+
 
     private void Start()
     {
+        EventHandler.current.onBeat += OnNewBeat;
+        EventHandler.current.onClickSequencerTile += OnTileClicked;
+        EventHandler.current.onStartSong += OnStartSong;
+    }
+
+    private void OnStartSong()
+    {
+        availableTiles = 4;
         markerIndex = -1;
         sequencerBoxStates = new int[rows*columns];
         for (int i = 0; i < rows * columns; i++)
         {
             sequencerBoxStates[i] = 0;
             representations[i].GetComponent<SequencerTile>().SetID(i);
+            representations[i].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
+            representations[i].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[0]);
         }
         musicManager = MusicManager.instance;
-        EventHandler.current.onBeat += OnNewBeat;
-        EventHandler.current.onClickSequencerTile += OnTileClicked;
+
     }
 
     private void OnNewBeat()
@@ -67,7 +77,7 @@ public class Sequencer : MonoBehaviour
                 availableTiles -= 1;
             }
             sequencerBoxStates[id] += 1;
-            if (sequencerBoxStates[id] >= activationMaterials.Length)
+            if (sequencerBoxStates[id] >= stateMaterials.Length)
             {
                 sequencerBoxStates[id] = 0;
                 availableTiles += 1;
@@ -75,12 +85,12 @@ public class Sequencer : MonoBehaviour
         }
         else
         {
-            if (sequencerBoxStates[id] + 1 >= activationMaterials.Length)
+            if (sequencerBoxStates[id] + 1 >= stateMaterials.Length)
             {
                 sequencerBoxStates[id] = 0;
                 availableTiles += 1;
             }
         }
-        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(activationMaterials[sequencerBoxStates[id]]);
+        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[sequencerBoxStates[id]]);
     }
 }

@@ -36,4 +36,13 @@ public class EventHandler : MonoBehaviour
             onPlantActivation(position);
         }
     }
+
+    public event Action onStartSong;
+    public void StartSong()
+    {
+        if(onStartSong != null)
+        {
+            onStartSong();
+        }
+    }
 }
