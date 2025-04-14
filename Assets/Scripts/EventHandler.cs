@@ -1,9 +1,14 @@
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class EventHandler : MonoBehaviour
 {
     public static EventHandler current;
+
+    //DAves stuff feel free to change..
+    public Event onMusicStartEvent;
+    public Event onBeatEvent;
     private void Awake()
     {
         current = this;
@@ -12,6 +17,7 @@ public class EventHandler : MonoBehaviour
     public event Action onBeat;
     public void NewBeat()
     {
+        Debug.Log("hello");
         if(onBeat != null)
         {
             onBeat();
