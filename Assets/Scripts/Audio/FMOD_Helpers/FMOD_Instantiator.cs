@@ -22,17 +22,17 @@ public class FMOD_Instantiator : MonoBehaviour
     public bool printLengthOnStart = false;
 
     public UnityEvent onPlay;
+    public UnityEvent<FMOD.Studio.EventInstance> onEventInstantiated;
 
     void Start()
     {
         //Create Instance
         evInst = FMODUnity.RuntimeManager.CreateInstance(evRef);
+        onEventInstantiated.Invoke(evInst);
 
         //3D
-        //if (pos3D_Override == null) pos3D_Override = gameObject;
-        //if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, pos3D_Override.GetComponent<Transform>(), pos3D_Override.GetComponent<Rigidbody>());
         if (pos3D_Override != null) transform.position = pos3D_Override.transform.position;
-        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, GetComponent<Transform>(), GetComponent<Rigidbody>());
+        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, gameObject, GetComponent<Rigidbody>());
 
         //Param Setup        
         for (int i = 0; i < paramNames.Count; i++)
@@ -73,9 +73,8 @@ public class FMOD_Instantiator : MonoBehaviour
             return;
         }
 
-        //if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, pos3D_Override.GetComponent<Transform>(), pos3D_Override.GetComponent<Rigidbody>());
         onPlay.Invoke();
-        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, GetComponent<Transform>(), GetComponent<Rigidbody>());
+        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, gameObject, GetComponent<Rigidbody>());
         evInst.start();
     }
 
@@ -83,7 +82,7 @@ public class FMOD_Instantiator : MonoBehaviour
     {
         yield return new WaitForSeconds(playDelay);
 
-        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, GetComponent<Transform>(), GetComponent<Rigidbody>());
+        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, gameObject, GetComponent<Rigidbody>());
         evInst.start();
     }
 

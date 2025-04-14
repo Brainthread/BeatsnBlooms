@@ -23,7 +23,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 966322289361133324}
   cacheVersion: 131847
-  cacheTime: 638802206418302164
+  cacheTime: 638802584567253293
   SerializableEventsDict:
   - key: event:/TestTimeline
     index: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: ../../Users/Jocke/Desktop/KTH/GameDesign/BeatsAndBlooms/Build/Desktop/Master.strings.bank
   Name: Build/Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638802206418302164
+  lastModified: 638802584567253293
   FileSizes:
   - Name: 
     Value: 774
@@ -89,6 +89,6 @@ MonoBehaviour:
   Path: ../../Users/Jocke/Desktop/KTH/GameDesign/BeatsAndBlooms/Build/Desktop/Master.bank
   Name: Build/Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638802206418272217
+  lastModified: 638802584567243441
   FileSizes: []
   Exists: 1

@@ -3,102 +3,111 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Events;
 
-class ScriptUsageTimeline : MonoBehaviour
+class FMOD_TimelineCallbacks : MonoBehaviour
 {
-    public UnityEvent myBeat;
+    [SerializeField]
+    private FMOD_Instantiator masterMusicEvent;
+    private FMOD.Studio.EventInstance eventInstance;
+
+    //Event Hooks
+    [SerializeField]
+    private UnityEvent<int> onBeatEvent;
+    [SerializeField]
+    private UnityEvent<string> onMarkerEvent;
+
+    //Note division enum, whole, half, quarter?
 
     //Storage class for buffering timeline callback event data
     [StructLayout(LayoutKind.Sequential)]
-    class TimelineInfo
+    class TimelineDataBuffer
     {
-        public int currentMusicBar = 0;
+        //BPM, time, nested events, etc... if needed
+        public int currentBeat = 0;
+        public int beatBuffer = 0;
         public FMOD.StringWrapper lastMarker = new FMOD.StringWrapper();
-        public UnityEvent testEvent;
+        public UnityEvent<int> onBeatInternal;
+        public UnityEvent<string> onMarkerInternal;
     }
 
-    TimelineInfo timelineInfo;
-    
+    //Data Buffer Instances
+    TimelineDataBuffer timelineDataInstance;
     GCHandle timelineHandle;
-
-    FMOD.Studio.EVENT_CALLBACK beatCallback;
-    FMOD.Studio.EventInstance musicInstance; //Switch to instantiator
-
-    void Start()
-    {
-        timelineInfo = new TimelineInfo();
-        timelineInfo.testEvent = myBeat;
-
-        //Instantiate our timeline callback
-        beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
-
-        //Event Instance
-        musicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/TestTimeline");
-
-        // Pin the class that will store the data modified during the callback
-        timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
-        // Pass the object through the userdata of the instance
-        musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
-
-        //Add the callback to the event
-        musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
-        
-        //Start the event
-        musicInstance.start();
-    }
+    FMOD.Studio.EVENT_CALLBACK timelineDataCallback;
 
     void OnDestroy()
     {
         //Garbage Collection
-        musicInstance.setUserData(IntPtr.Zero);
-        musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        musicInstance.release();
+        eventInstance.setUserData(IntPtr.Zero);
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        eventInstance.release();
         timelineHandle.Free();
     }
 
-    void OnGUI()
-    {
-        //GUILayout.Box(String.Format("Current Bar = {0}, Last Marker = {1}", timelineInfo.currentMusicBar, (string)timelineInfo.lastMarker));
-    }
 
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
-    static FMOD.RESULT BeatEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
+    static FMOD.RESULT TimelineEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
     {
         FMOD.Studio.EventInstance instance = new FMOD.Studio.EventInstance(instancePtr);
 
         // Retrieve the user data
         IntPtr timelineInfoPtr;
         FMOD.RESULT result = instance.getUserData(out timelineInfoPtr);
+
         if (result != FMOD.RESULT.OK)
         {
             Debug.LogError("Timeline Callback error: " + result);
+            return result;
         }
         else if (timelineInfoPtr != IntPtr.Zero)
         {
             // Get the object to store beat and marker details
             GCHandle timelineHandle = GCHandle.FromIntPtr(timelineInfoPtr);
-            TimelineInfo timelineInfo = (TimelineInfo)timelineHandle.Target;
+            TimelineDataBuffer timelineInfo = (TimelineDataBuffer)timelineHandle.Target;
 
             switch (type)
             {
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT:
                     {
                         var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
-                        timelineInfo.currentMusicBar = parameter.bar;
+                        timelineInfo.currentBeat = parameter.beat;
+                        //Debug.Log(parameter.tempo);
                         //Debug.Log(parameter.position);
-                        //Debug.Log(parameter.beat);
-                        timelineInfo.testEvent.Invoke();
+                        timelineInfo.onBeatInternal.Invoke(timelineInfo.beatBuffer);
+                        timelineInfo.beatBuffer++;
                     }
                     break;
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER:
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
                         timelineInfo.lastMarker = parameter.name;
-                        Debug.Log(parameter.name);
+                        timelineInfo.onMarkerInternal.Invoke((string)parameter.name);
                     }
+                    //if we need any other data from the timeline add more cases...
                     //case FMOD.Studio.EVENT_CALLBACK_TYPE.
                     break;
             }
         }
         return FMOD.RESULT.OK;
+    }
+
+    public void SetEventInstance(FMOD.Studio.EventInstance instance)
+    {
+        eventInstance = instance;
+
+        //Instantiate data buffer & copy event hooks
+        timelineDataInstance = new TimelineDataBuffer();
+        timelineDataInstance.onBeatInternal = onBeatEvent;
+        timelineDataInstance.onMarkerInternal = onMarkerEvent;
+
+        //Instantiate our timeline callback
+        timelineDataCallback = new FMOD.Studio.EVENT_CALLBACK(TimelineEventCallback);
+
+        // Pin the class that will store the data modified during the callback
+        timelineHandle = GCHandle.Alloc(timelineDataInstance, GCHandleType.Pinned);
+        // Pass the object through the userdata of the instance
+        eventInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        //Add the callback to the event
+        eventInstance.setCallback(timelineDataCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+        //FMOD.Studio.EVENT_CALLBACK_TYPE... //add other callback types if necessary
     }
 }

@@ -17,7 +17,6 @@ public class EventHandler : MonoBehaviour
     public event Action onBeat;
     public void NewBeat()
     {
-        Debug.Log("hello");
         if(onBeat != null)
         {
             onBeat();
