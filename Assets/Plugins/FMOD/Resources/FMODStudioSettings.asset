@@ -391,7 +391,7 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 0
   sourceProjectPath: 
-  sourceBankPath: ../../Users/Jocke/Desktop/KTH/GameDesign/BeatsAndBlooms
+  sourceBankPath: Assets/StreamingAssets
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

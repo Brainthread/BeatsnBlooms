@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5776132906895477051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Desktop/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Desktop/Master.bank
+  Name: Desktop/Master
+  StudioPath: bank:/Master
+  lastModified: 638803215344765362
+  FileSizes: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,17 +31,17 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 966322289361133324}
-  - {fileID: 8546916821101029616}
+  - {fileID: 930384702134776036}
+  - {fileID: -5776132906895477051}
   EditorEvents:
   - {fileID: 247755460407863068}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 8546916821101029616}
+  - {fileID: -5776132906895477051}
   StringsBanks:
-  - {fileID: 966322289361133324}
+  - {fileID: 930384702134776036}
   cacheVersion: 131847
-  cacheTime: 638802584567253293
+  cacheTime: 638803215344795290
   SerializableEventsDict:
   - key: event:/TestTimeline
     index: 0
@@ -46,7 +64,7 @@ MonoBehaviour:
     Data3: 214585015
     Data4: 1082993337
   Banks:
-  - {fileID: 8546916821101029616}
+  - {fileID: -5776132906895477051}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -54,7 +72,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
---- !u!114 &966322289361133324
+--- !u!114 &930384702134776036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,31 +82,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Build/Desktop/Master.strings.bank
+  m_Name: bank:/Desktop/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../../Users/Jocke/Desktop/KTH/GameDesign/BeatsAndBlooms/Build/Desktop/Master.strings.bank
-  Name: Build/Desktop/Master.strings
+  Path: Assets/StreamingAssets/Desktop/Master.strings.bank
+  Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638802584567253293
+  lastModified: 638803215344795290
   FileSizes:
   - Name: 
     Value: 774
-  Exists: 1
---- !u!114 &8546916821101029616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Build/Desktop/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Users/Jocke/Desktop/KTH/GameDesign/BeatsAndBlooms/Build/Desktop/Master.bank
-  Name: Build/Desktop/Master
-  StudioPath: bank:/Master
-  lastModified: 638802584567243441
-  FileSizes: []
   Exists: 1
