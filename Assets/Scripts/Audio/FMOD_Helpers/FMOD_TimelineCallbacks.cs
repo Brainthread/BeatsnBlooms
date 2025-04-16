@@ -10,14 +10,18 @@ class FMOD_TimelineCallbacks : MonoBehaviour
     private FMOD.Studio.EventInstance eventInstance;
 
     //Event Hooks
-    [SerializeField]
-    private UnityEvent<int> onBeatEvent;
-    [SerializeField]
-    private UnityEvent<string> onMarkerEvent;
+    [SerializeField] private UnityEvent<int> onBeatEvent;
+    [SerializeField] private UnityEvent<string> onMarkerEvent;
 
     //Note division enum, whole, half, quarter?
 
-    //Storage class for buffering timeline callback event data
+    //Readable buffers
+    private int currentBeat = 0;
+    private int totalBeats = 0;
+    private string currentMarker = null;
+
+    //Storage class for buffering timeline callback event data, 
+    //Managed memory, DONT PUT ANYTHING WITH EXTERNAL REFERENCES IN HERE!
     [StructLayout(LayoutKind.Sequential)]
     class TimelineDataBuffer
     {
@@ -25,8 +29,6 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         public int currentBeat = 0;
         public int beatBuffer = 0;
         public FMOD.StringWrapper lastMarker = new FMOD.StringWrapper();
-        public UnityEvent<int> onBeatInternal;
-        public UnityEvent<string> onMarkerInternal;
     }
 
     //Data Buffer Instances
@@ -45,10 +47,7 @@ class FMOD_TimelineCallbacks : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            onBeatEvent.Invoke(0);
-        }
+        extractCallbackBuffer();
     }
 
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
@@ -57,54 +56,72 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         FMOD.Studio.EventInstance instance = new FMOD.Studio.EventInstance(instancePtr);
 
         // Retrieve the user data
-        IntPtr timelineInfoPtr;
-        FMOD.RESULT result = instance.getUserData(out timelineInfoPtr);
+        IntPtr timelineDataPtr;
+        FMOD.RESULT result = instance.getUserData(out timelineDataPtr);
 
         if (result != FMOD.RESULT.OK)
         {
             Debug.LogError("Timeline Callback error: " + result);
             return result;
         }
-        else if (timelineInfoPtr != IntPtr.Zero)
+        else if (timelineDataPtr != IntPtr.Zero)
         {
             // Get the object to store beat and marker details
-            GCHandle timelineHandle = GCHandle.FromIntPtr(timelineInfoPtr);
-            TimelineDataBuffer timelineInfo = (TimelineDataBuffer)timelineHandle.Target;
+            GCHandle timelineHandle = GCHandle.FromIntPtr(timelineDataPtr);
+            TimelineDataBuffer timelineDataInstance = (TimelineDataBuffer)timelineHandle.Target;
 
             switch (type)
             {
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT:
                     {
                         var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
-                        timelineInfo.currentBeat = parameter.beat;
+                        timelineDataInstance.currentBeat = parameter.beat;
                         //Debug.Log(parameter.tempo);
                         //Debug.Log(parameter.position);
-                        //timelineInfo.onBeatInternal.Invoke(timelineInfo.beatBuffer);
-                        timelineInfo.beatBuffer++;
+                        timelineDataInstance.beatBuffer++;
                     }
                     break;
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER:
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
-                        timelineInfo.lastMarker = parameter.name;
-                        timelineInfo.onMarkerInternal.Invoke((string)parameter.name);
+                        timelineDataInstance.lastMarker = parameter.name;
+                    }
+                    break;
+                case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
+                    {
+                        timelineHandle.Free();
+                        break;
                     }
                     //if we need any other data from the timeline add more cases...
                     //case FMOD.Studio.EVENT_CALLBACK_TYPE.
-                    break;
             }
         }
         return FMOD.RESULT.OK;
     }
 
+    private void extractCallbackBuffer()
+    {   
+        if(currentBeat != timelineDataInstance.currentBeat)
+        {
+            currentBeat = timelineDataInstance.currentBeat;
+            totalBeats = timelineDataInstance.beatBuffer;
+            onBeatEvent.Invoke(currentBeat);
+        }
+
+        if(currentMarker != timelineDataInstance.lastMarker)
+        {
+            //Note this structure will only fire if a NEW marker encountered
+            //will NOT retrigger when same marker encountered again for instance in a loop...
+            currentMarker = timelineDataInstance.lastMarker;
+            onMarkerEvent.Invoke(currentMarker);
+        }
+    }
     public void SetEventInstance(FMOD.Studio.EventInstance instance)
     {
         eventInstance = instance;
 
         //Instantiate data buffer & copy event hooks
         timelineDataInstance = new TimelineDataBuffer();
-        timelineDataInstance.onBeatInternal = onBeatEvent;
-        timelineDataInstance.onMarkerInternal = onMarkerEvent;
 
         //Instantiate our timeline callback
         timelineDataCallback = new FMOD.Studio.EVENT_CALLBACK(TimelineEventCallback);
@@ -118,3 +135,7 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         //FMOD.Studio.EVENT_CALLBACK_TYPE... //add other callback types if necessary
     }
 }
+
+//Some resources for more complex needs
+//https://qa.fmod.com/t/is-it-possible-to-subscribe-to-sub-beat-callbacks/19403/15
+

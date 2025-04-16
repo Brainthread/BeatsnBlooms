@@ -75,7 +75,6 @@ public class Sequencer : MonoBehaviour
             {
                 EventHandler.current.ActivatePlant(i);
             }
-           
         }
         
         Debug.Log("end on new beat");
