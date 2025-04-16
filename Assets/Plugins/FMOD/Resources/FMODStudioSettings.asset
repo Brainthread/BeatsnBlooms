@@ -413,7 +413,7 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Build/Desktop/Master
+  - Desktop/Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264

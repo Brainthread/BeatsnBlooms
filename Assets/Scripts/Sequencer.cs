@@ -64,12 +64,12 @@ public class Sequencer : MonoBehaviour
         for (int i = 0; i < rows; i++)
         {
             representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
-            /*
+            
             if (sequencerBoxStates[i*rows + markerIndex] != 0)
             {
                 EventHandler.current.ActivatePlant(i);
             }
-            */
+            
         }
         
         Debug.Log("end on new beat");
