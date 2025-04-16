@@ -43,6 +43,13 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         timelineHandle.Free();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            onBeatEvent.Invoke(0);
+        }
+    }
 
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
     static FMOD.RESULT TimelineEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
@@ -72,7 +79,7 @@ class FMOD_TimelineCallbacks : MonoBehaviour
                         timelineInfo.currentBeat = parameter.beat;
                         //Debug.Log(parameter.tempo);
                         //Debug.Log(parameter.position);
-                        timelineInfo.onBeatInternal.Invoke(timelineInfo.beatBuffer);
+                        //timelineInfo.onBeatInternal.Invoke(timelineInfo.beatBuffer);
                         timelineInfo.beatBuffer++;
                     }
                     break;

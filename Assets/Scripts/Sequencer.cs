@@ -36,12 +36,18 @@ public class Sequencer : MonoBehaviour
         availableTiles = 4;
         markerIndex = -1;
         sequencerBoxStates = new int[rows*columns];
-        for (int i = 0; i < rows * columns; i++)
+        for (int i = 0; i < rows; i++)
         {
-            sequencerBoxStates[i] = 0;
-            representations[i].GetComponent<SequencerTile>().SetID(i);
-            representations[i].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
-            representations[i].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[0]);
+            for (int j = 0; j < columns; j++)
+            {
+                int indexer = i * rows + j;
+                sequencerBoxStates[indexer] = 0;
+                representations[indexer].GetComponent<SequencerTile>().SetID(indexer);
+                representations[indexer].name = "Tile"+indexer;
+                representations[indexer].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
+                representations[indexer].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[0]);
+                representations[indexer].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(j, i));
+            }
         }
         //musicManager = MusicManager.instance;
         Debug.Log("end start song");
@@ -64,12 +70,12 @@ public class Sequencer : MonoBehaviour
         for (int i = 0; i < rows; i++)
         {
             representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
-            /*
+            
             if (sequencerBoxStates[i*rows + markerIndex] != 0)
             {
                 EventHandler.current.ActivatePlant(i);
             }
-            */
+           
         }
         
         Debug.Log("end on new beat");

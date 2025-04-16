@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour
             GameObject enemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             float[] laneHeights = LaneManager.current.GetLaneHeights();
             float height = laneHeights[Random.Range(0, laneHeights.Length)];
-            Vector3 pos = new Vector3(87.24001f, height, 0);
+            Vector3 pos = new Vector3(87.24001f, 0, height);
             GameObject spawnedEnemy = Instantiate(enemy, pos, Quaternion.Euler(new Vector3(180, 90, 0)));
             spawnedEnemy.transform.parent = this.transform;
         }
