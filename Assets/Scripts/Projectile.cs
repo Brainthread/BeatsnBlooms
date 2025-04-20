@@ -2,17 +2,28 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Vector3 latestPosition;
-    [SerializeField] private float unitMovementPerBeat = 30;
-    private float movementSpeed = 0;
+    private Vector3 latestRayPosition;
     [SerializeField] private LayerMask mask;
     [SerializeField] private float damage = 1;
     [SerializeField] private float lifeTime = 3;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private float rayRange = 0.3f;
+
+    private Vector2 latestGridPosition = new Vector2(-1337, -1337);
+    private Vector2 nextGridPosition;
+    [SerializeField] private float GridMovementSpeed = 1;
+    [SerializeField] private AnimationCurve movementCurve = new AnimationCurve();
+    private int movementQueueIndex = 0;
+    [SerializeField] private int[] movementQueue;
+    bool beating = false;
+    bool detectInRealtime = false;
+    [SerializeField] private GameObject hitObject = null;
+
     void Start()
     {
-        latestPosition = transform.position;
-        movementSpeed = unitMovementPerBeat / MusicManager.instance.GetBeatsPerSecond();
+        latestRayPosition = transform.position;
+        EventHandler.current.onBeat += OnNewBeat;
+        nextGridPosition = GridManager.current.WorldPositionToGridPosition(transform.position);
+        OnNewBeat();
     }
 
     // Update is called once per frame
@@ -23,17 +34,64 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed);
-        RaycastHit hit;
-        Vector3 directionToCurrentPos = (transform.position - latestPosition).normalized;
-        float distanceToCurrentPos = (transform.position - latestPosition).magnitude;
-        if (Physics.Raycast(latestPosition, directionToCurrentPos, out hit, distanceToCurrentPos, mask))
+
+        if (beating)
         {
-            if(hit.transform.GetComponent<HealthManager>())
+            float t = MusicManager.instance.GetBeatInterpolationValue();
+            float ev = movementCurve.Evaluate(t);
+            Vector2 intermediaryGridPosition = Vector2.Lerp(latestGridPosition, nextGridPosition, ev);
+            transform.position = GridManager.current.GridPositionToWorldPosition(intermediaryGridPosition);
+        }
+        Debug.DrawLine(latestRayPosition, latestRayPosition + transform.forward * ((transform.position - latestRayPosition).magnitude + rayRange), Color.red);
+        HandleHitDetection();
+    }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    private void OnDestroy()
+    {
+        EventHandler.current.onBeat -= OnNewBeat;
+    }
+
+    void OnNewBeat()
+    {
+        beating = true;
+        Vector3 pos = transform.position;
+        latestGridPosition = nextGridPosition;
+        Vector2 movementDirection = new Vector2(transform.forward.x, 0).normalized;
+        Debug.Log(movementDirection);
+        nextGridPosition = latestGridPosition + movementDirection * movementQueue[movementQueueIndex];
+        movementQueueIndex += 1;
+        if (movementQueueIndex >= movementQueue.Length)
+            movementQueueIndex = 0;
+        HandleHitDetection();
+        if(hitObject)
+        {
+            if (hitObject.transform.GetComponent<HealthManager>())
             {
-                hit.transform.GetComponent<HealthManager>().ApplyDamage(damage);
-                Destroy(gameObject);
+                hitObject.transform.GetComponent<HealthManager>().ApplyDamage(damage);
             }
+            Destroy(gameObject);
+        }
+        
+    }
+
+    void HandleHitDetection()
+    {
+        RaycastHit hit;
+        if(!hitObject)
+        {
+            Vector3 directionToCurrentPos = (transform.position - latestRayPosition);
+            float distanceToCurrentPos = directionToCurrentPos.magnitude;
+            if (Physics.Raycast(latestRayPosition, transform.forward, out hit, distanceToCurrentPos+rayRange, mask))
+            {
+                print("Collision");
+                hitObject = hit.transform.gameObject;
+            }
+            latestRayPosition = transform.position;
         }
     }
 }

@@ -121,9 +121,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e688d72dabed34e8faca9bea4655d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitMovementPerBeat: 60
   mask:
     serializedVersion: 2
     m_Bits: 64
   damage: 1
-  lifeTime: 3
+  lifeTime: 5
+  rayRange: 5
+  GridMovementSpeed: 1
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0015258789
+      value: -0.0047187805
+      inSlope: 0.019790089
+      outSlope: 0.019790089
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.83987886
+      value: 0.0118723
+      inSlope: 0.06519134
+      outSlope: 0.06519134
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30680364
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9795884
+      value: 0.39941508
+      inSlope: 1.9555123
+      outSlope: 1.9555123
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.05421115
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 14.708819
+      outSlope: 14.708819
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.4289073
+      value: 0.99740386
+      inSlope: -Infinity
+      outSlope: -Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  movementQueue: 01000000
+  hitObject: {fileID: 0}

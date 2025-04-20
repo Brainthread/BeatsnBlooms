@@ -733,6 +733,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 3803572050703599025, guid: 9c6aed290b70b374690401c35ab30153, type: 3}
   - {fileID: 3803572050703599025, guid: 393493bd8d790384ba4e58fadddf351a, type: 3}
+  enemySpawnLongitude: 15
 --- !u!1001 &517428356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2979,7 +2980,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939701098}
-  - component: {fileID: 1939701097}
   - component: {fileID: 1939701099}
   m_Layer: 0
   m_Name: LaneManager
@@ -2988,22 +2988,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1939701097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939701096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8747aa80341517e49adfebb4d01499c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lanes: 4
-  laneDistance: 12
-  laneStartPosition: 18
-  laneHeights: []
 --- !u!4 &1939701098
 Transform:
   m_ObjectHideFlags: 0
@@ -3038,6 +3022,7 @@ MonoBehaviour:
   rowStartPosition: -63.2
   columnStartPosition: -18
   positions: []
+  plane: {fileID: 6075765052578747605, guid: 60d5588ffd6198a48b4fd47cd70d9cb5, type: 3}
 --- !u!1 &2065612003
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ public class EnemyManager : MonoBehaviour
 {
     private int beatsTillNextEnemy = 3;
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private int enemySpawnLongitude = 15;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,10 +33,9 @@ public class EnemyManager : MonoBehaviour
         {
             beatsTillNextEnemy = Random.Range(0, 12);
             GameObject enemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            float[] laneHeights = LaneManager.current.GetLaneHeights();
-            float height = laneHeights[Random.Range(0, laneHeights.Length)];
-            Vector3 pos = new Vector3(87.24001f, 0, height);
-            GameObject spawnedEnemy = Instantiate(enemy, pos, Quaternion.Euler(new Vector3(180, 90, 0)));
+            int spawnHeight = Random.Range(0, GridManager.current.GetRows());
+            Vector3 spawnPosition = GridManager.current.GridPositionToWorldPosition(new Vector2(enemySpawnLongitude, spawnHeight));
+            GameObject spawnedEnemy = Instantiate(enemy, spawnPosition, Quaternion.Euler(new Vector3(180, 90, 0)));
             spawnedEnemy.transform.parent = this.transform;
         }
     }

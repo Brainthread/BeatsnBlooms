@@ -13,14 +13,30 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Vector3[] positions;
 
+    [SerializeField] private GameObject plane;
     private void Start()
     {
         current = this;
         positions = new Vector3[rows*columns];
-        for(int i = 0; i < rows*columns; i++)
+        for(int i = 0; i < rows; i++)
         {
-            positions[i] = Vector3.zero;
+            for(int j = 0; j < columns; j++)
+            {
+                GameObject planeInstance = Instantiate(plane, transform.position, Quaternion.identity);
+                planeInstance.transform.position = GridPositionToWorldPosition(new Vector2(j, i));
+                planeInstance.transform.Translate(Vector3.down * 0.4f);
+                planeInstance.transform.parent = this.transform;
+            }
         }
+    }
+
+    public int GetRows()
+    {
+        return rows;
+    }
+    public int GetColumns()
+    {
+        return columns;
     }
     
     public Vector2 ClampedWorldPositionToGridPosition(Vector3 worldPosition, bool x_clamp, bool y_clamp)

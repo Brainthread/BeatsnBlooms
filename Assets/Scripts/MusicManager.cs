@@ -35,6 +35,10 @@ public class MusicManager : MonoBehaviour
     {
         return GetBeatsPerSecond(bpm)*GetSampledTime();
     }
+    public float GetBeatInterpolationValue()
+    {
+        return GetBeat(currentSong.bpm) - (float)lastBeat;
+    }
     public float GetBeatsPerSecond(float bpm)
     {
         return bpm / 60f;
