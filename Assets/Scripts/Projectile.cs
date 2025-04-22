@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System;
 
 public class Projectile : MonoBehaviour
 {
@@ -42,7 +44,7 @@ public class Projectile : MonoBehaviour
             Vector2 intermediaryGridPosition = Vector2.Lerp(latestGridPosition, nextGridPosition, ev);
             transform.position = GridManager.current.GridPositionToWorldPosition(intermediaryGridPosition);
         }
-        Debug.DrawLine(latestRayPosition, latestRayPosition + transform.forward * ((transform.position - latestRayPosition).magnitude + rayRange), Color.red);
+        Debug.DrawLine(latestRayPosition, latestRayPosition + transform.forward*3, Color.red);
         HandleHitDetection();
     }
 
@@ -68,30 +70,31 @@ public class Projectile : MonoBehaviour
         if (movementQueueIndex >= movementQueue.Length)
             movementQueueIndex = 0;
         HandleHitDetection();
-        if(hitObject)
+    }
+
+    void HandleHitDetection()
+    {
+        RaycastHit[] hits;
+        if(!hitObject)
+        {
+            Vector3 directionToCurrentPos = (transform.position - latestRayPosition);
+            float distanceToCurrentPos = directionToCurrentPos.magnitude;
+            hits = Physics.RaycastAll(latestRayPosition, transform.forward, distanceToCurrentPos + rayRange, mask);
+            if (hits.Length > 0)
+            {
+                Array.Sort(hits, (RaycastHit x, RaycastHit y) => x.distance.CompareTo(y.distance));
+                hitObject = hits[0].transform.gameObject;
+            
+            }
+            latestRayPosition = transform.position;
+        }
+        if (hitObject)
         {
             if (hitObject.transform.GetComponent<HealthManager>())
             {
                 hitObject.transform.GetComponent<HealthManager>().ApplyDamage(damage);
             }
             Destroy(gameObject);
-        }
-        
-    }
-
-    void HandleHitDetection()
-    {
-        RaycastHit hit;
-        if(!hitObject)
-        {
-            Vector3 directionToCurrentPos = (transform.position - latestRayPosition);
-            float distanceToCurrentPos = directionToCurrentPos.magnitude;
-            if (Physics.Raycast(latestRayPosition, transform.forward, out hit, distanceToCurrentPos+rayRange, mask))
-            {
-                print("Collision");
-                hitObject = hit.transform.gameObject;
-            }
-            latestRayPosition = transform.position;
         }
     }
 }

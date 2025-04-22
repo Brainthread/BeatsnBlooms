@@ -126,52 +126,43 @@ MonoBehaviour:
     m_Bits: 64
   damage: 1
   lifeTime: 5
-  rayRange: 5
+  rayRange: 1
   GridMovementSpeed: 1
   movementCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0015258789
-      value: -0.0047187805
-      inSlope: 0.019790089
-      outSlope: 0.019790089
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.83987886
-      value: 0.0118723
-      inSlope: 0.06519134
-      outSlope: 0.06519134
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.30680364
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.9795884
-      value: 0.39941508
-      inSlope: 1.9555123
-      outSlope: 1.9555123
+      time: 0.5078786
+      value: 0.11467044
+      inSlope: 0.25650582
+      outSlope: 0.25650582
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.05421115
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8598184
+      value: 0.29480976
+      inSlope: 0.8474413
+      outSlope: 0.8474413
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.21780804
+      outWeight: 0.9151861
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 14.708819
-      outSlope: 14.708819
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.4289073
-      value: 0.99740386
-      inSlope: -Infinity
-      outSlope: -Infinity
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    [SerializeField] private ProjectileEmitter emitter;
-    [SerializeField] private AudioClip shootSound;
-    [SerializeField] private AudioSource shootAudio;
-    public void Activate()
+    [SerializeField] private PlantAction[] plantActions;
+
+    public void Activate(int ability)
     {
-        shootAudio.clip = shootSound;
-        shootAudio.Play();
-        emitter.FireProjectile();
+        plantActions[ability].Activate();
     }
+
+}
+
+public abstract class PlantAction : MonoBehaviour
+{
+    [SerializeField] private Texture2D icon; 
+    public abstract void Activate();
+    public abstract Texture2D GetIcon();
 }

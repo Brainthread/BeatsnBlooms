@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour
     private Song currentSong;
     [SerializeField] private Song testSong;
     private int lastBeat = -1;
+    private int[] lastPartialBeat = new int[4];
 
     private float pcmDeltaTime;
     private float pcmLastTime = 0;
@@ -31,9 +32,13 @@ public class MusicManager : MonoBehaviour
         audioSource.Play();
         EventHandler.current.StartSong();
     }
+    public float GetBeat(float bpm, float divider)
+    {
+        return GetBeatsPerSecond(bpm*divider)*GetSampledTime();
+    }
     public float GetBeat(float bpm)
     {
-        return GetBeatsPerSecond(bpm)*GetSampledTime();
+        return GetBeat(bpm, 1);
     }
     public float GetBeatInterpolationValue()
     {

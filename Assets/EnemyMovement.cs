@@ -25,13 +25,10 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(beating)
-        {
             float t = MusicManager.instance.GetBeatInterpolationValue();
             float ev = movementCurve.Evaluate(t);
             Vector2 intermediaryGridPosition = Vector2.Lerp(latestGridPosition, nextGridPosition, ev);
             transform.position = GridManager.current.GridPositionToWorldPosition(intermediaryGridPosition);
-        }
     }
 
     private void OnDestroy()
@@ -41,11 +38,9 @@ public class EnemyMovement : MonoBehaviour
 
     void OnNewBeat()
     {
-        beating = true;
         Vector3 pos = transform.position;
         latestGridPosition = nextGridPosition;
         Vector2 movementDirection = new Vector2(transform.forward.x, 0).normalized;
-        Debug.Log(movementDirection);
         nextGridPosition = latestGridPosition + movementDirection * movementQueue[movementQueueIndex];
         movementQueueIndex += 1;
         if (movementQueueIndex >= movementQueue.Length)
