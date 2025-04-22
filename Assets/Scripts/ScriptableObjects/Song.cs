@@ -5,6 +5,7 @@ public class Song : ScriptableObject
 {
     public AudioClip audio;
     public float bpm;
+    public int endBeat;
     public enum TimeSignature
     {
         FOUR_OVER_FOUR,

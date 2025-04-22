@@ -32,6 +32,10 @@ public class MusicManager : MonoBehaviour
         audioSource.Play();
         EventHandler.current.StartSong();
     }
+    public float GetSongProgression()
+    {
+        return (float)audioSource.timeSamples / ((float)audioSource.clip.frequency * (float)audioSource.clip.length);
+    }
     public float GetBeat(float bpm, float divider)
     {
         return GetBeatsPerSecond(bpm*divider)*GetSampledTime();
