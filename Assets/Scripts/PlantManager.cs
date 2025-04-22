@@ -22,8 +22,8 @@ public class PlantManager : MonoBehaviour
 
     }
 
-    private void OnPlantActivation(int id)
+    private void OnPlantActivation(int id, int powerup)
     {
-        plants[id].Activate();
+        plants[id].Activate(powerup);
     }
 }

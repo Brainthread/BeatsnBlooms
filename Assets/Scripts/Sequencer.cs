@@ -73,7 +73,7 @@ public class Sequencer : MonoBehaviour
             
             if (sequencerBoxStates[i*rows + markerIndex] != 0)
             {
-                EventHandler.current.ActivatePlant(i);
+                EventHandler.current.ActivatePlant(i, sequencerBoxStates[i * rows + markerIndex]-1);
             }
         }
         

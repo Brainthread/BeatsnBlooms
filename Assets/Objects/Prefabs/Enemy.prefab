@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8878886949097409402}
   - component: {fileID: 5235907194541581987}
   - component: {fileID: 1183493643650027858}
+  - component: {fileID: 6634299830887517599}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -189,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
-  damageClip: {fileID: 8300000, guid: 35e64ea3959d6f94a87c707ac584b0f1, type: 3}
+  damageClip: {fileID: 8300000, guid: a488b2e5b3b61004c9b89c2ed73cd56b, type: 3}
 --- !u!82 &1183493643650027858
 AudioSource:
   m_ObjectHideFlags: 0
@@ -203,8 +204,8 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 0.39
+  m_Volume: 0.46
+  m_Pitch: 1.1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -287,3 +288,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6634299830887517599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803572050703599025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa969fbe755d20f4ab75f6c4862486aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
