@@ -7,6 +7,7 @@ public class EnemyShieldManager : MonoBehaviour
 
     [SerializeField] private bool[] shieldEnabledQueue;
     private int queueIndex = 0;
+    private float shieldActivationDelay = 0.12f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,7 +33,7 @@ public class EnemyShieldManager : MonoBehaviour
         {
             queueIndex = 0;
         }
-        Invoke("SwitchShieldState", 0.08f);
+        Invoke("SwitchShieldState", shieldActivationDelay);
     }
 
     private void SwitchShieldState()
