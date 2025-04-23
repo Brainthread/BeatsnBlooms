@@ -92,19 +92,23 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BulgeAmount: 0.5
+    - _BulgeStrength: 1
     - _BumpScale: 1
+    - _BumpSize: 0.03
+    - _BumpWidth: 2.9
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _CurvePower: 1.9
+    - _CurvePower: 30
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FadeOffset: 0.41628796
-    - _FadeWidth: 0.06
+    - _FadeOffset: -0.24
+    - _FadeProgress: 0.298
+    - _FadeWidth: 0.103
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -122,6 +126,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _ZOffset: 1.5
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

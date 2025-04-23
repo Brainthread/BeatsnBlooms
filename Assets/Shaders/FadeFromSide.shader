@@ -5,10 +5,14 @@ Shader "Custom/NonLinearFadeBetweenTextures"
         _MainTex ("Texture 1", 2D) = "white" {}
         _SecondTex ("Texture 2", 2D) = "black" {}
         _Color ("Texture Tint", Color) = (1, 1, 1, 1)
-        _FadeOffset ("Fade Offset", Range(0,1)) = 0.0
-        _FadeWidth ("Fade Width", Range(0.01,1)) = 0.2
-        _CurvePower ("Fade Curve Power", Range(1, 10)) = 2.0  // New property to control the non-linear transition.
-    }
+        _FadeProgress ("Fade Progress", Range(0,1)) = 0.0
+        _FadeWidth ("Fade Width", Range(0.001,1)) = 0.2
+        _CurvePower ("Fade Curve Power", Range(1, 30)) = 2.0 
+        _BumpSize ("Bump Size", Range(0.01, 2)) = 1.0
+        _BumpWidth ("Bump Width", Range(0.01, 100)) = 1.0
+        _ZOffset ("Z Offset", Float) = 1.0
+        _FadeOffset ("Fade Offset", Range(-1,1)) = 0.0
+        }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -30,9 +34,13 @@ Shader "Custom/NonLinearFadeBetweenTextures"
             sampler2D _SecondTex;
             float4 _MainTex_ST;
             float4 _Color;
-            float _FadeOffset;
+            float _FadeProgress;
             float _FadeWidth;
-            float _CurvePower;  // New variable to control the non-linear curve.
+            float _CurvePower;
+            float _BumpSize;
+            float _BumpWidth;
+            float _ZOffset;
+            float _FadeOffset;
 
             struct appdata
             {
@@ -45,6 +53,7 @@ Shader "Custom/NonLinearFadeBetweenTextures"
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
                 float fadeCoord : TEXCOORD1;
+                float localZ : TEXCOORD2;
             };
 
             v2f vert(appdata v)
@@ -56,32 +65,25 @@ Shader "Custom/NonLinearFadeBetweenTextures"
                 // Normalize the X position from [-5, 5] to [0, 1] based on the default Unity plane (for a standard plane mesh).
                 o.fadeCoord = (v.vertex.x + 5.0) / 10.0;       // This creates a normalized fade coordinate.
 
+                o.localZ = v.vertex.z;
+
                 return o;
             }
 
             // Fragment shader function.
             fixed4 frag(v2f i) : SV_Target
             {
-                // Calculate the fade amount based on normalized position.
-                // This calculates how far the current fragment is from the fade offset.
-                float fadeProgress = (i.fadeCoord - _FadeOffset) / _FadeWidth;
+                // Offset varies based on local Y position
+                float dynamicOffset = _FadeProgress + _FadeOffset + sin((i.localZ)/_BumpWidth+_ZOffset)*_BumpSize;
 
-                // Apply a non-linear curve to the fade amount (pow or smoothstep can be used here).
-                // Using pow to control the curve. The higher _CurvePower, the sharper the transition at the middle.
+                float fadeProgress = (i.fadeCoord - dynamicOffset) / _FadeWidth;
                 float fade = pow(saturate(fadeProgress), _CurvePower);
 
-                // Sample both textures.
-                fixed4 tex1 = tex2D(_MainTex, i.uv);           // Sample the first texture (e.g., dirt texture).
-                fixed4 tex2 = tex2D(_SecondTex, i.uv);         // Sample the second texture (e.g., grass texture).
-
-                // Blend the two textures based on the fade amount. 
-                // When fade is 0, tex1 is fully visible; when fade is 1, tex2 is fully visible.
+                fixed4 tex1 = tex2D(_MainTex, i.uv);
+                fixed4 tex2 = tex2D(_SecondTex, i.uv);
                 fixed4 blendedColor = lerp(tex1, tex2, fade);
 
-                // Apply the tint color to the blended texture result.
                 blendedColor *= _Color;
-
-                // Return the final color after blending and tinting.
                 return blendedColor;
             }
 
