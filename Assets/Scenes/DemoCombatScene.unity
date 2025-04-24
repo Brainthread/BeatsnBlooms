@@ -277,6 +277,11 @@ MonoBehaviour:
   - {fileID: 1798089119}
   - {fileID: 934491496}
   - {fileID: 227738339}
+  dangerDetectionRange: 15
+  dangerDetectionOffset: -10
+  dangerDetectionMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
