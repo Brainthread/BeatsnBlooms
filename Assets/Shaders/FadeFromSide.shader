@@ -1,4 +1,4 @@
-Shader "Custom/NonLinearFadeBetweenTextures"
+Shader "Custom/FadeFromSide"
 {
     Properties
     {
@@ -11,7 +11,7 @@ Shader "Custom/NonLinearFadeBetweenTextures"
         _BumpSize ("Bump Size", Range(0.01, 2)) = 1.0
         _BumpWidth ("Bump Width", Range(0.01, 100)) = 1.0
         _ZOffset ("Z Offset", Float) = 1.0
-        _FadeOffset ("Fade Offset", Range(-1,1)) = 0.0
+        _FadeOffset ("Fade Offset", Range(-1,1)) = -0.11
         }
     SubShader
     {

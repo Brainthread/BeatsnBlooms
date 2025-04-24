@@ -9,12 +9,12 @@ public class GrowthManager : MonoBehaviour
     void Start()
     {
         musicManager = MusicManager.instance;
-        renderMaterial.SetFloat("_FadeOffset", 0);
+        renderMaterial.SetFloat("_Progress", 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        renderMaterial.SetFloat("_FadeOffset", growthSpeed.Evaluate(musicManager.GetSongProgression()));
+        renderMaterial.SetFloat("_Progress", growthSpeed.Evaluate(musicManager.GetSongProgression()));
     }
 }
