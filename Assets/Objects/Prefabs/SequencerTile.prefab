@@ -227,3 +227,4 @@ MonoBehaviour:
   maxHealth: 4
   damageClip: {fileID: 0}
   destroyOnDeath: 0
+  onDestroySpawn: {fileID: 7250114793411685677, guid: 9dcc55b6d9437624db643f181ab85ecf, type: 3}
