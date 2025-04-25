@@ -33,7 +33,8 @@ public class PlantManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(rayOriginPosition, Vector3.right, out hit, dangerDetectionRange, dangerDetectionMask))
             {
-                plants[i].SetActiveStatus(false);
+                //Uncomment below to make plants hide when enemies are close by.
+                //plants[i].SetActiveStatus(false);
             }
             else
             {

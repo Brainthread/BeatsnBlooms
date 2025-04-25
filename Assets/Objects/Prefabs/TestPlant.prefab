@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3312891423724485626}
   - component: {fileID: 3225237307410319816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,8 @@ GameObject:
   - component: {fileID: 3204122567178125605}
   - component: {fileID: 771315245667521915}
   - component: {fileID: 2293013252582270852}
-  m_Layer: 0
+  - component: {fileID: 2668530991192541310}
+  m_Layer: 8
   m_Name: TestPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,6 +415,21 @@ MonoBehaviour:
   damage: 1
   lineRenderer: {fileID: 3225237307410319816}
   lineFadeRate: 3
+--- !u!114 &2668530991192541310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939919932381533129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a5c9d587fee8d439ab29da66f619ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 4
+  damageClip: {fileID: 0}
+  destroyOnDeath: 0
 --- !u!1 &7325348510909381817
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6968550514548470373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

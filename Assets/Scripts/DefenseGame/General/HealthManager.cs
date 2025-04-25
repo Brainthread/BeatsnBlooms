@@ -6,6 +6,7 @@ public class HealthManager : MonoBehaviour
     private float health;
     [SerializeField] private AudioClip damageClip;
     private bool canTakeDamage = true;
+    [SerializeField] private bool destroyOnDeath = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,7 +22,14 @@ public class HealthManager : MonoBehaviour
             health -= damage;
             if (health < 0)
             {
-                Destroy(gameObject);
+                if(destroyOnDeath)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
 

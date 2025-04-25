@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 2247261811204245932}
   - component: {fileID: 7295742924304265177}
   - component: {fileID: 2302415639863854248}
-  - component: {fileID: 8878886949097409402}
   - component: {fileID: 5235907194541581987}
   - component: {fileID: 1183493643650027858}
-  - component: {fileID: 6634299830887517599}
+  - component: {fileID: 3836185591601572809}
+  - component: {fileID: 8803666564006572863}
+  - component: {fileID: 7970292500077697175}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -112,71 +113,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8878886949097409402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3803572050703599025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ade26fa4005f8f54894b1a7afacdb1aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GridMovementSpeed: 1
-  movementCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.15293235
-      value: 0.916067
-      inSlope: 0.8858586
-      outSlope: 0.8858586
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.09134854
-    - serializedVersion: 3
-      time: 0.28359917
-      value: 0.86257493
-      inSlope: 0.6411451
-      outSlope: 0.6411451
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.43219888
-      value: 0.99551004
-      inSlope: -0.115985826
-      outSlope: -0.115985826
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.7812765
-      outWeight: 0.11068961
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  movementQueue: 0000000001000000
 --- !u!114 &5235907194541581987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +224,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6634299830887517599
+--- !u!114 &3836185591601572809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,6 +233,103 @@ MonoBehaviour:
   m_GameObject: {fileID: 3803572050703599025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa969fbe755d20f4ab75f6c4862486aa, type: 3}
+  m_Script: {fileID: 11500000, guid: de3d0e0fde1b98c4db30c7daaeef3206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states:
+  - {fileID: 8803666564006572863}
+  - {fileID: 7970292500077697175}
+  current_state: {fileID: 7970292500077697175}
+--- !u!114 &8803666564006572863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803572050703599025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f53cdb118378b74182c430389db440b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachine: {fileID: 0}
+  meleeDamage: 1
+  attackQueue: 01000001
+  attackQueueIndex: 0
+  meleeRange: 15
+  meleeMask:
+    serializedVersion: 2
+    m_Bits: 384
+  movementState: {fileID: 7970292500077697175}
+  target: {fileID: 0}
+--- !u!114 &7970292500077697175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803572050703599025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2708978f3d554744fb35b97c29bc3151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachine: {fileID: 0}
+  GridMovementSpeed: 1
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.15293235
+      value: 0.916067
+      inSlope: 0.8858586
+      outSlope: 0.8858586
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09134854
+    - serializedVersion: 3
+      time: 0.28359917
+      value: 0.86257493
+      inSlope: 0.6411451
+      outSlope: 0.6411451
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.43219888
+      value: 0.99551004
+      inSlope: -0.115985826
+      outSlope: -0.115985826
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.7812765
+      outWeight: 0.11068961
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  movementQueue: 0000000001000000
+  enemyAttackMask:
+    serializedVersion: 2
+    m_Bits: 384
+  meleeRange: 15
+  meleeAttackState: {fileID: 8803666564006572863}

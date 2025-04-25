@@ -32,7 +32,6 @@ public class Sequencer : MonoBehaviour
 
     private void OnStartSong()
     {
-        Debug.Log("begin start song");
         availableTiles = 4;
         markerIndex = -1;
         sequencerBoxStates = new int[rows*columns];
@@ -50,16 +49,16 @@ public class Sequencer : MonoBehaviour
             }
         }
         //musicManager = MusicManager.instance;
-        Debug.Log("end start song");
     }
 
     private void OnNewBeat()
     {
-        Debug.Log("begin on new beat");
         if (markerIndex != -1)
         for(int i = 0; i < rows; i++)
         {
-            representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
+            GameObject rep = representations[i * rows + markerIndex];
+            if(rep.activeSelf)
+                rep.GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
         }
         markerIndex += 1;
         if(markerIndex > columns-1)
@@ -69,20 +68,21 @@ public class Sequencer : MonoBehaviour
         
         for (int i = 0; i < rows; i++)
         {
-            representations[i*rows + markerIndex].GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
-            
-            if (sequencerBoxStates[i*rows + markerIndex] != 0)
+            GameObject rep = representations[i * rows + markerIndex];
+            if (rep.activeSelf)
             {
-                EventHandler.current.ActivatePlant(i, sequencerBoxStates[i * rows + markerIndex]-1);
+                rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
+                if (sequencerBoxStates[i * rows + markerIndex] != 0)
+                {
+                    EventHandler.current.ActivatePlant(i, sequencerBoxStates[i * rows + markerIndex] - 1);
+                }
             }
         }
         
-        Debug.Log("end on new beat");
     }
 
     private void OnTileClicked(int id)
     {
-        Debug.Log("begin clicked");
         if (availableTiles > 0)
         {
             if (sequencerBoxStates[id] == 0)
@@ -105,6 +105,5 @@ public class Sequencer : MonoBehaviour
             }
         }
         representations[id].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[sequencerBoxStates[id]]);
-        Debug.Log("end new beat");
     }
 }
