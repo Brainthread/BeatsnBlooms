@@ -32,7 +32,6 @@ public class Sequencer : MonoBehaviour
 
     private void OnStartSong()
     {
-        Debug.Log("begin start song");
         availableTiles = 4;
         markerIndex = -1;
         sequencerBoxStates = new int[rows*columns];
@@ -50,12 +49,10 @@ public class Sequencer : MonoBehaviour
             }
         }
         //musicManager = MusicManager.instance;
-        Debug.Log("end start song");
     }
 
     private void OnNewBeat()
     {
-        Debug.Log("begin on new beat");
         if (markerIndex != -1)
         for(int i = 0; i < rows; i++)
         {
@@ -75,14 +72,11 @@ public class Sequencer : MonoBehaviour
             {
                 EventHandler.current.ActivatePlant(i, sequencerBoxStates[i * rows + markerIndex]-1);
             }
-        }
-        
-        Debug.Log("end on new beat");
+        }        
     }
 
     private void OnTileClicked(int id)
     {
-        Debug.Log("begin clicked");
         if (availableTiles > 0)
         {
             if (sequencerBoxStates[id] == 0)
@@ -105,6 +99,5 @@ public class Sequencer : MonoBehaviour
             }
         }
         representations[id].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[sequencerBoxStates[id]]);
-        Debug.Log("end new beat");
     }
 }
