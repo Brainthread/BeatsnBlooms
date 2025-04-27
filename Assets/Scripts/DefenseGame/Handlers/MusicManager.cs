@@ -31,6 +31,10 @@ public class MusicManager : MonoBehaviour
     }
     public float GetSongProgression()
     {
+        if(!audioSource||!audioSource.clip)
+        {
+            return 0;
+        }
         return (float)audioSource.timeSamples / ((float)audioSource.clip.frequency * (float)audioSource.clip.length);
     }
     public float GetBeat(float bpm, float divider)

@@ -11,7 +11,6 @@ public class SequencerTile : MonoBehaviour
     {
         isDestroyed = false;
     }
-
     public bool GetDestructionStatus()
     {
         return isDestroyed;
