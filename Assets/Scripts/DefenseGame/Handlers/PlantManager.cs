@@ -45,6 +45,7 @@ public class PlantManager : MonoBehaviour
 
     private void OnPlantActivation(int id, int powerup)
     {
-        plants[id].Activate(powerup);
+        if (plants[id].gameObject.activeSelf)
+            plants[id].Activate(powerup);
     }
 }

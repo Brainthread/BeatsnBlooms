@@ -18,7 +18,7 @@ public class VFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(impactIndex != impactFrames.Length)
+        if(impactIndex < impactFrames.Length)
         {
             impactT += Time.deltaTime;
             if (impactT > impactFrames[impactIndex].impactLength)
@@ -37,6 +37,10 @@ public class VFXManager : MonoBehaviour
 
 
     public void PlayImpactFrames()
+    {
+        Invoke("PlayImpact", 0.06f);
+    }
+    private void PlayImpact()
     {
         impactIndex = 0;
         impactMaterial.SetInt("_Active", 1);

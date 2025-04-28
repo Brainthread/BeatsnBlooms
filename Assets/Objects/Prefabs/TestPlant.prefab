@@ -301,7 +301,7 @@ AudioSource:
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.6513076
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -428,8 +428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: 86b4e4d60354a454bad7640adc9ce1dc, type: 3}
   destroyOnDeath: 0
+  onDestroySpawn: {fileID: 0}
 --- !u!1 &7325348510909381817
 GameObject:
   m_ObjectHideFlags: 0
