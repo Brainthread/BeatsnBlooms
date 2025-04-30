@@ -13,6 +13,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private Song testSong;
     private int lastBeat = -1;
     private float pcmLastTime = 0;
+    private bool hasLost = false;
     // Test implementation
     private void Start()
     {
@@ -23,6 +24,7 @@ public class MusicManager : MonoBehaviour
     //Initialize song
     private void Initialize()
     {
+        EventHandler.current.onLoss += OnLoss;
         this.currentSong = testSong;
         audioSource = GetComponent<AudioSource>();
         audioSource.resource = currentSong.audio;
@@ -78,10 +80,17 @@ public class MusicManager : MonoBehaviour
     {
         EventHandler.current.NewBeat();
     }
+    private void OnLoss()
+    {
+        hasLost = true;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if(hasLost && audioSource.isPlaying==true) {
+            audioSource.pitch = Mathf.MoveTowards(audioSource.pitch, 0, 0.35f*Time.deltaTime);
+        }
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Initialize();

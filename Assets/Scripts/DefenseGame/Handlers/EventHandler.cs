@@ -69,4 +69,22 @@ public class EventHandler : MonoBehaviour
             onGeneratorDanger(value);
         }
     }
+
+    public event Action onLoss;
+    public void Lose ()
+    {
+        if(onLoss != null)
+        {
+            onLoss();
+        }
+    }
+
+    public event Action onGeneratorDestroyed;
+    public void GeneratorDestroyed()
+    {
+        if (onGeneratorDestroyed != null)
+        {
+            onGeneratorDestroyed();
+        }
+    }
 }

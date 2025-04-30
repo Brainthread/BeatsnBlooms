@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7295742924304265177}
   - component: {fileID: 2302415639863854248}
   - component: {fileID: 5235907194541581987}
+  - component: {fileID: 3275333333547142616}
   - component: {fileID: 1183493643650027858}
   - component: {fileID: 3836185591601572809}
   - component: {fileID: 8803666564006572863}
@@ -128,7 +129,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   damageClip: {fileID: 8300000, guid: a488b2e5b3b61004c9b89c2ed73cd56b, type: 3}
+--- !u!114 &3275333333547142616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803572050703599025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b89fddfddc91149a90444be9d4d639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   destroyOnDeath: 1
+  onDestroySpawn: {fileID: 0}
 --- !u!82 &1183493643650027858
 AudioSource:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class GrowthManager : MonoBehaviour
         musicManager = MusicManager.instance;
         renderMaterial.SetFloat("_Progress", 0);
         renderMaterial.SetFloat("_SineOffset", 0);
+        EventHandler.current.onLoss += OnLose;
     }
 
     // Update is called once per frame

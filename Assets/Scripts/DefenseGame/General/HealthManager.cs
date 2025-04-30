@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class HealthManager : MonoBehaviour
 {
@@ -6,9 +7,6 @@ public class HealthManager : MonoBehaviour
     private float health;
     [SerializeField] private AudioClip damageClip;
     private bool canTakeDamage = true;
-    [SerializeField] private bool destroyOnDeath = true;
-    [SerializeField] private GameObject onDestroySpawn;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,28 +14,36 @@ public class HealthManager : MonoBehaviour
         health = maxHealth;
     }
 
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(float damage, bool overrideInvul)
     {
-        if(canTakeDamage) {
+        if(canTakeDamage||overrideInvul) {
             GetComponent<AudioSource>().PlayOneShot(damageClip, 1.5f);
             health -= damage;
             if (health < 0)
             {
-                if(onDestroySpawn)
-                {
-                    Instantiate(onDestroySpawn, transform.position, transform.rotation);
-                }
-                if(destroyOnDeath)
-                {
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
+                HealthDepleted();
             }
         }
 
+    }
+
+    public void ApplyDamage(float damage)
+    {
+        ApplyDamage(damage, false);
+    }
+
+    public Action OnHealthDepleted;
+    public void HealthDepleted()
+    {
+        if(OnHealthDepleted != null)
+        {
+            OnHealthDepleted();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnHealthDepleted = null;
     }
 
     public void SetInvulnerability (bool canTakeDamage)
