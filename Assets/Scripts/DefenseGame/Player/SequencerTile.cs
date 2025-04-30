@@ -23,6 +23,10 @@ public class SequencerTile : MonoBehaviour
     {
         EventHandler.current.ClickSequencerTile(id);
     }
+    public void UnClickedTile()
+    {
+        EventHandler.current.UnClickSequencerTile(id);
+    }
     public void SetBorderMaterial(Material material)
     {
         borderRenderer.material = material;

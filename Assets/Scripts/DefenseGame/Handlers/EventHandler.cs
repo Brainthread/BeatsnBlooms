@@ -33,6 +33,15 @@ public class EventHandler : MonoBehaviour
         }
     }
 
+    public event Action<int> onUnClickSequencerTile;
+    public void UnClickSequencerTile(int id)
+    {
+        if (onUnClickSequencerTile != null)
+        {
+            onUnClickSequencerTile(id);
+        }
+    }
+
     public event Action<int, int> onPlantActivation;
     public void ActivatePlant(int position, int powerup)
     {
@@ -48,6 +57,16 @@ public class EventHandler : MonoBehaviour
         if(onStartSong != null)
         {
             onStartSong();
+        }
+    }
+
+
+    public event Action<bool> onGeneratorDanger;
+    public void GeneratorDanger(bool value)
+    {
+        if (onGeneratorDanger != null)
+        {
+            onGeneratorDanger(value);
         }
     }
 }

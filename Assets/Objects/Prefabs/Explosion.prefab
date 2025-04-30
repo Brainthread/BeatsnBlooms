@@ -4949,7 +4949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRange: 180
-  explosionDamage: 20
+  explosionDamage: 0
   explosionMask:
     serializedVersion: 2
     m_Bits: 0

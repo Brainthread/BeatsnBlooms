@@ -70,12 +70,9 @@ public class EnemyMeleeAttackState : StateMachineState
         DetectTarget();
         if(target == null)
             return; 
-        targetPosition = target.transform.position;
-        print("TPos"+targetPosition);
-        print("OPos" + originalPosition);
+        targetPosition = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
         if (target.GetComponent<HealthManager>())
             target.GetComponent<HealthManager>().ApplyDamage(meleeDamage);
-        print("attacked!");
         targetApproachSpeed = 100f;
     }
 

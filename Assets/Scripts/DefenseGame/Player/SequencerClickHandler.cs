@@ -17,6 +17,10 @@ public class SequencerClickHandler : MonoBehaviour
         {
             Click();
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            UnClick();
+        }
     }
 
     void Click()
@@ -28,6 +32,18 @@ public class SequencerClickHandler : MonoBehaviour
             if(hit.transform.GetComponent<SequencerTile>())
             {
                 hit.transform.GetComponent<SequencerTile>().ClickedTile();
+            }
+        }
+    }
+    void UnClick()
+    {
+        Ray ray = main_cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 9999, mask))
+        {
+            if (hit.transform.GetComponent<SequencerTile>())
+            {
+                hit.transform.GetComponent<SequencerTile>().UnClickedTile();
             }
         }
     }
