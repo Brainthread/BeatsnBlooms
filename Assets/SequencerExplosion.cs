@@ -20,7 +20,7 @@ public class SequencerExplosion : MonoBehaviour
                 HealthManager hm = hitObject.GetComponent<HealthManager>();
                 if (hm)
                 {
-                    hm.ApplyDamage(explosionDamage);
+                    hm.ApplyDamage(explosionDamage, true);
                 }
             }
         }

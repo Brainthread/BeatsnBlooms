@@ -4949,10 +4949,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRange: 180
-  explosionDamage: 0
+  explosionDamage: 20
   explosionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!198 &4835128817375861533
 ParticleSystem:
   m_ObjectHideFlags: 0
