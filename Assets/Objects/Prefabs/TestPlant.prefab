@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3312891423724485626}
   - component: {fileID: 3225237307410319816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,8 @@ GameObject:
   - component: {fileID: 3204122567178125605}
   - component: {fileID: 771315245667521915}
   - component: {fileID: 2293013252582270852}
-  m_Layer: 0
+  - component: {fileID: 2668530991192541310}
+  m_Layer: 8
   m_Name: TestPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,6 +269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantActions:
   - {fileID: 2293013252582270852}
+  isActive: 1
+  startPosition: {x: 0, y: 0, z: 0}
+  burySpeed: 30
+  unburrowSpeed: 60
 --- !u!114 &3720581512192256165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +301,7 @@ AudioSource:
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.6513076
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -410,6 +415,22 @@ MonoBehaviour:
   damage: 1
   lineRenderer: {fileID: 3225237307410319816}
   lineFadeRate: 3
+--- !u!114 &2668530991192541310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939919932381533129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a5c9d587fee8d439ab29da66f619ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 4
+  damageClip: {fileID: 8300000, guid: 86b4e4d60354a454bad7640adc9ce1dc, type: 3}
+  destroyOnDeath: 0
+  onDestroySpawn: {fileID: 0}
 --- !u!1 &7325348510909381817
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6968550514548470373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

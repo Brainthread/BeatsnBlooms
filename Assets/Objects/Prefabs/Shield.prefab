@@ -13,13 +13,14 @@ GameObject:
   - component: {fileID: 7295742924304265177}
   - component: {fileID: 2302415639863854248}
   - component: {fileID: 5235907194541581987}
-  - component: {fileID: 3367894625407288633}
+  - component: {fileID: 3275333333547142616}
   - component: {fileID: 1183493643650027858}
   - component: {fileID: 3836185591601572809}
   - component: {fileID: 8803666564006572863}
   - component: {fileID: 7970292500077697175}
+  - component: {fileID: -5569551985126910475}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   damageClip: {fileID: 8300000, guid: a488b2e5b3b61004c9b89c2ed73cd56b, type: 3}
---- !u!114 &3367894625407288633
+--- !u!114 &3275333333547142616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -349,3 +350,18 @@ MonoBehaviour:
     m_Bits: 384
   meleeRange: 15
   meleeAttackState: {fileID: 8803666564006572863}
+--- !u!114 &-5569551985126910475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803572050703599025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc0c137eb849d241bf703442305fcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldMaterial: {fileID: 2100000, guid: f023406f886ef02489c838b6eb55d256, type: 2}
+  standardMaterial: {fileID: 2100000, guid: c061aa0fc3bf5774d838775ee4069574, type: 2}
+  shieldEnabledQueue: 0100

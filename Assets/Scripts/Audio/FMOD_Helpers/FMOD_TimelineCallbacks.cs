@@ -12,6 +12,7 @@ class FMOD_TimelineCallbacks : MonoBehaviour
     //Event Hooks
     [SerializeField] private UnityEvent<int> onBeatEvent;
     [SerializeField] private UnityEvent<string> onMarkerEvent;
+    [SerializeField] private UnityEvent<float> onFrameBeatTime;
 
     //Note division enum, whole, half, quarter?
 
@@ -19,6 +20,15 @@ class FMOD_TimelineCallbacks : MonoBehaviour
     private int currentBeat = 0;
     private int totalBeats = 0;
     private string currentMarker = null;
+    private float percentUntilNextBeat = 0;
+
+    //Timing calculation vars
+    private int beatInterval = 4;
+    private float eventBPM = 120f; //GET THIS FROM USER PROPERTY!
+    private float dspTimeCurrent = 0f;
+    private float dspTimePrevious = 0f;
+    private float secondsSinceLastBeat = 0f;
+    private float secondsBetweenBeats () =>  eventBPM / 60f;
 
     //Storage class for buffering timeline callback event data, 
     //Managed memory, DONT PUT ANYTHING WITH EXTERNAL REFERENCES IN HERE!
@@ -48,6 +58,7 @@ class FMOD_TimelineCallbacks : MonoBehaviour
     private void Update()
     {
         extractCallbackBuffer();
+        calculateEventTime();
     }
 
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
@@ -105,6 +116,7 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         {
             currentBeat = timelineDataInstance.currentBeat;
             totalBeats = timelineDataInstance.beatBuffer;
+            secondsSinceLastBeat = 0f;
             onBeatEvent.Invoke(currentBeat);
         }
 
@@ -115,6 +127,21 @@ class FMOD_TimelineCallbacks : MonoBehaviour
             currentMarker = timelineDataInstance.lastMarker;
             onMarkerEvent.Invoke(currentMarker);
         }
+    }
+
+    private void calculateEventTime()
+    {
+        FMOD.ChannelGroup cg;
+        if (!eventInstance.isValid()) return; //Event instantiated?
+        if (eventInstance.getChannelGroup(out cg) != FMOD.RESULT.OK) return; //Get a valid result?
+        cg.getDSPClock(out ulong dspclock, out ulong parentclock);
+
+        dspTimePrevious = dspTimeCurrent;
+        dspTimeCurrent = dspclock / 48000f;
+        secondsSinceLastBeat += dspTimeCurrent - dspTimePrevious;
+        percentUntilNextBeat = (secondsSinceLastBeat / secondsBetweenBeats())*4;
+        onFrameBeatTime.Invoke(percentUntilNextBeat);
+        //Debug.Log(percentUntilNextBeat);
     }
     public void SetEventInstance(FMOD.Studio.EventInstance instance)
     {
