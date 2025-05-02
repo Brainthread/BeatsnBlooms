@@ -41,6 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Dirt
+    uniqueID: 2874535929
+    locked: 0
+  - name: Water
+    uniqueID: 3225449343
+    locked: 0
+  - name: Grass
+    uniqueID: 2771326025
+    locked: 0
+  - name: Character
+    uniqueID: 765089297
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
