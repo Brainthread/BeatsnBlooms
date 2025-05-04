@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerClickHandler : MonoBehaviour
 {
+
     [SerializeField] private Camera main_cam;
     [SerializeField] private LayerMask mask;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,7 +36,7 @@ public class PlayerClickHandler : MonoBehaviour
             }
             else
             {
-
+                //EventHandler.current.onPlayerClickRow();
             }
         }
     }
@@ -48,6 +49,10 @@ public class PlayerClickHandler : MonoBehaviour
             if (hit.transform.GetComponent<SequencerTile>())
             {
                 hit.transform.GetComponent<SequencerTile>().UnClickedTile();
+            }
+            else
+            {
+                //EventHandler.current.onPlayerClickRow();
             }
         }
     }
