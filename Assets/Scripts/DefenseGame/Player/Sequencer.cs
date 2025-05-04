@@ -14,14 +14,12 @@ public class Sequencer : MonoBehaviour
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
-    [SerializeField] private int[] sequencerBoxStates;
+    [SerializeField] private TileAction[] tileActions;
+    [SerializeField] private int[] sequencerBoxActionStates;
     [SerializeField] private GameObject[] representations;
 
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inactiveMaterial;
-
-    [SerializeField] private Material[] stateMaterials;
-
 
     private void Start()
     {
@@ -34,17 +32,17 @@ public class Sequencer : MonoBehaviour
     {
         availableTiles = 4;
         markerIndex = -1;
-        sequencerBoxStates = new int[rows*columns];
+        sequencerBoxActionStates = new int[rows*columns];
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
                 int indexer = i * rows + j;
-                sequencerBoxStates[indexer] = 0;
+                sequencerBoxActionStates[indexer] = 0;
                 representations[indexer].GetComponent<SequencerTile>().SetID(indexer);
                 representations[indexer].name = "Tile"+indexer;
                 representations[indexer].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
-                representations[indexer].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[0]);
+                representations[indexer].GetComponent<SequencerTile>().SetInnerMaterial(tileActions[0].stateMaterial);
                 representations[indexer].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(j, i));
             }
         }
@@ -72,9 +70,14 @@ public class Sequencer : MonoBehaviour
             if (rep.activeSelf)
             {
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
-                if (sequencerBoxStates[i * rows + markerIndex] != 0)
+                TileAction myState = tileActions[sequencerBoxActionStates[i * rows + markerIndex]];
+                switch (myState.tileState)
                 {
-                    EventHandler.current.ActivatePlant(i, sequencerBoxStates[i * rows + markerIndex] - 1);
+                    case TileAction.TileState.attack:
+                        EventHandler.current.ActivatePlant(i);
+                        break;
+                    case TileAction.TileState.grow:
+                        break;
                 }
             }
         }
@@ -83,27 +86,42 @@ public class Sequencer : MonoBehaviour
 
     private void OnTileClicked(int id)
     {
-        if (availableTiles > 0)
+        print("clicked " + id);
+        if(sequencerBoxActionStates[id] == 0)
         {
-            if (sequencerBoxStates[id] == 0)
-            {
-                availableTiles -= 1;
-            }
-            sequencerBoxStates[id] += 1;
-            if (sequencerBoxStates[id] >= stateMaterials.Length)
-            {
-                sequencerBoxStates[id] = 0;
-                availableTiles += 1;
-            }
+            if (availableTiles == 0)
+                return;
+            sequencerBoxActionStates[id] += 1;
+            availableTiles -= 1;
         }
         else
         {
-            if (sequencerBoxStates[id] + 1 >= stateMaterials.Length)
+            sequencerBoxActionStates[id] += 1;
+            if (sequencerBoxActionStates[id] == tileActions.Length)
             {
-                sequencerBoxStates[id] = 0;
-                availableTiles += 1;
+                sequencerBoxActionStates[id] = 0;
             }
         }
-        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[sequencerBoxStates[id]]);
+        TileAction state = tileActions[sequencerBoxActionStates[id]];
+        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
     }
+}
+
+
+/*
+ * Data class containing information regarding what action to perform on a beat event.
+ */
+[System.Serializable]
+public class TileAction
+{
+    public Material stateMaterial;
+    public enum TileState
+    {
+        unselected,
+        attack,
+        grow,
+        item
+    }
+    public TileState tileState;
+
 }

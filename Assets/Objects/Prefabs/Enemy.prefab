@@ -343,7 +343,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  movementQueue: 0000000001000000
+  movementQueue: 01000000
   enemyAttackMask:
     serializedVersion: 2
     m_Bits: 384

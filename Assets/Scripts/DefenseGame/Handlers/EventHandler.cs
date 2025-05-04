@@ -42,12 +42,12 @@ public class EventHandler : MonoBehaviour
         }
     }
 
-    public event Action<int, int> onPlantActivation;
-    public void ActivatePlant(int position, int powerup)
+    public event Action<int> onPlantActivation;
+    public void ActivatePlant(int position)
     {
         if(onPlantActivation != null)
         {
-            onPlantActivation(position, powerup);
+            onPlantActivation(position);
         }
     }
 

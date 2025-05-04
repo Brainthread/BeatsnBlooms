@@ -19,9 +19,9 @@ public class HealthManager : MonoBehaviour
         if(canTakeDamage||overrideInvul) {
             GetComponent<AudioSource>().PlayOneShot(damageClip, 1.5f);
             health -= damage;
-            if (health < 0)
+            if (health <= 0)
             {
-                HealthDepleted();
+                HealthDepleted(gameObject);
             }
         }
 
@@ -32,12 +32,12 @@ public class HealthManager : MonoBehaviour
         ApplyDamage(damage, false);
     }
 
-    public Action OnHealthDepleted;
-    public void HealthDepleted()
+    public Action<GameObject> OnHealthDepleted;
+    public void HealthDepleted(GameObject g)
     {
         if(OnHealthDepleted != null)
         {
-            OnHealthDepleted();
+            OnHealthDepleted(g);
         }
     }
 

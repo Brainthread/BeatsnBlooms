@@ -12,7 +12,7 @@ public class GeneratorDeathHandler : MonoBehaviour
     {
         GetComponent<HealthManager>().OnHealthDepleted += OnDeath;
     }
-    void OnDeath()
+    void OnDeath(GameObject g)
     {
         if(!dying)
         {
