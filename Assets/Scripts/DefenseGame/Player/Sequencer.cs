@@ -85,6 +85,11 @@ public class Sequencer : MonoBehaviour
         
     }
 
+    public void TileDestroyed (int id)
+    {
+
+    }
+
     private void OnTileClicked(int id)
     {
         if(sequencerBoxActionStates[id] == 0)

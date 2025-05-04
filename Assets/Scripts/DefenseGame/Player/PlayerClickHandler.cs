@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SequencerClickHandler : MonoBehaviour
+public class PlayerClickHandler : MonoBehaviour
 {
     [SerializeField] private Camera main_cam;
     [SerializeField] private LayerMask mask;
@@ -32,6 +32,10 @@ public class SequencerClickHandler : MonoBehaviour
             if(hit.transform.GetComponent<SequencerTile>())
             {
                 hit.transform.GetComponent<SequencerTile>().ClickedTile();
+            }
+            else
+            {
+
             }
         }
     }

@@ -39,18 +39,18 @@ public class HealthManager : MonoBehaviour
         ApplyDamage(damage, false);
     }
 
-    public Action<GameObject> OnHealthDepleted;
-    public void HealthDepleted(GameObject g)
+    public Action onHealthDepleted;
+    public void HealthDepleted()
     {
-        if(OnHealthDepleted != null)
+        if(onHealthDepleted != null)
         {
-            OnHealthDepleted(g);
+            onHealthDepleted();
         }
     }
 
     private void OnDestroy()
     {
-        OnHealthDepleted = null;
+        onHealthDepleted = null;
     }
 
     public void SetInvulnerability (bool canTakeDamage)
