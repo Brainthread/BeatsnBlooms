@@ -87,4 +87,13 @@ public class EventHandler : MonoBehaviour
             onGeneratorDestroyed();
         }
     }
+
+    public event Action<int> onGrowPlant;
+    internal void GrowPlant(int row)
+    {
+        if(onGrowPlant != null)
+        {
+            onGrowPlant(row);
+        }
+    }
 }

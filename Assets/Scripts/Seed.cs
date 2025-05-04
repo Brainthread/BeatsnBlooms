@@ -25,6 +25,7 @@ public class Seed : MonoBehaviour
         if (growthStage >= maxGrowthStage)
         {
             growthHandler.OnGrownUp(row);
+            Destroy(gameObject);
         }
     }
 }

@@ -77,6 +77,7 @@ public class Sequencer : MonoBehaviour
                         EventHandler.current.ActivatePlant(i);
                         break;
                     case TileAction.TileState.grow:
+                        EventHandler.current.GrowPlant(i);
                         break;
                 }
             }
@@ -86,7 +87,6 @@ public class Sequencer : MonoBehaviour
 
     private void OnTileClicked(int id)
     {
-        print("clicked " + id);
         if(sequencerBoxActionStates[id] == 0)
         {
             if (availableTiles == 0)
@@ -100,11 +100,14 @@ public class Sequencer : MonoBehaviour
             if (sequencerBoxActionStates[id] == tileActions.Length)
             {
                 sequencerBoxActionStates[id] = 0;
+                availableTiles += 1;
             }
         }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
     }
+
+    
 }
 
 
@@ -123,5 +126,4 @@ public class TileAction
         item
     }
     public TileState tileState;
-
 }

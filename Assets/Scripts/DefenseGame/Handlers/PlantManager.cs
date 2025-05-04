@@ -9,6 +9,7 @@ public class PlantManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        EventHandler.current.onGrowPlant += OnPlantGrowth;
         current = this;
         gridPositions = new Vector3[plants.Length];
         EventHandler.current.onPlantActivation += OnPlantActivation;
@@ -28,10 +29,22 @@ public class PlantManager : MonoBehaviour
 
     }
 
+    public void DestroyPlant(int row)
+    {
+        if (plants[row] != null)
+        {
+            Destroy(plants[row].gameObject);
+        }
+    }
+
     public void OnDestroyPlant(int row)
     {
         plants[row] = null;
+    }
 
+    public void SetPlant(int row, GameObject plant)
+    {
+        plants[row] = plant.GetComponent<Plant>();
     }
 
     private void OnPlantActivation(int id)
@@ -40,5 +53,12 @@ public class PlantManager : MonoBehaviour
             return;
         if (plants[id].gameObject.activeSelf)
             plants[id].Activate();
+    }
+
+    private void OnPlantGrowth (int id)
+    {
+        if (!plants[id])
+            return;
+        plants[id].GetComponent<HealthManager>().ApplyHealing(1);
     }
 }

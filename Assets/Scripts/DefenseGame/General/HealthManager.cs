@@ -27,6 +27,13 @@ public class HealthManager : MonoBehaviour
 
     }
 
+    public void ApplyHealing(float healing)
+    {
+        health += healing;
+        if(health>maxHealth)
+            health = maxHealth;
+    }
+
     public void ApplyDamage(float damage)
     {
         ApplyDamage(damage, false);
