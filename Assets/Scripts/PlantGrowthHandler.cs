@@ -4,7 +4,10 @@ public class PlantGrowthHandler : MonoBehaviour
 {
     private PlantManager plantManager;
     [SerializeField] private Seed[] seeds;
-    private int[] plantPositions;
+    [SerializeField] private int[] plantPositions;
+    public int[] PlantPositions { get { return plantPositions; } }
+    [SerializeField] private bool showGrowPositionIndicator;
+    [SerializeField] private GameObject growPositionIndicator;
     private void Start()
     {
         EventHandler.current.onGrowPlant += OnGrowPlant;
@@ -28,6 +31,22 @@ public class PlantGrowthHandler : MonoBehaviour
         seeds[row].GetComponent<Seed>().Row = row;
         seeds[row].GrowthHandler = this;
         seeds[row].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(plantPositions[row], row)); 
+    }
+
+    public void ShowPlantIndicator (bool value)
+    {
+        growPositionIndicator.SetActive(value);
+    }
+
+
+    public void SetPlantIndicatorPosition (Vector3 value)
+    {
+        growPositionIndicator.transform.position = value;
+    }
+
+    public void LosePosition(int row)
+    {
+        plantPositions[row] -= 1;
     }
     public void OnGrowPlant(int row)
     {

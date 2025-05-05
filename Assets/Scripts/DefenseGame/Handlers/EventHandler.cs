@@ -96,4 +96,22 @@ public class EventHandler : MonoBehaviour
             onGrowPlant(row);
         }
     }
+
+    public event Action<int> onPlayerUnclickRow;
+    public void OnPlayerUnclickRow(int row)
+    {
+        if(onPlayerUnclickRow != null)
+        {
+            onPlayerUnclickRow(row);
+        }
+    }
+
+    public event Action<int> onPlayerClickRow;
+    public void OnPlayerClickRow(int row)
+    {
+        if(onPlayerClickRow != null)
+        {
+            onPlayerClickRow(row);
+        }
+    }
 }

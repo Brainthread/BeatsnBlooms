@@ -10,7 +10,7 @@ public class PlantDeathHandler : MonoBehaviour
         myPlant = GetComponent<Plant>();
         GetComponent<HealthManager>().onHealthDepleted += OnDeath;
     }
-    void OnDeath(GameObject g)
+    void OnDeath()
     {
         if (onDestroySpawn)
         {

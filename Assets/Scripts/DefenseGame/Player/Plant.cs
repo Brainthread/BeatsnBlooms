@@ -44,8 +44,6 @@ public class Plant : MonoBehaviour
     {
         plantManager.OnDestroyPlant(row);
     }
-
-    
 }
 
 public abstract class PlantAction : MonoBehaviour

@@ -8,10 +8,11 @@ public class EnemyShieldManager : MonoBehaviour
     [SerializeField] private bool[] shieldEnabledQueue;
     private int queueIndex = 0;
     private float shieldActivationDelay = 0.12f;
+    [SerializeField] private Renderer renderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        standardMaterial= GetComponent<Renderer>().material;
+        standardMaterial = renderer.material;
         EventHandler.current.onBeat += OnBeat;
     }
 
@@ -40,6 +41,6 @@ public class EnemyShieldManager : MonoBehaviour
     {
         //TODO: Make these systems more modular
         GetComponent<HealthManager>().SetInvulnerability(!shieldEnabledQueue[queueIndex]);
-        GetComponent<Renderer>().material = shieldEnabledQueue[queueIndex] ? shieldMaterial : standardMaterial;
+        renderer.material = shieldEnabledQueue[queueIndex] ? shieldMaterial : standardMaterial;
     }
 }

@@ -20,11 +20,13 @@ public class Sequencer : MonoBehaviour
 
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inactiveMaterial;
+    [SerializeField] private PlantGrowthHandler plantGrowthManager;
 
     private void Start()
     {
         EventHandler.current.onBeat += OnNewBeat;
         EventHandler.current.onClickSequencerTile += OnTileClicked;
+        EventHandler.current.onUnClickSequencerTile += OnTileUnclicked;
         EventHandler.current.onStartSong += OnStartSong;
     }
 
@@ -39,10 +41,12 @@ public class Sequencer : MonoBehaviour
             {
                 int indexer = i * rows + j;
                 sequencerBoxActionStates[indexer] = 0;
-                representations[indexer].GetComponent<SequencerTile>().SetID(indexer);
-                representations[indexer].name = "Tile"+indexer;
-                representations[indexer].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
-                representations[indexer].GetComponent<SequencerTile>().SetInnerMaterial(tileActions[0].stateMaterial);
+                SequencerTile tile = representations[indexer].GetComponent<SequencerTile>();
+                tile.SetID(indexer);
+                tile.SetBorderMaterial(inactiveMaterial);
+                tile.SetInnerMaterial(tileActions[0].stateMaterial);
+                tile.Sequencer = this;
+                representations[indexer].name = "Tile" + indexer;
                 representations[indexer].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(j, i));
             }
         }
@@ -87,7 +91,13 @@ public class Sequencer : MonoBehaviour
 
     public void TileDestroyed (int id)
     {
-
+        int row = (int)Mathf.Floor((float)id / (float)columns);
+        plantGrowthManager.LosePosition(row);
+        TileAction tileAction = tileActions[sequencerBoxActionStates[id]];
+        if (tileAction.tileState != TileAction.TileState.unselected && tileAction.tileState != TileAction.TileState.item)
+        {
+            availableTiles += 1;
+        }
     }
 
     private void OnTileClicked(int id)
@@ -111,7 +121,14 @@ public class Sequencer : MonoBehaviour
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
     }
-
+    private void OnTileUnclicked(int id)
+    {
+        if (sequencerBoxActionStates[id] != 0)
+        {
+            sequencerBoxActionStates[id] = 0;
+            availableTiles += 1;
+        }
+    }
     
 }
 

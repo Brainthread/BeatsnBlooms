@@ -21,7 +21,7 @@ public class HealthManager : MonoBehaviour
             health -= damage;
             if (health <= 0)
             {
-                HealthDepleted(gameObject);
+                HealthDepleted();
             }
         }
 
