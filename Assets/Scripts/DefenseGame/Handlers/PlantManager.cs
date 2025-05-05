@@ -1,16 +1,16 @@
 using UnityEngine;
-
+using System;
 public class PlantManager : MonoBehaviour
 {
+    public static PlantManager current;
     [SerializeField] private Plant[] plants;
     private int plantPosition = 4;
-    [SerializeField] private float dangerDetectionRange = 90;
-    [SerializeField] private float dangerDetectionOffset = -80;
-    [SerializeField] private LayerMask dangerDetectionMask;
     private Vector3[] gridPositions;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        EventHandler.current.onGrowPlant += OnPlantGrowth;
+        current = this;
         gridPositions = new Vector3[plants.Length];
         EventHandler.current.onPlantActivation += OnPlantActivation;
         for(int i = 0; i < plants.Length; i++)
@@ -19,33 +19,46 @@ public class PlantManager : MonoBehaviour
                 continue;
             gridPositions[i] = GridManager.current.GridPositionToWorldPosition(new Vector2(plantPosition, i));
             plants[i].transform.position = gridPositions[i];
+            plants[i].Row = i;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Handle plants hiding if things get too close
-        for(int i = 0; i < gridPositions.Length; i++)
+
+    }
+
+    public void DestroyPlant(int row)
+    {
+        if (plants[row] != null)
         {
-            Vector3 rayOriginPosition = gridPositions[i] + Vector3.right * dangerDetectionOffset;
-            Debug.DrawLine(rayOriginPosition, rayOriginPosition + Vector3.right * dangerDetectionRange, Color.red);
-            RaycastHit hit;
-            if (Physics.Raycast(rayOriginPosition, Vector3.right, out hit, dangerDetectionRange, dangerDetectionMask))
-            {
-                //Uncomment below to make plants hide when enemies are close by.
-                //plants[i].SetActiveStatus(false);
-            }
-            else
-            {
-                plants[i].SetActiveStatus(true);
-            }
+            Destroy(plants[row].gameObject);
         }
     }
 
-    private void OnPlantActivation(int id, int powerup)
+    public void OnDestroyPlant(int row)
     {
+        plants[row] = null;
+    }
+
+    public void SetPlant(int row, GameObject plant)
+    {
+        plants[row] = plant.GetComponent<Plant>();
+    }
+
+    private void OnPlantActivation(int id)
+    {
+        if (!plants[id])
+            return;
         if (plants[id].gameObject.activeSelf)
-            plants[id].Activate(powerup);
+            plants[id].Activate();
+    }
+
+    private void OnPlantGrowth (int id)
+    {
+        if (!plants[id])
+            return;
+        plants[id].GetComponent<HealthManager>().ApplyHealing(1);
     }
 }

@@ -14,19 +14,19 @@ public class Sequencer : MonoBehaviour
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
-    [SerializeField] private int[] sequencerBoxStates;
+    [SerializeField] private TileAction[] tileActions;
+    [SerializeField] private int[] sequencerBoxActionStates;
     [SerializeField] private GameObject[] representations;
 
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inactiveMaterial;
-
-    [SerializeField] private Material[] stateMaterials;
-
+    [SerializeField] private PlantGrowthHandler plantGrowthManager;
 
     private void Start()
     {
         EventHandler.current.onBeat += OnNewBeat;
         EventHandler.current.onClickSequencerTile += OnTileClicked;
+        EventHandler.current.onUnClickSequencerTile += OnTileUnclicked;
         EventHandler.current.onStartSong += OnStartSong;
     }
 
@@ -34,17 +34,19 @@ public class Sequencer : MonoBehaviour
     {
         availableTiles = 4;
         markerIndex = -1;
-        sequencerBoxStates = new int[rows*columns];
+        sequencerBoxActionStates = new int[rows*columns];
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
                 int indexer = i * rows + j;
-                sequencerBoxStates[indexer] = 0;
-                representations[indexer].GetComponent<SequencerTile>().SetID(indexer);
-                representations[indexer].name = "Tile"+indexer;
-                representations[indexer].GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
-                representations[indexer].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[0]);
+                sequencerBoxActionStates[indexer] = 0;
+                SequencerTile tile = representations[indexer].GetComponent<SequencerTile>();
+                tile.SetID(indexer);
+                tile.SetBorderMaterial(inactiveMaterial);
+                tile.SetInnerMaterial(tileActions[0].stateMaterial);
+                tile.Sequencer = this;
+                representations[indexer].name = "Tile" + indexer;
                 representations[indexer].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(j, i));
             }
         }
@@ -72,38 +74,78 @@ public class Sequencer : MonoBehaviour
             if (rep.activeSelf)
             {
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
-                if (sequencerBoxStates[i * rows + markerIndex] != 0)
+                TileAction myState = tileActions[sequencerBoxActionStates[i * rows + markerIndex]];
+                switch (myState.tileState)
                 {
-                    EventHandler.current.ActivatePlant(i, sequencerBoxStates[i * rows + markerIndex] - 1);
+                    case TileAction.TileState.attack:
+                        EventHandler.current.ActivatePlant(i);
+                        break;
+                    case TileAction.TileState.grow:
+                        EventHandler.current.GrowPlant(i);
+                        break;
                 }
             }
         }
         
     }
 
+    public void TileDestroyed (int id)
+    {
+        int row = (int)Mathf.Floor((float)id / (float)columns);
+        plantGrowthManager.LosePosition(row);
+        TileAction tileAction = tileActions[sequencerBoxActionStates[id]];
+        if (tileAction.tileState != TileAction.TileState.unselected && tileAction.tileState != TileAction.TileState.item)
+        {
+            availableTiles += 1;
+        }
+    }
+
     private void OnTileClicked(int id)
     {
-        if (availableTiles > 0)
+        if(sequencerBoxActionStates[id] == 0)
         {
-            if (sequencerBoxStates[id] == 0)
-            {
-                availableTiles -= 1;
-            }
-            sequencerBoxStates[id] += 1;
-            if (sequencerBoxStates[id] >= stateMaterials.Length)
-            {
-                sequencerBoxStates[id] = 0;
-                availableTiles += 1;
-            }
+            if (availableTiles == 0)
+                return;
+            sequencerBoxActionStates[id] += 1;
+            availableTiles -= 1;
         }
         else
         {
-            if (sequencerBoxStates[id] + 1 >= stateMaterials.Length)
+            sequencerBoxActionStates[id] += 1;
+            if (sequencerBoxActionStates[id] == tileActions.Length)
             {
-                sequencerBoxStates[id] = 0;
+                sequencerBoxActionStates[id] = 0;
                 availableTiles += 1;
             }
         }
-        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(stateMaterials[sequencerBoxStates[id]]);
+        TileAction state = tileActions[sequencerBoxActionStates[id]];
+        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
     }
+    private void OnTileUnclicked(int id)
+    {
+        if (sequencerBoxActionStates[id] != 0)
+        {
+            sequencerBoxActionStates[id] = 0;
+            availableTiles += 1;
+        }
+    }
+    
+}
+
+
+/*
+ * Data class containing information regarding what action to perform on a beat event.
+ */
+[System.Serializable]
+public class TileAction
+{
+    public Material stateMaterial;
+    public enum TileState
+    {
+        unselected,
+        attack,
+        grow,
+        item
+    }
+    public TileState tileState;
 }

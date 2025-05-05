@@ -42,12 +42,12 @@ public class EventHandler : MonoBehaviour
         }
     }
 
-    public event Action<int, int> onPlantActivation;
-    public void ActivatePlant(int position, int powerup)
+    public event Action<int> onPlantActivation;
+    public void ActivatePlant(int position)
     {
         if(onPlantActivation != null)
         {
-            onPlantActivation(position, powerup);
+            onPlantActivation(position);
         }
     }
 
@@ -85,6 +85,33 @@ public class EventHandler : MonoBehaviour
         if (onGeneratorDestroyed != null)
         {
             onGeneratorDestroyed();
+        }
+    }
+
+    public event Action<int> onGrowPlant;
+    internal void GrowPlant(int row)
+    {
+        if(onGrowPlant != null)
+        {
+            onGrowPlant(row);
+        }
+    }
+
+    public event Action<int> onPlayerUnclickRow;
+    public void OnPlayerUnclickRow(int row)
+    {
+        if(onPlayerUnclickRow != null)
+        {
+            onPlayerUnclickRow(row);
+        }
+    }
+
+    public event Action<int> onPlayerClickRow;
+    public void OnPlayerClickRow(int row)
+    {
+        if(onPlayerClickRow != null)
+        {
+            onPlayerClickRow(row);
         }
     }
 }

@@ -19,7 +19,7 @@ public class HealthManager : MonoBehaviour
         if(canTakeDamage||overrideInvul) {
             GetComponent<AudioSource>().PlayOneShot(damageClip, 1.5f);
             health -= damage;
-            if (health < 0)
+            if (health <= 0)
             {
                 HealthDepleted();
             }
@@ -27,23 +27,30 @@ public class HealthManager : MonoBehaviour
 
     }
 
+    public void ApplyHealing(float healing)
+    {
+        health += healing;
+        if(health>maxHealth)
+            health = maxHealth;
+    }
+
     public void ApplyDamage(float damage)
     {
         ApplyDamage(damage, false);
     }
 
-    public Action OnHealthDepleted;
+    public Action onHealthDepleted;
     public void HealthDepleted()
     {
-        if(OnHealthDepleted != null)
+        if(onHealthDepleted != null)
         {
-            OnHealthDepleted();
+            onHealthDepleted();
         }
     }
 
     private void OnDestroy()
     {
-        OnHealthDepleted = null;
+        onHealthDepleted = null;
     }
 
     public void SetInvulnerability (bool canTakeDamage)
