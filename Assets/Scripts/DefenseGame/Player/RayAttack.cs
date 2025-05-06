@@ -9,13 +9,13 @@ public class RayAttack : PlantAction
 
     private float currentWidth = 0f;
 
-    public override void Activate()
+    public override void Activate(Plant plant, int column)
     {
         lineRenderer.useWorldSpace = true;
         RaycastHit hit;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + transform.forward * 200);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 200, layerMask))
+        lineRenderer.SetPosition(0, plant.transform.position);
+        lineRenderer.SetPosition(1, plant.transform.position + plant.transform.forward * 200);
+        if (Physics.Raycast(plant.transform.position, plant.transform.forward, out hit, 200, layerMask))
         {
             if (hit.transform && hit.transform.gameObject.GetComponent<HealthManager>())
             {

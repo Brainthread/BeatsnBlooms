@@ -13,6 +13,8 @@ public class SequencerTile : MonoBehaviour
     [SerializeField] private UnityEvent onTileActivate;
     [SerializeField] private UnityEvent onTileDeactivate;
 
+    [SerializeField] private TileAction.TileActionTypes currentAction = TileAction.TileActionTypes.ATTACK;
+
     public void Start()
     {
         isDestroyed = false;
@@ -47,5 +49,13 @@ public class SequencerTile : MonoBehaviour
     public void SetInnerMaterial(Material material)
     {
         innerRenderer.material = material;
+    }
+    public void SetPlantAction(TileAction.TileActionTypes actionType)
+    {
+        currentAction = actionType;
+    }
+    public TileAction.TileActionTypes GetPlantAction()
+    {
+        return currentAction;
     }
 }

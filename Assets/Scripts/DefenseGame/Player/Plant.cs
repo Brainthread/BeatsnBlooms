@@ -26,11 +26,12 @@ public class Plant : MonoBehaviour
         this.isActive = isActive;
     }
 
-    public void Activate()
+    public void Activate(PlantAction action, int column)
     {
         if(isActive)
         {
-            plantActions[0].Activate();
+            //plantActions[0].Activate();
+            action.Activate(this, column);
         }
     }
     public void Update()
@@ -49,6 +50,6 @@ public class Plant : MonoBehaviour
 public abstract class PlantAction : MonoBehaviour
 {
     [SerializeField] private Texture2D icon; 
-    public abstract void Activate();
+    public abstract void Activate(Plant plant, int row);
     public abstract Texture2D GetIcon();
 }

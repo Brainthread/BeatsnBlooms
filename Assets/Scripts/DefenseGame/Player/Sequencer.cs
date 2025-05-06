@@ -55,7 +55,7 @@ public class Sequencer : MonoBehaviour
 
     private void OnNewBeat()
     {
-        if (markerIndex != -1)
+        if (markerIndex == -1) return;
         for(int i = 0; i < rows; i++)
         {
             GameObject rep = representations[i * rows + markerIndex];
@@ -78,19 +78,22 @@ public class Sequencer : MonoBehaviour
                 switch (myState.tileState)
                 {
                     case TileAction.TileState.attack:
-                        EventHandler.current.ActivatePlant(i);
+                        EventHandler.current.ActivatePlant(i, PlantActionHandler.instance.GetAction(TileAction.TileActionTypes.ATTACK), (int)Mathf.Floor(rep.transform.position.x));
                         break;
                     case TileAction.TileState.grow:
                         EventHandler.current.GrowPlant(i);
                         break;
                     case TileAction.TileState.item:
-                        //some form of implementation
+                        PlantAction action = PlantActionHandler.instance.GetAction(rep.GetComponent<SequencerTile>().GetPlantAction());
+                        EventHandler.current.ActivatePlant(i, null, (int)Mathf.Floor(rep.transform.position.x));
                         break;
                 }
             }
         }
         
     }
+
+    
 
     public void TileDestroyed (int id)
     {
@@ -149,6 +152,20 @@ public class TileAction
         attack,
         grow,
         item
+    }
+
+    public enum TileActionTypes
+    {
+        //Defence
+        ROOT,
+        BARRIER,
+        SPIKE_BARRIER,
+        STICKY_SLIME,
+        //Ranged
+        ATTACK,
+        EXPLOSIVE,
+        STICKY_PROJECTILE,
+        BEAM,
     }
     public TileState tileState;
 }
