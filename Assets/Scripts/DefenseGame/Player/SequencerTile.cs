@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SequencerTile : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class SequencerTile : MonoBehaviour
     [SerializeField] private Renderer borderRenderer;
     [SerializeField] private Renderer innerRenderer;
     private bool isDestroyed;
+
+    [SerializeField] private UnityEvent onTileActivate;
+    [SerializeField] private UnityEvent onTileDeactivate;
 
     public void Start()
     {
@@ -22,10 +26,12 @@ public class SequencerTile : MonoBehaviour
     public void ClickedTile()
     {
         EventHandler.current.ClickSequencerTile(id);
+        onTileActivate.Invoke();
     }
     public void UnClickedTile()
     {
         EventHandler.current.UnClickSequencerTile(id);
+        onTileDeactivate.Invoke();
     }
     public void SetBorderMaterial(Material material)
     {
