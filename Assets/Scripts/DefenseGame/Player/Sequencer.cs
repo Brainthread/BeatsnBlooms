@@ -83,6 +83,9 @@ public class Sequencer : MonoBehaviour
                     case TileAction.TileState.grow:
                         EventHandler.current.GrowPlant(i);
                         break;
+                    case TileAction.TileState.item:
+                        //some form of implementation
+                        break;
                 }
             }
         }
