@@ -24,6 +24,7 @@ public class MusicManager : MonoBehaviour
     //Initialize song
     private void Initialize()
     {
+  
         EventHandler.current.onLoss += OnLoss;
         this.currentSong = testSong;
         audioSource = GetComponent<AudioSource>();
@@ -33,9 +34,9 @@ public class MusicManager : MonoBehaviour
     }
     public float GetSongProgression()
     {
-        if(!audioSource||!audioSource.clip)
+        if(!audioSource||!audioSource.clip||!audioSource.isPlaying)
         {
-            return 0;
+            return pcmLastTime;
         }
         return (float)audioSource.timeSamples / ((float)audioSource.clip.frequency * (float)audioSource.clip.length);
     }
@@ -72,7 +73,7 @@ public class MusicManager : MonoBehaviour
     {
         if(audioSource.isPlaying!=true)
         {
-            return 0.000001f;
+            return pcmLastTime;
         }
         return (float)audioSource.timeSamples / ((float)audioSource.clip.frequency); //check PCM position
     }
