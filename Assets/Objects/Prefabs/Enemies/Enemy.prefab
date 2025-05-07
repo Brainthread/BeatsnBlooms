@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a5c9d587fee8d439ab29da66f619ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 2
   damageClip: {fileID: 8300000, guid: a488b2e5b3b61004c9b89c2ed73cd56b, type: 3}
 --- !u!114 &3367894625407288633
 MonoBehaviour:
@@ -344,7 +344,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  movementQueue: 01000000
+  movementQueue: 0100000000000000
   enemyAttackMask:
     serializedVersion: 2
     m_Bits: 384

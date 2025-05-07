@@ -1,12 +1,14 @@
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Stage", menuName = "BeatsAndBlooms/Stage", order = 0)]
 [System.Serializable]
 public class Stage : ScriptableObject
 {
-    [SerializeField] private Song song;
-    [SerializeField] private EnemySpawn[] enemySpawns;
-    [SerializeField] private ClearPartOfStage[] clearPartOfStageEvent;
-    [SerializeField] private int victoryBeat;
+    public Song song;
+    public EnemySpawn[] enemySpawns;
+    public ClearPartOfStage[] clearPartOfStageEvent;
+    public int victoryBeat;
 }
 
 [System.Serializable]
@@ -25,7 +27,7 @@ public class EnemySpawn : StageEvent
 [System.Serializable]
 public class ClearPartOfStage : StageEvent
 {
-    public int untilPosition;
+    public int untilXPosition;
 }
 
 public class Victory : StageEvent

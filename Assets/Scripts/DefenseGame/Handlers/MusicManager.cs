@@ -15,16 +15,11 @@ public class MusicManager : MonoBehaviour
     private float pcmLastTime = 0;
     private bool hasLost = false;
     // Test implementation
-    private void Start()
-    {
-        instance = this;
-        Invoke("Initialize", 0.5f);
-    }
 
     //Initialize song
-    private void Initialize()
+    public void Initialize(Song currentSong)
     {
-  
+        instance = this;
         EventHandler.current.onLoss += OnLoss;
         this.currentSong = testSong;
         audioSource = GetComponent<AudioSource>();
@@ -47,6 +42,10 @@ public class MusicManager : MonoBehaviour
     public float GetBeat(float bpm)
     {
         return GetBeat(bpm, 1);
+    }
+    public float GetBeat()
+    {
+        return GetBeat(currentSong.bpm, 1);
     }
     public float GetBeatInterpolationValue()
     {
@@ -91,10 +90,6 @@ public class MusicManager : MonoBehaviour
     {
         if(hasLost && audioSource.isPlaying==true) {
             audioSource.pitch = Mathf.MoveTowards(audioSource.pitch, 0, 0.35f*Time.deltaTime);
-        }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Initialize();
         }
         if (currentSong != null)
         {
