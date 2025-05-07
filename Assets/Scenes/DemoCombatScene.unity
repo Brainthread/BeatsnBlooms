@@ -980,7 +980,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  shiftSpeed: 0.005
+  shiftSpeed: 0.001
   recedeTime: 2
 --- !u!4 &408011022
 Transform:
@@ -2575,6 +2575,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1849099707}
     m_Modifications:
+    - target: {fileID: 1233517888545618447, guid: f60624376d7e7ea4086a326b32364105, type: 3}
+      propertyPath: onDestroySpawn
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3086585593063566526, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -2652,6 +2656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376533677}
   - component: {fileID: 1376533678}
+  - component: {fileID: 1376533679}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2695,6 +2700,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explorationScene: 0
+--- !u!114 &1376533679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376533676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d9402da4a96894b89071eaf6a2f68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicManager: {fileID: 1663481101}
+  enemyManager: {fileID: 0}
 --- !u!1 &1462850983
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3251,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a7d0477affc07d64ebf7972d69bdb109, type: 3}
   m_Resource: {fileID: 8300000, guid: a7d0477affc07d64ebf7972d69bdb109, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.668
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3632,6 +3651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 107262941}
     m_Modifications:
+    - target: {fileID: 1233517888545618447, guid: f60624376d7e7ea4086a326b32364105, type: 3}
+      propertyPath: onDestroySpawn
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6652922833226753459, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_Name
       value: Tile
@@ -3642,11 +3665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8572516750777206121, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8572516750777206121, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.94
       objectReference: {fileID: 0}
     - target: {fileID: 8572516750777206121, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3832,6 +3855,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2065612004}
     m_Modifications:
+    - target: {fileID: 1233517888545618447, guid: f60624376d7e7ea4086a326b32364105, type: 3}
+      propertyPath: onDestroySpawn
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3086585593063566526, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_Layer
       value: 7
