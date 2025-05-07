@@ -1,5 +1,87 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8369449254688206302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/SelectSpecialStep
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/SelectSpecialStep
+  Guid:
+    Data1: 2082490096
+    Data2: 1276514958
+    Data3: -916470133
+    Data4: -115198129
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7686477917556608566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/ToggleStep
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/ToggleStep
+  Guid:
+    Data1: -1697649109
+    Data2: 1282447976
+    Data3: 529726597
+    Data4: -1965988573
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6972327275205622248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Explore/Looping/Weather
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Explore/Looping/Weather
+  Guid:
+    Data1: -1847676709
+    Data2: 1120122657
+    Data3: -1776127308
+    Data4: 1108169527
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -4141965212687766445}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5776132906895477051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,8 +97,162 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638808290552036841
+  lastModified: 638821682273969250
   FileSizes: []
+  Exists: 1
+--- !u!114 &-5533307760831648436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Defence/SequencerActions/SequencerAttackBase
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Defence/SequencerActions/SequencerAttackBase
+  Guid:
+    Data1: 419615523
+    Data2: 1275290950
+    Data3: 520706992
+    Data4: 2082340836
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4141965212687766445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Weather/WindAmt
+  m_EditorClassIdentifier: 
+  Name: WindAmt
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 546288198
+    data2: 3928928427
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-3715319925903313164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Explore/Looping/AnimalChatter
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Explore/Looping/AnimalChatter
+  Guid:
+    Data1: 1578637221
+    Data2: 1151825473
+    Data3: 247975298
+    Data4: 368086751
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 8577714819064934990}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1177606405841827486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Defence/SequencerActions/SequencerTakeDamage
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Defence/SequencerActions/SequencerTakeDamage
+  Guid:
+    Data1: 1766951432
+    Data2: 1231636632
+    Data3: 873474443
+    Data4: 2145091187
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-667526980632994698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WindAmt
+  m_EditorClassIdentifier: 
+  Name: WindAmt
+  StudioPath: parameter:/Ambience/WindAmt
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 546288198
+    data2: 3928928427
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-558382239326617682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WorldHealProgression
+  m_EditorClassIdentifier: 
+  Name: WorldHealProgression
+  StudioPath: parameter:/Ambience/WorldHealProgression
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3602353189
+    data2: 858746823
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -35,16 +271,51 @@ MonoBehaviour:
   - {fileID: -5776132906895477051}
   EditorEvents:
   - {fileID: 247755460407863068}
-  EditorParameters: []
+  - {fileID: -1177606405841827486}
+  - {fileID: 7637396631815544894}
+  - {fileID: -5533307760831648436}
+  - {fileID: -7686477917556608566}
+  - {fileID: 4390993081823080576}
+  - {fileID: 2418964678543713039}
+  - {fileID: 5703144026605374702}
+  - {fileID: -3715319925903313164}
+  - {fileID: 3099778827725392787}
+  - {fileID: -6972327275205622248}
+  - {fileID: -8369449254688206302}
+  EditorParameters:
+  - {fileID: -558382239326617682}
+  - {fileID: -667526980632994698}
   MasterBanks:
   - {fileID: -5776132906895477051}
   StringsBanks:
   - {fileID: 930384702134776036}
   cacheVersion: 131847
-  cacheTime: 638808290552046922
+  cacheTime: 638821682274015491
   SerializableEventsDict:
   - key: event:/TestTimeline
     index: 0
+  - key: event:/Music/Defence/SequencerActions/SequencerTakeDamage
+    index: 1
+  - key: event:/Character/Explore/Player/Foots
+    index: 2
+  - key: event:/Music/Defence/SequencerActions/SequencerAttackBase
+    index: 3
+  - key: event:/UI/Defence/ToggleStep
+    index: 4
+  - key: event:/Ambience/Defence/DefenceArenaAmbience
+    index: 5
+  - key: event:/Character/Defence/Enemy/EnemyMeleeAttackBase
+    index: 6
+  - key: event:/Character/Defence/Enemy/EnemyTakeDamage
+    index: 7
+  - key: event:/Ambience/Explore/Looping/AnimalChatter
+    index: 8
+  - key: event:/UI/Defence/PlaceSpecialStep
+    index: 9
+  - key: event:/Ambience/Explore/Looping/Weather
+    index: 10
+  - key: event:/UI/Defence/SelectSpecialStep
+    index: 11
 --- !u!114 &247755460407863068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,8 +358,167 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638808290552046922
+  lastModified: 638821682274015491
   FileSizes:
   - Name: 
-    Value: 774
+    Value: 2374
+  Exists: 1
+--- !u!114 &2418964678543713039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/Enemy/EnemyMeleeAttackBase
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/Enemy/EnemyMeleeAttackBase
+  Guid:
+    Data1: -1431203721
+    Data2: 1120531081
+    Data3: 270783361
+    Data4: 1338466184
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3099778827725392787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/PlaceSpecialStep
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/PlaceSpecialStep
+  Guid:
+    Data1: -427930185
+    Data2: 1091667248
+    Data3: 1072191162
+    Data4: -1917656577
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4390993081823080576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Defence/DefenceArenaAmbience
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Defence/DefenceArenaAmbience
+  Guid:
+    Data1: 193942602
+    Data2: 1253514580
+    Data3: 1092379564
+    Data4: 980796106
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5703144026605374702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/Enemy/EnemyTakeDamage
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/Enemy/EnemyTakeDamage
+  Guid:
+    Data1: -2090651997
+    Data2: 1075590335
+    Data3: -1744002155
+    Data4: -508642051
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7637396631815544894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Explore/Player/Foots
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Explore/Player/Foots
+  Guid:
+    Data1: 1839655198
+    Data2: 1164227445
+    Data3: -305999172
+    Data4: -546463088
+  Banks:
+  - {fileID: -5776132906895477051}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8577714819064934990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AnimalChatter/WorldHealProgression
+  m_EditorClassIdentifier: 
+  Name: WorldHealProgression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3602353189
+    data2: 858746823
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
