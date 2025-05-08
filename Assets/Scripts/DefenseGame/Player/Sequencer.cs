@@ -73,20 +73,18 @@ public class Sequencer : MonoBehaviour
             GameObject rep = representations[i * rows + markerIndex];
             if (rep.activeSelf)
             {
-                Debug.Log(i * rows + markerIndex);
+                //Debug.Log(i * rows + markerIndex);
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
                 TileAction myState = tileActions[sequencerBoxActionStates[i * rows + markerIndex]];
+                
                 switch (myState.tileState)
                 {
                     case TileAction.TileState.attack:
-                        EventHandler.current.ActivatePlant(i, TileAction.TileActionTypes.ATTACK);
+                        TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetPlantAction();
+                        EventHandler.current.ActivatePlant(i, actionType);
                         break;
                     case TileAction.TileState.grow:
                         EventHandler.current.GrowPlant(i);
-                        break;
-                    case TileAction.TileState.item:
-                        TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetPlantAction();
-                        EventHandler.current.ActivatePlant(i, actionType);
                         break;
                 }
             }
@@ -174,4 +172,5 @@ public class TileAction
         BEAM,
     }
     public TileState tileState;
+    public TileActionTypes actionTypes;
 }

@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using System;
 
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem InventoryInstance;
 
-    //Tile Inventory
-    private List<ITile> TileInventory = new List<ITile>();
-    //Other Inventory
-    private List<IInventoryItem> ItemInventory = new List<IInventoryItem>();
+    private Dictionary<string, int> tileInventory = new Dictionary<string, int>();
+    //private Tile
+    //foreach(TileAction.TileActionTypes tileType in Enum.GetValues(typeof(TileAction.TileActionTypes)){}
+    //Array arr = Enum.GetNames(typeof(TileAction.TileActionTypes));
+    
+
 
     void Awake()
     {
@@ -17,49 +19,27 @@ public class InventorySystem : MonoBehaviour
         else Destroy(this);
     }
 
-    public void AddToInventory(IInventoryItem item)
+    private void Start()
     {
-        ITile tile = (ITile)item;
-        if (tile != null)
+        foreach (string entry in Enum.GetNames(typeof(TileAction.TileActionTypes)))
         {
-            ITile found = TileInventory.Find(x => x.Type == tile.Type);
-            if (found != null) found.StackSize += tile.StackSize;
-            else TileInventory.Add(tile);
-            return;
+            tileInventory.Add(entry, 0);
         }
-       
-        ItemInventory.Add(item);
+    }
+
+    public void AddToInventory()
+    {
+
+    }
+
+    public void RemoveFromInventory()
+    {
+
+    }
+
+    private void AddTileToInventory(TileAction.TileActionTypes actionType, int stackSize)
+    {
+        tileInventory[actionType.ToString()] += stackSize;
     }
 }
 
-//Inventory Interfaces
-public interface IInventoryItem
-{
-    //public void PickUp();
-}
-public interface ITile : IInventoryItem
-{
-    public void PlaceTile();
-    public bool IsSelected { get; set; }
-    public TILE_TYPE Type { get; set; }
-    public int StackSize { get; set; }
-}
-
-public enum TILE_TYPE
-{
-    //Defence
-    ROOT,
-    BARRIER,
-    SPIKE_BARRIER,
-    STICKY_SLIME,
-    //Ranged
-    EXPLOSIVE,
-    STICKY_PROJECTILE,
-    BEAM,
-
-}
-
-public interface IPlantable : IInventoryItem
-{
-    public float GrowRate { get; set; }
-}
