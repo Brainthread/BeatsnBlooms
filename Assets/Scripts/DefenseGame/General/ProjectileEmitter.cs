@@ -12,7 +12,7 @@ public class ProjectileEmitter : PlantAction
     }
     */
 
-    public override void Activate(Plant plant, int column)
+    public override void Activate(Plant plant)
     {
         Instantiate(projectile, plant.transform.position, plant.transform.rotation);
     }

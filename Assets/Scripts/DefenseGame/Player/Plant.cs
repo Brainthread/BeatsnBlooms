@@ -9,6 +9,8 @@ public class Plant : MonoBehaviour
     [SerializeField] private float unburrowSpeed = 10;
     private PlantManager plantManager;
     private int row = -1;
+
+    private PlantActionHandler plantActionHandler;
     public int Row
     {
         get { return row; }
@@ -19,6 +21,7 @@ public class Plant : MonoBehaviour
     {
         plantManager = PlantManager.current;
         startPosition = transform.position;
+        plantActionHandler = GetComponentInChildren<PlantActionHandler>();
     }
 
     public void SetActiveStatus(bool isActive)
@@ -26,12 +29,12 @@ public class Plant : MonoBehaviour
         this.isActive = isActive;
     }
 
-    public void Activate(PlantAction action, int column)
+    public void Activate(TileAction.TileActionTypes actionType)
     {
         if(isActive)
         {
             //plantActions[0].Activate();
-            action.Activate(this, column);
+            plantActionHandler.GetAction(actionType).Activate(this);
         }
     }
     public void Update()
@@ -50,6 +53,6 @@ public class Plant : MonoBehaviour
 public abstract class PlantAction : MonoBehaviour
 {
     [SerializeField] private Texture2D icon; 
-    public abstract void Activate(Plant plant, int row);
+    public abstract void Activate(Plant plant);
     public abstract Texture2D GetIcon();
 }

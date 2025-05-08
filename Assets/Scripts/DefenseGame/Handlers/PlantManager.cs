@@ -47,12 +47,12 @@ public class PlantManager : MonoBehaviour
         plants[row] = plant.GetComponent<Plant>();
     }
 
-    private void OnPlantActivation(int id, PlantAction action, int column)
+    private void OnPlantActivation(int id, TileAction.TileActionTypes actionType)
     {
         if (!plants[id])
             return;
         if (plants[id].gameObject.activeSelf)
-            plants[id].Activate(action, column);
+            plants[id].Activate(actionType);
     }
 
     private void OnPlantGrowth (int id)

@@ -78,14 +78,14 @@ public class Sequencer : MonoBehaviour
                 switch (myState.tileState)
                 {
                     case TileAction.TileState.attack:
-                        EventHandler.current.ActivatePlant(i, PlantActionHandler.instance.GetAction(TileAction.TileActionTypes.ATTACK), (int)Mathf.Floor(rep.transform.position.x));
+                        EventHandler.current.ActivatePlant(i, TileAction.TileActionTypes.ATTACK);
                         break;
                     case TileAction.TileState.grow:
                         EventHandler.current.GrowPlant(i);
                         break;
                     case TileAction.TileState.item:
-                        PlantAction action = PlantActionHandler.instance.GetAction(rep.GetComponent<SequencerTile>().GetPlantAction());
-                        EventHandler.current.ActivatePlant(i, null, (int)Mathf.Floor(rep.transform.position.x));
+                        TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetPlantAction();
+                        EventHandler.current.ActivatePlant(i, actionType);
                         break;
                 }
             }

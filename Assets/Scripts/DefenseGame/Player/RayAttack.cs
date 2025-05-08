@@ -5,11 +5,12 @@ public class RayAttack : PlantAction
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float damage = 1;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer[] lineRenderers; //Make line renderer gobj into prefabs & instantiate
     [SerializeField] private float lineFadeRate = 0.9f;
 
     private float currentWidth = 0f;
 
-    public override void Activate(Plant plant, int column)
+    public override void Activate(Plant plant)
     {
         lineRenderer.useWorldSpace = true;
         RaycastHit hit;
