@@ -114,6 +114,7 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 1.54
     - _Parallax: 0.005
+
     - _Progress: 0.47011086
     - _ProgressOffset: 0.03
     - _QueueControl: 0

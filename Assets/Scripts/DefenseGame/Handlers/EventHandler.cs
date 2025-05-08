@@ -42,12 +42,12 @@ public class EventHandler : MonoBehaviour
         }
     }
 
-    public event Action<int> onPlantActivation;
-    public void ActivatePlant(int position)
+    public event Action<int, TileAction.TileActionTypes> onPlantActivation;
+    public void ActivatePlant(int position, TileAction.TileActionTypes actionType)
     {
         if(onPlantActivation != null)
         {
-            onPlantActivation(position);
+            onPlantActivation(position, actionType);
         }
     }
 
