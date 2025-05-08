@@ -26,7 +26,6 @@ public class GeneratorDangerDetector : MonoBehaviour
         for (int i = 0; i < gridPositions.Length; i++)
         {
             Vector3 rayOriginPosition = gridPositions[i];
-            print(rayOriginPosition + ":" + i);
             Debug.DrawLine(rayOriginPosition, rayOriginPosition + Vector3.right * dangerDetectionRange, Color.blue);
             RaycastHit hit;
             if (Physics.Raycast(rayOriginPosition, Vector3.right, out hit, dangerDetectionRange, dangerDetectionMask))

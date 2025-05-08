@@ -2,16 +2,27 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager current;
     private int beatsTillNextEnemy = 3;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private int enemySpawnLongitude = 15;
+    private float interpolationValue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        current = this;
         EventHandler.current.onBeat += onNewBeat;
         EventHandler.current.onStartSong += OnStartSong;
     }
 
+    public void OnFrameBeatTime(float value)
+    {
+        interpolationValue = value;
+    }
+    public float GetInterpolationValue()
+    {
+        return interpolationValue;
+    }
     // Update is called once per frame
     void Update()
     {

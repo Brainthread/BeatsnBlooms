@@ -28,6 +28,7 @@ public class Sequencer : MonoBehaviour
         EventHandler.current.onClickSequencerTile += OnTileClicked;
         EventHandler.current.onUnClickSequencerTile += OnTileUnclicked;
         EventHandler.current.onStartSong += OnStartSong;
+        OnStartSong();
     }
 
     private void OnStartSong()
@@ -73,6 +74,7 @@ public class Sequencer : MonoBehaviour
             GameObject rep = representations[i * rows + markerIndex];
             if (rep.activeSelf)
             {
+                Debug.Log(i * rows + markerIndex);
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
                 TileAction myState = tileActions[sequencerBoxActionStates[i * rows + markerIndex]];
                 switch (myState.tileState)
@@ -98,7 +100,10 @@ public class Sequencer : MonoBehaviour
     public void TileDestroyed (int id)
     {
         int row = (int)Mathf.Floor((float)id / (float)columns);
-        plantGrowthManager.LosePosition(row);
+        if(plantGrowthManager)
+        {
+            plantGrowthManager.LosePosition(row);
+        }
         TileAction tileAction = tileActions[sequencerBoxActionStates[id]];
         if (tileAction.tileState != TileAction.TileState.unselected && tileAction.tileState != TileAction.TileState.item)
         {

@@ -78,7 +78,6 @@ public class EnemyMeleeAttackState : StateMachineState
 
     public override void EnterState()
     {
-        print("EnterState" + Time.time);
         attackQueueIndex = 0;
         originalPosition = transform.position;
         targetPosition = transform.position;

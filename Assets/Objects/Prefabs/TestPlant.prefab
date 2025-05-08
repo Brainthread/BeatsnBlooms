@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 2293013252582270852}
   - component: {fileID: 2668530991192541310}
   - component: {fileID: 4582610908188958709}
+  - component: {fileID: 7275360228441465696}
   m_Layer: 8
   m_Name: TestPlant
   m_TagString: Untagged
@@ -448,6 +449,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnDeath: 0
   onDestroySpawn: {fileID: 0}
+--- !u!114 &7275360228441465696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939919932381533129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b89fddfddc91149a90444be9d4d639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnDeath: 0
+  onDestroySpawn: {fileID: 0}
 --- !u!1 &7325348510909381817
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantActionHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 2551554800444741698, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
+      propertyPath: lineRenderer
+      value: 
+      objectReference: {fileID: 3225237307410319816}
     - target: {fileID: 7549920570305065746, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
