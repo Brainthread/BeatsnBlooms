@@ -90,6 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - <noninit>: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -114,33 +115,19 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 1.54
     - _Parallax: 0.005
-
-    - _Progress: 0.47011086
-    - _ProgressOffset: 0.03
+    - _Progress: 0.4
+    - _ProgressOffset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _SawAmplitude: 0.01
-    - _SawFrequency: 1.17
-    - _SawOffset: 0.27
-    - _SineAmplitude: 0.02
-    - _SineFrequency: 2
-    - _SineOffset: 14.433426
-    - _Smoothness: 0.5
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _ZWrite: 1
+    - _SawAmplitude: 0
+    - _SawFrequency: 0
+    - _SawOffset: 0
+    - _SineAmplitude: 0
+    - _SineFrequency: 0
+    - _SineOffset: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainTexTint: {r: 1, g: 1, b: 1, a: 1}
     - _SecondTexTint: {r: 1, g: 1, b: 1, a: 0}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6842999354676582371

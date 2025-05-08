@@ -1627,16 +1627,10 @@ MonoBehaviour:
   rows: 4
   columns: 4
   tileActions:
-  - stateMaterial: {fileID: 0}
+  - stateMaterial: {fileID: 2100000, guid: ee06d776f999e5c49a63d42d8af6158a, type: 2}
     tileState: 0
-  - stateMaterial: {fileID: 0}
+  - stateMaterial: {fileID: 2100000, guid: 8b4de2b1544379544821f9814891c2e6, type: 2}
     tileState: 1
-  - stateMaterial: {fileID: 0}
-    tileState: 2
-  - stateMaterial: {fileID: 0}
-    tileState: 3
-  - stateMaterial: {fileID: 0}
-    tileState: 0
   sequencerBoxActionStates: 
   representations:
   - {fileID: 1763848965}
@@ -2731,6 +2725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376533677}
+  - component: {fileID: 1376533678}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2762,6 +2757,21 @@ Transform:
   - {fileID: 2077192068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1376533678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376533676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02357590695064142806c741dc0b7bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
+  growthManager: {fileID: 0}
+  stage: {fileID: 0}
 --- !u!1 &1454437202
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     private float interpolationValue;
     private EnemySpawn[] enemySpawns;
     private int enemySpawnIndex = 0;
+    private int beat = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Initialize(EnemySpawn[] enemySpawns)
     {
@@ -38,7 +39,15 @@ public class EnemyManager : MonoBehaviour
 
     void onNewBeat()
     {
-        int currentBeat = (int)Mathf.Floor(MusicManager.instance.GetBeat());
+        int currentBeat;
+        if(MusicManager.instance)
+        {
+            currentBeat = (int)Mathf.Floor(MusicManager.instance.GetBeat());
+        }
+        else
+        {
+            currentBeat = beat;
+        }
         for (int i = 0; i < enemySpawns.Length; i++)
         {
             EnemySpawn enemySpawn = enemySpawns[i];
@@ -51,6 +60,7 @@ public class EnemyManager : MonoBehaviour
                 enemySpawnIndex += 1;
             }
         }
+        beat += 1;
     }
 
     void SpawnEnemy(GameObject enemy, Vector3 spawnPosition)
