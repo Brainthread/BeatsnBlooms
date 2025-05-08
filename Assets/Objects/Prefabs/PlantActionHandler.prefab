@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b325c7cc8916e045a9708e71d9555a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackAction: {fileID: 1011707180224198736}
+  AttackAction: {fileID: 2551554800444741698}
   RootAction: {fileID: 0}
   SpikeBarrierAction: {fileID: 0}
   StickySlimeAction: {fileID: 0}

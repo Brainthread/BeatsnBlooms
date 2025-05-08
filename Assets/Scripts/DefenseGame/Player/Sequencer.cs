@@ -34,7 +34,7 @@ public class Sequencer : MonoBehaviour
     private void OnStartSong()
     {
         availableTiles = 4;
-        markerIndex = -1;
+        markerIndex = 0;
         sequencerBoxActionStates = new int[rows*columns];
         for (int i = 0; i < rows; i++)
         {
@@ -56,7 +56,6 @@ public class Sequencer : MonoBehaviour
 
     private void OnNewBeat()
     {
-        if (markerIndex == -1) return;
         for(int i = 0; i < rows; i++)
         {
             GameObject rep = representations[i * rows + markerIndex];

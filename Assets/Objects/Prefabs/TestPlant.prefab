@@ -158,7 +158,6 @@ GameObject:
   - component: {fileID: 2293013252582270852}
   - component: {fileID: 2668530991192541310}
   - component: {fileID: 4582610908188958709}
-  - component: {fileID: 7275360228441465696}
   m_Layer: 8
   m_Name: TestPlant
   m_TagString: Untagged
@@ -436,20 +435,6 @@ MonoBehaviour:
   maxHealth: 4
   damageClip: {fileID: 8300000, guid: 86b4e4d60354a454bad7640adc9ce1dc, type: 3}
 --- !u!114 &4582610908188958709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939919932381533129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b89fddfddc91149a90444be9d4d639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnDeath: 0
-  onDestroySpawn: {fileID: 0}
---- !u!114 &7275360228441465696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
