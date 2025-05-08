@@ -7,10 +7,14 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private int enemySpawnLongitude = 15;
     private float interpolationValue;
+    private EnemySpawn[] enemySpawns;
+    private int enemySpawnIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Initialize(EnemySpawn[] enemySpawns)
     {
         current = this;
+        this.enemySpawns = enemySpawns;
+        enemySpawnIndex = 0;
         EventHandler.current.onBeat += onNewBeat;
         EventHandler.current.onStartSong += OnStartSong;
     }
@@ -23,11 +27,6 @@ public class EnemyManager : MonoBehaviour
     {
         return interpolationValue;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnStartSong()
     {
@@ -39,15 +38,24 @@ public class EnemyManager : MonoBehaviour
 
     void onNewBeat()
     {
-        beatsTillNextEnemy -= 1;
-        if(beatsTillNextEnemy <= 0)
+        int currentBeat = (int)Mathf.Floor(MusicManager.instance.GetBeat());
+        for (int i = 0; i < enemySpawns.Length; i++)
         {
-            beatsTillNextEnemy = Random.Range(0, 12);
-            GameObject enemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            int spawnHeight = Random.Range(0, GridManager.current.GetRows());
-            Vector3 spawnPosition = GridManager.current.GridPositionToWorldPosition(new Vector2(enemySpawnLongitude, spawnHeight));
-            GameObject spawnedEnemy = Instantiate(enemy, spawnPosition, Quaternion.Euler(new Vector3(180, 90, 0)));
-            spawnedEnemy.transform.parent = this.transform;
+            EnemySpawn enemySpawn = enemySpawns[i];
+            if(enemySpawn.beat == currentBeat)
+            { 
+                if (enemySpawn != null) {
+                    Vector3 spawnPosition = GridManager.current.GridPositionToWorldPosition(enemySpawn.spawnPosition);
+                    SpawnEnemy(enemySpawn.enemy, spawnPosition);
+                }
+                enemySpawnIndex += 1;
+            }
         }
+    }
+
+    void SpawnEnemy(GameObject enemy, Vector3 spawnPosition)
+    {
+        GameObject spawnedEnemy = Instantiate(enemy, spawnPosition, Quaternion.Euler(new Vector3(180, 90, 0)));
+        spawnedEnemy.transform.parent = this.transform;
     }
 }

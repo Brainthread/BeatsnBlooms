@@ -138,6 +138,8 @@ public class Sequencer : MonoBehaviour
             sequencerBoxActionStates[id] = 0;
             availableTiles += 1;
         }
+        TileAction state = tileActions[sequencerBoxActionStates[id]];
+        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
     }
     
 }
