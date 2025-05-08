@@ -5,17 +5,18 @@ public class RayAttack : PlantAction
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float damage = 1;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer[] lineRenderers; //Make line renderer gobj into prefabs & instantiate
     [SerializeField] private float lineFadeRate = 0.9f;
 
     private float currentWidth = 0f;
 
-    public override void Activate()
+    public override void Activate(Plant plant)
     {
         lineRenderer.useWorldSpace = true;
         RaycastHit hit;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + transform.forward * 200);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 200, layerMask))
+        lineRenderer.SetPosition(0, plant.transform.position);
+        lineRenderer.SetPosition(1, plant.transform.position + plant.transform.forward * 200);
+        if (Physics.Raycast(plant.transform.position, plant.transform.forward, out hit, 200, layerMask))
         {
             if (hit.transform && hit.transform.gameObject.GetComponent<HealthManager>())
             {

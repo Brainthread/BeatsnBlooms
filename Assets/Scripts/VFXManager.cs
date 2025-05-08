@@ -20,13 +20,13 @@ public class VFXManager : MonoBehaviour
     {
         if(impactIndex < impactFrames.Length)
         {
+            impactMaterial.SetFloat("_Threshold", impactFrames[impactIndex].frameThreshold);
             impactT += Time.deltaTime;
             if (impactT > impactFrames[impactIndex].impactLength)
             {
                 impactT = 0;
                 impactIndex += 1;
             }
-            impactMaterial.SetFloat("_Threshold", impactFrames[impactIndex].frameThreshold);
         }
         else
         {

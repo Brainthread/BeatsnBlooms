@@ -29,7 +29,7 @@ public class EnemyMovementStateBasic : StateMachineState
     // Update is called once per frame
     public override void StateUpdate()
     {
-        float t = MusicManager.instance.GetBeatInterpolationValue();
+        float t = EnemyManager.current.GetInterpolationValue();
         float ev = movementCurve.Evaluate(t);
         Vector2 intermediaryGridPosition = Vector2.Lerp(latestGridPosition, nextGridPosition, ev);
         transform.position = GridManager.current.GridPositionToWorldPosition(intermediaryGridPosition);
