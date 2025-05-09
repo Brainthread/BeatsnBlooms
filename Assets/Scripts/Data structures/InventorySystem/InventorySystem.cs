@@ -1,45 +1,120 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class InventorySystem : MonoBehaviour
 {
-    public static InventorySystem InventoryInstance;
-
-    private Dictionary<string, int> tileInventory = new Dictionary<string, int>();
-    //private Tile
-    //foreach(TileAction.TileActionTypes tileType in Enum.GetValues(typeof(TileAction.TileActionTypes)){}
-    //Array arr = Enum.GetNames(typeof(TileAction.TileActionTypes));
-    
-
+    public static InventorySystem instance;
+    private List<InventoryItem> inventory = new List<InventoryItem>();
+    private Dictionary<string, List<TileItem>> tileInventory = new Dictionary<string, List<TileItem>>();
 
     void Awake()
     {
-        if (InventoryInstance == null) InventoryInstance = this;
+        if (instance == null) instance = this;
         else Destroy(this);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        foreach (string entry in Enum.GetNames(typeof(TileAction.TileActionTypes)))
+        foreach (string name in Enum.GetNames(typeof(TileAction.TileActionTypes)))
         {
-            tileInventory.Add(entry, 0);
+            tileInventory.Add(name, new List<TileItem>());
         }
     }
 
-    public void AddToInventory()
+    //------------------------------Inventory Management------------------------------//
+    public void AddToInventory(InventoryItem item)
     {
+        if(item as TileItem != null)
+        {
+            AddTileToInventory(item as TileItem);
+            return;
+        }
 
+        inventory.Add(item);
     }
 
-    public void RemoveFromInventory()
+    public void RemoveFromInventory(InventoryItem item)
     {
+        if (item as TileItem != null)
+        {
+            AddTileToInventory(item as TileItem);
+            return;
+        }
 
+        inventory.Add(item);
     }
 
-    private void AddTileToInventory(TileAction.TileActionTypes actionType, int stackSize)
+    private void AddTileToInventory(TileItem item)
     {
-        tileInventory[actionType.ToString()] += stackSize;
+        tileInventory[item.GetTileType().ToString()].Add(item);
+        Debug.Log(item.GetTileType().ToString() + ": " + GetTotalTileStackSize(item.GetTileType()));
+    }
+
+    private bool RemoveTileFromInventory(TileItem item)
+    {
+        if (!tileInventory[item.GetTileType().ToString()].Last().Consume())
+        {
+            return tileInventory[item.GetTileType().ToString()].Remove(item);
+        }
+        return true;
+    }
+
+    //--------------------------------Inventory Helpers-------------------------------//
+    public int GetTotalTileStackSize(TileAction.TileActionTypes actionType)
+    {
+        int total = 0;
+        foreach(TileItem item in tileInventory[actionType.ToString()])
+        {
+            total += item.GetStackSize();
+        }
+        return total;
     }
 }
 
+public abstract class InventoryItem : MonoBehaviour
+{
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player")) return;
+
+        InventorySystem.instance.AddToInventory(this);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Player")) return;
+
+        InventorySystem.instance.AddToInventory(this);
+        Destroy(gameObject);
+    }
+}
+
+public abstract class TileItem : InventoryItem
+{
+    [SerializeField] private TileAction.TileActionTypes tileType;
+    [SerializeField] private int stackSize = 1;
+
+    public TileAction.TileActionTypes GetTileType() 
+    {
+        return tileType;
+    }
+
+    public int GetStackSize()
+    {
+        return stackSize;
+    }
+
+    public bool Consume()
+    {
+        if(stackSize > 0)
+        {
+            stackSize--;
+            return true;
+        }
+        return false;
+    }
+}

@@ -1,21 +1,31 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryDefence : MonoBehaviour
 {
-    [SerializeField] private int rows = 6;
-    [SerializeField] private int columns = 2;
-    [SerializeField] private float rowSpacing = 0.5f;
-    [SerializeField] private float columnSpacing = 0.5f;
+    private ToggleGroup toggleGroup;
 
-    [SerializeField] private GameObject inventorySlot;
+    private void Start()
+    {
+        toggleGroup = GetComponentInChildren<ToggleGroup>();
+    }
+
     public void Activate()
     {
-        for(int c = 0; c < columns; c++)
-        {
-            for(int r = 0; r < rows; r++)
-            {
 
-            }
+    }
+
+    public void OnToggleChange()
+    {
+        Toggle[] toggles = GetComponentsInChildren<Toggle>();
+        int inc = 0;
+ 
+
+        foreach(var t in toggles)
+        {
+            if (t.isOn) Debug.Log(inc);
         }
     }
 }
+
+//https://stackoverflow.com/questions/52739763/how-to-get-selected-toggle-from-toggle-group
