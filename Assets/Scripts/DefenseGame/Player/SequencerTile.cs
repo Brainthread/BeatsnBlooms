@@ -53,6 +53,7 @@ public class SequencerTile : MonoBehaviour
     public void SetPlantAction(TileAction.TileActionTypes actionType)
     {
         currentAction = actionType;
+        Debug.Log("Set Tile Action: " + actionType);
     }
     public TileAction.TileActionTypes GetPlantAction()
     {

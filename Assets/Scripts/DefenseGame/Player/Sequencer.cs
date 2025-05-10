@@ -127,7 +127,10 @@ public class Sequencer : MonoBehaviour
             }
         }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
-        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
+        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
+        tile.SetInnerMaterial(state.stateMaterial);
+        //Inventory Management
+        tile.SetPlantAction(InventoryManager.instance.inventoryDefence.GetCurrentTileType());
     }
     private void OnTileUnclicked(int id)
     {

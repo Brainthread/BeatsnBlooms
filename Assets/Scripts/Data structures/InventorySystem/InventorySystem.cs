@@ -7,21 +7,23 @@ public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem instance;
     private List<InventoryItem> inventory = new List<InventoryItem>();
-    private Dictionary<string, List<TileItem>> tileInventory = new Dictionary<string, List<TileItem>>();
+    private Dictionary<TileAction.TileActionTypes, List<TileItem>> tileInventory = new Dictionary<TileAction.TileActionTypes, List<TileItem>>();
 
     void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(this);
         DontDestroyOnLoad(gameObject);
+
+        foreach (TileAction.TileActionTypes type in Enum.GetValues(typeof(TileAction.TileActionTypes)))
+        {
+            tileInventory.Add(type, new List<TileItem>());
+        }
     }
 
     private void Start()
     {
-        foreach (string name in Enum.GetNames(typeof(TileAction.TileActionTypes)))
-        {
-            tileInventory.Add(name, new List<TileItem>());
-        }
+
     }
 
     //------------------------------Inventory Management------------------------------//
@@ -40,24 +42,24 @@ public class InventorySystem : MonoBehaviour
     {
         if (item as TileItem != null)
         {
-            AddTileToInventory(item as TileItem);
+            RemoveTileFromInventory(item as TileItem);
             return;
         }
 
-        inventory.Add(item);
+        inventory.Remove(item);
     }
 
     private void AddTileToInventory(TileItem item)
     {
-        tileInventory[item.GetTileType().ToString()].Add(item);
+        tileInventory[item.GetTileType()].Add(item);
         Debug.Log(item.GetTileType().ToString() + ": " + GetTotalTileStackSize(item.GetTileType()));
     }
 
     private bool RemoveTileFromInventory(TileItem item)
     {
-        if (!tileInventory[item.GetTileType().ToString()].Last().Consume())
+        if (!tileInventory[item.GetTileType()].Last().Consume())
         {
-            return tileInventory[item.GetTileType().ToString()].Remove(item);
+            return tileInventory[item.GetTileType()].Remove(item);
         }
         return true;
     }
@@ -66,13 +68,50 @@ public class InventorySystem : MonoBehaviour
     public int GetTotalTileStackSize(TileAction.TileActionTypes actionType)
     {
         int total = 0;
-        foreach(TileItem item in tileInventory[actionType.ToString()])
+        foreach(TileItem item in tileInventory[actionType])
         {
             total += item.GetStackSize();
         }
         return total;
     }
+
+    public List<TypeWithStackSize> GetTypesWithStackSize()
+    {
+        List <TypeWithStackSize> typesWithStackSize = new List<TypeWithStackSize>();
+        foreach(var key in tileInventory.Keys)
+        {
+            TypeWithStackSize itemData;
+            itemData.type = key;
+            itemData.stackSize = GetTotalTileStackSize(key);
+            typesWithStackSize.Add(itemData);
+        }
+        return typesWithStackSize;
+    }
+
+    public void SetupTestInventory()
+    {
+        TileItem item1 = gameObject.AddComponent<TestItem>();
+        item1.SetupItem(TileAction.TileActionTypes.BARRIER, 10);
+
+        TileItem item2 = gameObject.AddComponent<TestItem>();
+        item2.SetupItem(TileAction.TileActionTypes.BEAM, 20);
+
+        TileItem item3 = gameObject.AddComponent<TestItem>();
+        item3.SetupItem(TileAction.TileActionTypes.ROOT, 5);
+
+        AddToInventory(item1);
+        AddToInventory(item2);
+        AddToInventory(item3);
+    }
 }
+
+
+public struct TypeWithStackSize
+{
+    public TileAction.TileActionTypes type;
+    public int stackSize;
+}
+
 
 public abstract class InventoryItem : MonoBehaviour
 {
@@ -106,6 +145,12 @@ public abstract class TileItem : InventoryItem
     public int GetStackSize()
     {
         return stackSize;
+    }
+
+    public void SetupItem(TileAction.TileActionTypes type, int stackAmt)
+    {
+        tileType = type;
+        stackSize = stackAmt;
     }
 
     public bool Consume()
