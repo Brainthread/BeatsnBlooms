@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class InventoryDefence : MonoBehaviour
 {
     private TileAction.TileActionTypes currentType = TileAction.TileActionTypes.ATTACK;
     [SerializeField] GameObject inventoryTogglePrefab;
     ToggleGroup toggleGroup;
+    private List<GameObject> currentInventorySlots = new List<GameObject>();
 
     public void SetupDefenceInventory()
     {
         if (toggleGroup == null) toggleGroup = GetComponentInChildren<ToggleGroup>();
+        ResetInventorySlots();
+
         //Find inventory items with stack size > 0 & instantiate DefenceToggle prefabs
         foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTypesWithStackSize())
         {
@@ -18,14 +22,29 @@ public class InventoryDefence : MonoBehaviour
             GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
             DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
             settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, this, toggleGroup);
+            currentInventorySlots.Add(gobj);
         }
     }
 
-    //We still need the final consume logic
+    private void ResetInventorySlots()
+    {
+        foreach (GameObject gobj in currentInventorySlots)
+        {
+            gobj.GetComponent<DefenceInventoryToggle>().RemoveToggle();
+            Destroy(gobj);
+        }
+        currentInventorySlots.Clear();
+    }
+
+    //We still need the final consume logic:
+
+    //When user uses an action on a sequencer tile
+    //-Decrement stack size in toggle object
+
     //When sequencer activates action:
-    //-Consume from inventory system
-    //-Update stack size in toggle object
-    //-Remove toggle object if stack size = 0
+
+    //-Consume from inventory system when step activates
+    //-Remove toggle object if stack size = 0 when last item consumed
 
     //GUI
     //-Add icons to inventory

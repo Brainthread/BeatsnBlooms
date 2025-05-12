@@ -9,7 +9,7 @@ public class PlantActionHandler : MonoBehaviour
     [SerializeField] PlantAction SpikeBarrierAction;
     [SerializeField] PlantAction StickySlimeAction;
     [SerializeField] PlantAction ExplosiveAction;
-    [SerializeField] PlantAction StickProjectileAction;
+    [SerializeField] PlantAction StickyProjectileAction;
     [SerializeField] PlantAction BeamAction;
 
     private void Awake()

@@ -9,6 +9,9 @@ public class DefenceInventoryToggle : MonoBehaviour
     private TMP_Text stackSizeUI; 
     private UnityEvent<TileAction.TileActionTypes> onToggleOn = new UnityEvent<TileAction.TileActionTypes>();
 
+    //Buffer for remove
+    private Toggle toggleRef;
+    private ToggleGroup groupRef;
 
     public void ToggleOn(bool on)
     {
@@ -27,5 +30,19 @@ public class DefenceInventoryToggle : MonoBehaviour
         tileType = type;
         stackSize = stackAmt;
         stackSizeUI.text = stackAmt.ToString();
+
+        SetInstances(toggle, toggleGroup);
+    }
+
+    public void RemoveToggle()
+    {
+        groupRef.UnregisterToggle(toggleRef);
+    }
+
+    //Because order function calls we can't do this in Start or Awake...
+    private void SetInstances(Toggle toggle, ToggleGroup group)
+    {
+        toggleRef = toggle;
+        groupRef = group;
     }
 }

@@ -129,8 +129,11 @@ public class Sequencer : MonoBehaviour
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
+
         //Inventory Management
         tile.SetPlantAction(InventoryManager.instance.inventoryDefence.GetCurrentTileType());
+        //decrement availability on tile
+        //If tile stacksize < 1 don't let user add action
     }
     private void OnTileUnclicked(int id)
     {
@@ -140,7 +143,11 @@ public class Sequencer : MonoBehaviour
             availableTiles += 1;
         }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
-        representations[id].GetComponent<SequencerTile>().SetInnerMaterial(state.stateMaterial);
+        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
+        tile.SetInnerMaterial(state.stateMaterial);
+
+        //Inventory Management
+        //If the tile is unclicked before the item can be consumed add back to stack size on tile
     }
     
 }
