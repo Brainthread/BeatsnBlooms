@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638819609545994234
+  lastModified: 638822076168060766
   FileSizes:
   - Name: 
     Value: 2374
@@ -141,7 +141,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638819609545974289
+  lastModified: 638822076167920763
   FileSizes: []
   Exists: 1
 --- !u!114 &-2437704345831873291
@@ -285,7 +285,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638819609545994234
+  cacheTime: 638822076168060766
   SerializableEventsDict:
   - key: event:/Music/Defence/SequencerActions/SequencerTakeDamage
     index: 0

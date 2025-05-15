@@ -35,7 +35,7 @@ public class PlantActionHandler : MonoBehaviour
             case TileAction.TileActionTypes.EXPLOSIVE:
                 return ExplosiveAction;
             case TileAction.TileActionTypes.STICKY_PROJECTILE:
-                return StickProjectileAction;
+                return StickyProjectileAction;
             case TileAction.TileActionTypes.BEAM:
                 return BeamAction;
             default:

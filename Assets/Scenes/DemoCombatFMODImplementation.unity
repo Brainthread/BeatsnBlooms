@@ -1629,10 +1629,8 @@ MonoBehaviour:
   tileActions:
   - stateMaterial: {fileID: 2100000, guid: ee06d776f999e5c49a63d42d8af6158a, type: 2}
     tileState: 0
-    actionTypes: 0
   - stateMaterial: {fileID: 2100000, guid: 8b4de2b1544379544821f9814891c2e6, type: 2}
     tileState: 1
-    actionTypes: 0
   sequencerBoxActionStates: 
   representations:
   - {fileID: 1763848965}
@@ -2711,7 +2709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 459717018}
   growthManager: {fileID: 408011021}
-  stage: {fileID: 0}
+  stage: {fileID: 11400000, guid: 2cb87d708544c8a4e95c0eb140b82858, type: 2}
 --- !u!1 &1454437202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,8 +2901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cd980e04f9b0144a9af5064bc9ff9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
-  stackSize: 1
 --- !u!4 &1537479257
 Transform:
   m_ObjectHideFlags: 0
@@ -3836,7 +3832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178bf509c84c66c4f829d001f33c51f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryTogglePrefab: {fileID: 5104238632589487680, guid: 7093d95e60dc1574389410d72b0174fa, type: 3}
+  rows: 6
+  columns: 2
+  rowSpacing: 0.5
+  columnSpacing: 0.5
+  inventorySlot: {fileID: 0}
 --- !u!4 &1884219575
 Transform:
   m_ObjectHideFlags: 0

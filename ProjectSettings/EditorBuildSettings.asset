@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartingLevelScene.unity
     guid: 711b3fb28473bbf4ab7cc644ea779628
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DemoCombatScene.unity
     guid: 2ea76538f7ed9d94c983ca28fc94e50e
+  - enabled: 1
+    path: Assets/Scenes/DemoCombatFMODImplementation.unity
+    guid: 56daa222ca432054bab7b89be9a64118
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 220c67fe46d7c0d4791ac67ad4245f1c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
