@@ -13,6 +13,7 @@ public class GrowthManager : MonoBehaviour
     private float recedeCounter = 0;
     private float reachedLength = 0f;
     private bool initialized = false;
+    [SerializeField] private bool funcNFmod = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +32,7 @@ public class GrowthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(initialized) {
+        if(initialized&&funcNFmod) {
             if (!lost)
             {
                 renderMaterial.SetFloat("_Progress", growthSpeed.Evaluate(musicManager.GetSongProgression()));

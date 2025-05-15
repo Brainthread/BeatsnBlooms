@@ -33,6 +33,7 @@ public class Plant : MonoBehaviour
     {
         if(isActive)
         {
+            print("PLANT ACTIVATED");
             //plantActions[0].Activate();
             plantActionHandler.GetAction(actionType).Activate(this);
         }

@@ -9,6 +9,7 @@ public class EventHandler : MonoBehaviour
     //DAves stuff feel free to change..
     public Event onMusicStartEvent;
     public Event onBeatEvent;
+
     private void Awake()
     {
         current = this;
@@ -112,6 +113,15 @@ public class EventHandler : MonoBehaviour
         if(onPlayerClickRow != null)
         {
             onPlayerClickRow(row);
+        }
+    }
+
+    public event Action onWin;
+    public void Win()
+    {
+        if(onWin != null)
+        {
+            onWin();
         }
     }
 }
