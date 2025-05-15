@@ -46,6 +46,8 @@ public class SequencerTile : MonoBehaviour
     {
         borderRenderer.material = material;
     }
+
+    //Inventory Logic Functions
     public void SetInnerMaterial(Material material)
     {
         innerRenderer.material = material;
@@ -53,9 +55,12 @@ public class SequencerTile : MonoBehaviour
     public void SetPlantAction(TileAction.TileActionTypes actionType)
     {
         currentAction = actionType;
+        Debug.Log("Set Tile Action: " + actionType);
     }
     public TileAction.TileActionTypes GetPlantAction()
     {
+        //Here we can consume the action from inventory
+        //& set tile back to base attack
         return currentAction;
     }
 }

@@ -115,7 +115,7 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 1.54
     - _Parallax: 0.005
-    - _Progress: 0.4
+    - _Progress: 0.20918739
     - _ProgressOffset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -124,7 +124,7 @@ Material:
     - _SawOffset: 0
     - _SineAmplitude: 0
     - _SineFrequency: 0
-    - _SineOffset: 0
+    - _SineOffset: 1.3998786
     m_Colors:
     - _MainTexTint: {r: 1, g: 1, b: 1, a: 1}
     - _SecondTexTint: {r: 1, g: 1, b: 1, a: 0}

@@ -1,65 +1,165 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using System;
+using System.Linq;
 
 public class InventorySystem : MonoBehaviour
 {
-    public static InventorySystem InventoryInstance;
-
-    //Tile Inventory
-    private List<ITile> TileInventory = new List<ITile>();
-    //Other Inventory
-    private List<IInventoryItem> ItemInventory = new List<IInventoryItem>();
+    public static InventorySystem instance;
+    private List<InventoryItem> inventory = new List<InventoryItem>();
+    private Dictionary<TileAction.TileActionTypes, List<TileItem>> tileInventory = new Dictionary<TileAction.TileActionTypes, List<TileItem>>();
 
     void Awake()
     {
-        if (InventoryInstance == null) InventoryInstance = this;
+        if (instance == null) instance = this;
         else Destroy(this);
+        DontDestroyOnLoad(gameObject);
+
+        foreach (TileAction.TileActionTypes type in Enum.GetValues(typeof(TileAction.TileActionTypes)))
+        {
+            tileInventory.Add(type, new List<TileItem>());
+        }
     }
 
-    public void AddToInventory(IInventoryItem item)
+    private void Start()
     {
-        ITile tile = (ITile)item;
-        if (tile != null)
+
+    }
+
+    //------------------------------Inventory Management------------------------------//
+    public void AddToInventory(InventoryItem item)
+    {
+        if(item as TileItem != null)
         {
-            ITile found = TileInventory.Find(x => x.Type == tile.Type);
-            if (found != null) found.StackSize += tile.StackSize;
-            else TileInventory.Add(tile);
+            AddTileToInventory(item as TileItem);
             return;
         }
-       
-        ItemInventory.Add(item);
+
+        inventory.Add(item);
+    }
+
+    public void RemoveFromInventory(InventoryItem item)
+    {
+        if (item as TileItem != null)
+        {
+            RemoveTileFromInventory(item as TileItem);
+            return;
+        }
+
+        inventory.Remove(item);
+    }
+
+    private void AddTileToInventory(TileItem item)
+    {
+        tileInventory[item.GetTileType()].Add(item);
+        Debug.Log(item.GetTileType().ToString() + ": " + GetTotalTileStackSize(item.GetTileType()));
+    }
+
+    private bool RemoveTileFromInventory(TileItem item)
+    {
+        if (!tileInventory[item.GetTileType()].Last().Consume())
+        {
+            return tileInventory[item.GetTileType()].Remove(item);
+        }
+        return true;
+    }
+
+    //--------------------------------Inventory Helpers-------------------------------//
+    public int GetTotalTileStackSize(TileAction.TileActionTypes actionType)
+    {
+        int total = 0;
+        foreach(TileItem item in tileInventory[actionType])
+        {
+            total += item.GetStackSize();
+        }
+        return total;
+    }
+
+    public List<TypeWithStackSize> GetTypesWithStackSize()
+    {
+        List <TypeWithStackSize> typesWithStackSize = new List<TypeWithStackSize>();
+        foreach(var key in tileInventory.Keys)
+        {
+            TypeWithStackSize itemData;
+            itemData.type = key;
+            itemData.stackSize = GetTotalTileStackSize(key);
+            typesWithStackSize.Add(itemData);
+        }
+        return typesWithStackSize;
+    }
+
+    public void SetupTestInventory()
+    {
+        TileItem item1 = gameObject.AddComponent<TestItem>();
+        item1.SetupItem(TileAction.TileActionTypes.BARRIER, 10);
+
+        TileItem item2 = gameObject.AddComponent<TestItem>();
+        item2.SetupItem(TileAction.TileActionTypes.BEAM, 20);
+
+        TileItem item3 = gameObject.AddComponent<TestItem>();
+        item3.SetupItem(TileAction.TileActionTypes.ROOT, 5);
+
+        AddToInventory(item1);
+        AddToInventory(item2);
+        AddToInventory(item3);
     }
 }
 
-//Inventory Interfaces
-public interface IInventoryItem
+
+public struct TypeWithStackSize
 {
-    //public void PickUp();
-}
-public interface ITile : IInventoryItem
-{
-    public void PlaceTile();
-    public bool IsSelected { get; set; }
-    public TILE_TYPE Type { get; set; }
-    public int StackSize { get; set; }
+    public TileAction.TileActionTypes type;
+    public int stackSize;
 }
 
-public enum TILE_TYPE
-{
-    //Defence
-    ROOT,
-    BARRIER,
-    SPIKE_BARRIER,
-    STICKY_SLIME,
-    //Ranged
-    EXPLOSIVE,
-    STICKY_PROJECTILE,
-    BEAM,
 
+public abstract class InventoryItem : MonoBehaviour
+{
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player")) return;
+
+        InventorySystem.instance.AddToInventory(this);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Player")) return;
+
+        InventorySystem.instance.AddToInventory(this);
+        Destroy(gameObject);
+    }
 }
 
-public interface IPlantable : IInventoryItem
+public abstract class TileItem : InventoryItem
 {
-    public float GrowRate { get; set; }
+    [SerializeField] private TileAction.TileActionTypes tileType;
+    [SerializeField] private int stackSize = 1;
+
+    public TileAction.TileActionTypes GetTileType() 
+    {
+        return tileType;
+    }
+
+    public int GetStackSize()
+    {
+        return stackSize;
+    }
+
+    public void SetupItem(TileAction.TileActionTypes type, int stackAmt)
+    {
+        tileType = type;
+        stackSize = stackAmt;
+    }
+
+    public bool Consume()
+    {
+        if(stackSize > 0)
+        {
+            stackSize--;
+            return true;
+        }
+        return false;
+    }
 }
