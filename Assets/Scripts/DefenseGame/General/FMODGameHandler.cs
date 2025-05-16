@@ -29,7 +29,7 @@ public class FMODGameHandler : MonoBehaviour
         if(beattracker == stage.victoryBeat)
         {
             EventHandler.current.Win();
-            Invoke("SwitchLevel", 3);
+            Invoke("SwitchLevel", 5);
         }
     }
 

@@ -8,6 +8,7 @@ public class WinLossText : MonoBehaviour
     void Start()
     {
         EventHandler.current.onLoss += OnLoss;
+        EventHandler.current.onWin += OnWin;
     }
 
     void OnLoss()
