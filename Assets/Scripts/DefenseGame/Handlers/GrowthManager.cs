@@ -18,6 +18,9 @@ public class GrowthManager : MonoBehaviour
 
     private float discreteProgression = 0;
     private float sufferingFactor = 0f;
+
+    [SerializeField] private GameObject plane;
+    [SerializeField] private GameObject growthObjectHolder;
     void Start()
     {
         instance = this;
@@ -49,13 +52,28 @@ public class GrowthManager : MonoBehaviour
                 else
                     progression = discreteProgression;
                 sufferingFactor = Mathf.MoveTowards(sufferingFactor, progression, Time.deltaTime/10);
-                print(sufferingFactor);
                     
                 renderMaterial.SetFloat("_Progress", growthSpeed.Evaluate(sufferingFactor));
                 float fx0 = growthSpeed.Evaluate(sufferingFactor - 0.1f);
                 float fx1 = growthSpeed.Evaluate(sufferingFactor + 0.1f);
                 float derivative = (fx1 - fx0) / (0.2f);
                 renderMaterial.SetFloat("_SineOffset", renderMaterial.GetFloat("_SineOffset") + shiftSpeed * derivative);
+                if(growthObjectHolder)
+                {
+                    float localScale = plane.transform.localScale.x*10;
+                    float progressionPosition = plane.transform.position.x - localScale / 2;
+                    progressionPosition += localScale * growthSpeed.Evaluate(sufferingFactor);
+                    //print(progressionPosition);
+                    for (int i = 0; i < growthObjectHolder.transform.childCount; i++)
+                    {
+                        Growth growth = growthObjectHolder.transform.GetChild(i).GetComponent<Growth>();
+                        //print(growth.gameObject.transform.position.x + ":" + (plane.transform.position.x - localScale/2));
+                        if (growth.gameObject.transform.position.x-10 < progressionPosition)
+                        {
+                            growth.Grow();
+                        }
+                    }
+                }
             }
             else
             {

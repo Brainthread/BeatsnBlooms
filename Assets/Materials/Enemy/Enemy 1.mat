@@ -141,7 +141,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _fresnelPower: 5
-    - _fresnelStrength: 5
+    - _fresnelStrength: 30
     m_Colors:
     - _BaseColor: {r: 1, g: 0.44054037, b: 0, a: 1}
     - _Color: {r: 1, g: 0.44054034, b: 0, a: 1}
