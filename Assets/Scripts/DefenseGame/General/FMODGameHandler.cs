@@ -20,11 +20,12 @@ public class FMODGameHandler : MonoBehaviour
     {
         enemyManager.Initialize(stage.enemySpawns);
         //musicManager.Initialize(stage.song);
-        //growthManager.Initialize();
+        growthManager.Initialize();
     }
 
     void OnBeat()
     {
+        growthManager.SetDiscreteProgression((float)beattracker/(float)stage.victoryBeat);
         beattracker += 1;
         if(beattracker == stage.victoryBeat)
         {

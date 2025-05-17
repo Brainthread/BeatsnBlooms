@@ -15,6 +15,9 @@ public class GrowthManager : MonoBehaviour
     private bool initialized = false;
     [SerializeField] private bool funcNFmod = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private float discreteProgression = 0;
+    private float sufferingFactor = 0f;
     void Start()
     {
         instance = this;
@@ -22,6 +25,8 @@ public class GrowthManager : MonoBehaviour
 
     public void Initialize()
     {
+        sufferingFactor = 0;
+        renderMaterial.SetFloat("_Progress", growthSpeed.Evaluate(sufferingFactor));
         musicManager = MusicManager.instance;
         renderMaterial.SetFloat("_Progress", 0);
         renderMaterial.SetFloat("_SineOffset", 0);
@@ -32,12 +37,23 @@ public class GrowthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(initialized&&funcNFmod) {
+        if(initialized) {
             if (!lost)
             {
-                renderMaterial.SetFloat("_Progress", growthSpeed.Evaluate(musicManager.GetSongProgression()));
-                float fx0 = growthSpeed.Evaluate(musicManager.GetSongProgression() - 0.1f);
-                float fx1 = growthSpeed.Evaluate(musicManager.GetSongProgression() + 0.1f);
+                float progression;
+                if (funcNFmod)
+                {
+                    progression = musicManager.GetSongProgression();
+                    sufferingFactor = progression;
+                }
+                else
+                    progression = discreteProgression;
+                sufferingFactor = Mathf.MoveTowards(sufferingFactor, progression, Time.deltaTime/10);
+                print(sufferingFactor);
+                    
+                renderMaterial.SetFloat("_Progress", growthSpeed.Evaluate(sufferingFactor));
+                float fx0 = growthSpeed.Evaluate(sufferingFactor - 0.1f);
+                float fx1 = growthSpeed.Evaluate(sufferingFactor + 0.1f);
                 float derivative = (fx1 - fx0) / (0.2f);
                 renderMaterial.SetFloat("_SineOffset", renderMaterial.GetFloat("_SineOffset") + shiftSpeed * derivative);
             }
@@ -54,5 +70,10 @@ public class GrowthManager : MonoBehaviour
     {
         reachedLength = growthSpeed.Evaluate(musicManager.GetSongProgression());
         lost = true;
+    }
+
+    public void SetDiscreteProgression(float value)
+    {
+        discreteProgression = value;
     }
 }

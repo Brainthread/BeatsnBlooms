@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Background:
+        m_Texture: {fileID: 2800000, guid: bd257e0a2e53a5a4c8ce8c0632b76120, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,6 +52,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Foreground:
+        m_Texture: {fileID: 2800000, guid: d8ce4830b6a7d974aa5f9f07c91b1cfd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Main:
         m_Texture: {fileID: 2800000, guid: 0a9a0edc6199baa4e9fddb4450f21604, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -60,6 +68,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Middleground:
+        m_Texture: {fileID: 2800000, guid: 639e5e5bfdb31704d9ea48177313d83f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -69,7 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Secondary:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: bd257e0a2e53a5a4c8ce8c0632b76120, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -107,27 +119,34 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _ForegroundScrollSpeed: 0.1
     - _Frequency: 1.02
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GrowAmplitude: 0.1
+    - _GrowSpeed: 0.5
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Offset: 1.54
     - _Parallax: 0.005
-    - _Progress: 0.20918739
-    - _ProgressOffset: 0
+    - _Progress: 0.3997228
+    - _ProgressOffset: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SawAmplitude: 0
-    - _SawFrequency: 0
+    - _SawAmplitude: 0.009
+    - _SawFrequency: 1
     - _SawOffset: 0
-    - _SineAmplitude: 0
-    - _SineFrequency: 0
-    - _SineOffset: 1.3998786
+    - _SineAmplitude: 0.04
+    - _SineFrequency: 1
+    - _SineOffset: 2.1119816
     m_Colors:
+    - _ForegroundScrollSpeed: {r: -0.025, g: 0, b: 0, a: 0}
     - _MainTexTint: {r: 1, g: 1, b: 1, a: 1}
+    - _MiddlegroundScrollSpeed: {r: -0.0175, g: 0, b: 0, a: 0}
+    - _Scrollspeed: {r: -0.0125, g: 0, b: 0, a: 0}
     - _SecondTexTint: {r: 1, g: 1, b: 1, a: 0}
+    - _Tiling: {r: 7, g: 7, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6842999354676582371
