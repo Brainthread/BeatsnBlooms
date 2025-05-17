@@ -11,6 +11,8 @@ public class Bonsai : Growth
     {
         leaves.SetActive(false);
         leaves.transform.localScale = Vector3.zero;
+        Vector3 rotation = new Vector3(0, Random.Range(0, 360), 0);
+        transform.rotation = Quaternion.Euler(rotation);
     }
 
     public override void Grow()
