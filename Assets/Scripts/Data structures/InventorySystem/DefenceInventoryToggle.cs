@@ -2,9 +2,12 @@
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using System;
+
 public class DefenceInventoryToggle : MonoBehaviour
 {
     [SerializeField] private TileAction.TileActionTypes tileType;
+    public TileAction.TileActionTypes TileType { get { return tileType; } }
     [SerializeField] private int stackSize = 0;
     private bool infinite = false;
     private TMP_Text stackSizeUI; 
@@ -52,5 +55,13 @@ public class DefenceInventoryToggle : MonoBehaviour
     {
         toggleRef = toggle;
         groupRef = group;
+    }
+
+    internal void SetStackSize(int v)
+    {
+        if (infinite)
+            return;
+        stackSize = v;
+        stackSizeUI.text = v.ToString();
     }
 }

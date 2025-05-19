@@ -160,6 +160,10 @@ public abstract class TileItem : InventoryItem
     {
         return stackSize;
     }
+    public void SetStackSize(int value)
+    {
+        stackSize = value;
+    }
 
     public void SetupItem(TileAction.TileActionTypes type, int stackAmt)
     {

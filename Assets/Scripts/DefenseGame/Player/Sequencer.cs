@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 /* 
  * 
@@ -76,7 +77,10 @@ public class Sequencer : MonoBehaviour
                 //Debug.Log(i * rows + markerIndex);
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
                 TileAction myState = tileActions[sequencerBoxActionStates[i * rows + markerIndex]];
-                
+                if(sequencerBoxActionStates[i * rows + markerIndex]!=0)
+                {
+                    ConsumeItemTile(i * rows + markerIndex);
+                }
                 switch (myState.tileState)
                 {
                     case TileAction.TileState.attack:
@@ -147,6 +151,29 @@ public class Sequencer : MonoBehaviour
 
     private void OnTileUnclicked(int id)
     {
+        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
+        TileAction.TileActionTypes currentType = tile.GetPlantAction();
+        if (currentType != TileAction.TileActionTypes.ATTACK)
+        {
+            InventoryManager.instance.inventoryDefence.RefundItem(currentType);
+        }
+        UnsetTile(id);
+        //Inventory Management
+        //If the tile is unclicked before the item can be consumed add back to stack size on tile
+    }
+
+    private void ConsumeItemTile(int id)
+    {
+        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
+        TileAction.TileActionTypes currentType = tile.GetPlantAction();
+        if(currentType != TileAction.TileActionTypes.ATTACK)
+        {
+            UnsetTile(id);
+        }
+    }
+    
+    private void UnsetTile(int id)
+    {
         if (sequencerBoxActionStates[id] != 0)
         {
             sequencerBoxActionStates[id] = 0;
@@ -155,11 +182,7 @@ public class Sequencer : MonoBehaviour
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
-
-        //Inventory Management
-        //If the tile is unclicked before the item can be consumed add back to stack size on tile
     }
-    
 }
 
 

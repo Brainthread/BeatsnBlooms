@@ -87,6 +87,12 @@ public class InventoryDefence : MonoBehaviour
         {
             InventorySystem.instance.RemoveFromInventory(myItem);
         }
+        foreach (GameObject gobj in currentInventorySlots)
+        {
+            DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
+            if(settings.TileType == actionType)
+                settings.SetStackSize(InventorySystem.instance.GetTotalTileStackSize(myItem.GetTileType()));
+        }
     }
 
     internal bool IsStackAvailable(TileAction.TileActionTypes actionType)
@@ -113,6 +119,24 @@ public class InventoryDefence : MonoBehaviour
             }
         }
         return myItem;
+    }
+
+    internal void RefundItem(TileAction.TileActionTypes actionType)
+    {
+        TestItem[] testitems = InventorySystem.instance.GetComponents<TestItem>();
+        TestItem myItem = null;
+
+        for (int i = 0; i < testitems.Length; i++)
+        {
+            if (actionType == testitems[i].GetTileType())
+            {
+                myItem = testitems[i];
+            }
+        }
+        if(myItem!= null)
+        {
+            myItem.SetStackSize(myItem.GetStackSize() + 1);
+        }
     }
 }
 
