@@ -39,4 +39,4 @@ MonoBehaviour:
     enemy: {fileID: 3803572050703599025, guid: ffe8e70bc6e645b4db1822b5e6cc3fc4, type: 3}
     spawnPosition: {x: 15, y: 1}
   clearPartOfStageEvent: []
-  victoryBeat: 200
+  victoryBeat: 240
