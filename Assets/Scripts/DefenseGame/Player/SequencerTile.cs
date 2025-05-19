@@ -57,10 +57,12 @@ public class SequencerTile : MonoBehaviour
         currentAction = actionType;
         Debug.Log("Set Tile Action: " + actionType);
     }
+
     public TileAction.TileActionTypes GetPlantAction()
     {
         //Here we can consume the action from inventory
         //& set tile back to base attack
+        // Counterpoint: Never in a getter itself
         return currentAction;
     }
 }

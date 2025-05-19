@@ -21,11 +21,6 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-
-    }
-
     //------------------------------Inventory Management------------------------------//
     public void AddToInventory(InventoryItem item)
     {
@@ -57,11 +52,20 @@ public class InventorySystem : MonoBehaviour
 
     private bool RemoveTileFromInventory(TileItem item)
     {
+        if(!tileInventory.ContainsKey(item.GetTileType()))
+        {
+            return false;
+        }
         if (!tileInventory[item.GetTileType()].Last().Consume())
         {
             return tileInventory[item.GetTileType()].Remove(item);
         }
         return true;
+    }
+
+    internal bool HasStack(TestItem myItem)
+    {
+        return GetTotalTileStackSize(myItem.GetTileType()) > 0;
     }
 
     //--------------------------------Inventory Helpers-------------------------------//
@@ -90,6 +94,11 @@ public class InventorySystem : MonoBehaviour
 
     public void SetupTestInventory()
     {
+        //Make the basic attack an inventoryItem as well to minimize confusion
+        TileItem item0 = gameObject.AddComponent<TestItem>();
+        item0.SetupItem(TileAction.TileActionTypes.ATTACK, 1);
+        item0.InfiniteUses = true;
+
         TileItem item1 = gameObject.AddComponent<TestItem>();
         item1.SetupItem(TileAction.TileActionTypes.BARRIER, 10);
 
@@ -99,10 +108,13 @@ public class InventorySystem : MonoBehaviour
         TileItem item3 = gameObject.AddComponent<TestItem>();
         item3.SetupItem(TileAction.TileActionTypes.ROOT, 5);
 
+        AddToInventory(item0);
         AddToInventory(item1);
         AddToInventory(item2);
         AddToInventory(item3);
     }
+
+
 }
 
 
@@ -136,6 +148,8 @@ public abstract class TileItem : InventoryItem
 {
     [SerializeField] private TileAction.TileActionTypes tileType;
     [SerializeField] private int stackSize = 1;
+    [SerializeField] private bool infiniteUses = false;
+    public bool InfiniteUses { get { return infiniteUses; } set { infiniteUses = value; } }
 
     public TileAction.TileActionTypes GetTileType() 
     {
@@ -155,6 +169,7 @@ public abstract class TileItem : InventoryItem
 
     public bool Consume()
     {
+        if(infiniteUses) return true;
         if(stackSize > 0)
         {
             stackSize--;

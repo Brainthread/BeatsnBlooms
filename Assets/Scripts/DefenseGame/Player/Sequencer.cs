@@ -10,7 +10,7 @@ public class Sequencer : MonoBehaviour
 {
     private MusicManager musicManager;
     private int markerIndex = 0;
-    [SerializeField] private int availableTiles = 4;
+    [SerializeField] private int availableBasicTiles = 4;
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
@@ -33,7 +33,7 @@ public class Sequencer : MonoBehaviour
 
     private void OnStartSong()
     {
-        availableTiles = 4;
+        availableBasicTiles = 4;
         markerIndex = 0;
         sequencerBoxActionStates = new int[rows*columns];
         for (int i = 0; i < rows; i++)
@@ -63,7 +63,7 @@ public class Sequencer : MonoBehaviour
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
         }
         markerIndex += 1;
-        if(markerIndex > columns-1)
+        if(markerIndex > columns - 1)
         {
             markerIndex = 0;
         }
@@ -104,43 +104,53 @@ public class Sequencer : MonoBehaviour
         TileAction tileAction = tileActions[sequencerBoxActionStates[id]];
         if (tileAction.tileState != TileAction.TileState.unselected && tileAction.tileState != TileAction.TileState.item)
         {
-            availableTiles += 1;
+            availableBasicTiles += 1;
         }
     }
 
     private void OnTileClicked(int id)
     {
-        if(sequencerBoxActionStates[id] == 0)
-        {
-            if (availableTiles == 0)
-                return;
-            sequencerBoxActionStates[id] += 1;
-            availableTiles -= 1;
-        }
-        else
-        {
-            sequencerBoxActionStates[id] += 1;
-            if (sequencerBoxActionStates[id] == tileActions.Length)
-            {
-                sequencerBoxActionStates[id] = 0;
-                availableTiles += 1;
-            }
-        }
-        TileAction state = tileActions[sequencerBoxActionStates[id]];
+        TileAction.TileActionTypes newType = InventoryManager.instance.inventoryDefence.GetCurrentTileType();
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
-        tile.SetInnerMaterial(state.stateMaterial);
+        TileAction.TileActionTypes currentType = tile.GetPlantAction();
 
+        //is the thing populated?
+        //  Is it the same?
+        //      Unclick it. 
+        //  Is it a new item?
+        //      Swap
+        if (sequencerBoxActionStates[id] != 0)
+        {
+            OnTileUnclicked(id);
+            if (newType == currentType)
+                return;
+        }
+        if (!InventoryManager.instance.inventoryDefence.IsStackAvailable(newType))
+            return;
+        if (availableBasicTiles == 0)
+            return;
+
+        sequencerBoxActionStates[id] = 1;
+        availableBasicTiles -= 1;
+
+        //is the thing unpopulated? Check what action is performed. 
+        TileAction state = tileActions[sequencerBoxActionStates[id]];
+        tile.SetInnerMaterial(state.stateMaterial); //This should be rewritten.
         //Inventory Management
         tile.SetPlantAction(InventoryManager.instance.inventoryDefence.GetCurrentTileType());
         //decrement availability on tile
         //If tile stacksize < 1 don't let user add action
+        InventoryManager.instance.inventoryDefence.ConsumeItem(newType);
     }
+
+
+
     private void OnTileUnclicked(int id)
     {
         if (sequencerBoxActionStates[id] != 0)
         {
             sequencerBoxActionStates[id] = 0;
-            availableTiles += 1;
+            availableBasicTiles += 1;
         }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();

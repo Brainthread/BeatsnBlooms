@@ -11,7 +11,7 @@ public enum INVENTORY_STATE
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-
+    
     public InventoryDefence inventoryDefence { get; private set; }
     public InventoryExplore inventoryExplore { get; private set; }
 

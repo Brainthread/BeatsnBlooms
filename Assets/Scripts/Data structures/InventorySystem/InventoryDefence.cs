@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
+using static TMPro.Examples.ObjectSpin;
 
 public class InventoryDefence : MonoBehaviour
 {
@@ -9,16 +11,28 @@ public class InventoryDefence : MonoBehaviour
     ToggleGroup toggleGroup;
     private List<GameObject> currentInventorySlots = new List<GameObject>();
 
+    private void Start()
+    {
+    }
+
     public void SetupDefenceInventory()
     {
         if (toggleGroup == null) toggleGroup = GetComponentInChildren<ToggleGroup>();
         ResetInventorySlots();
 
+
+
+        { //Hacky solution to place basic attack first in the queue, since Dictionary has no internal ordering.
+            GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
+            DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
+            settings.SetupInfiniteToggle(TileAction.TileActionTypes.ATTACK, 1, this, toggleGroup);
+            currentInventorySlots.Add(gobj);
+        }
+
         //Find inventory items with stack size > 0 & instantiate DefenceToggle prefabs
         foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTypesWithStackSize())
         {
-            if (typeWithStack.stackSize < 1) continue;
-            //Debug.Log($"Create inventory toggle with - type: {typeWithStack.type} stack: {typeWithStack.stackSize}");
+            if (typeWithStack.stackSize < 1 || typeWithStack.type == TileAction.TileActionTypes.ATTACK) continue;
             GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
             DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
             settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, this, toggleGroup);
@@ -66,6 +80,40 @@ public class InventoryDefence : MonoBehaviour
         //Use key input to toggle inventory item selection...
     }
 
+    internal void ConsumeItem(TileAction.TileActionTypes actionType)
+    {
+        TestItem myItem = GetActionItemFromInventory(actionType);
+        if (myItem)
+        {
+            InventorySystem.instance.RemoveFromInventory(myItem);
+        }
+    }
+
+    internal bool IsStackAvailable(TileAction.TileActionTypes actionType)
+    {
+        TestItem myItem = GetActionItemFromInventory(actionType);
+        if (myItem)
+        {
+            if(InventorySystem.instance.HasStack(myItem))
+                return true;
+        }
+        return false;
+    }
+
+    private TestItem GetActionItemFromInventory (TileAction.TileActionTypes actionType)
+    {
+        TestItem[] testitems = InventorySystem.instance.GetComponents<TestItem>();
+        TestItem myItem = null;
+
+        for (int i = 0; i < testitems.Length; i++)
+        {
+            if (actionType == testitems[i].GetTileType())
+            {
+                myItem = testitems[i];
+            }
+        }
+        return myItem;
+    }
 }
 
 //https://stackoverflow.com/questions/52739763/how-to-get-selected-toggle-from-toggle-group

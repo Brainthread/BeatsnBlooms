@@ -2863,17 +2863,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 245700419}
     m_Modifications:
-    - target: {fileID: 618628169494093291, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 1939919932381533129, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
       propertyPath: m_Name
       value: TestPlant (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1939919932381533129, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5412149037929163145, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2915,17 +2907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7325348510909381817, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1939919932381533129, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1317220639}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
 --- !u!1001 &1141002262
 PrefabInstance:
@@ -3043,6 +3028,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3375601655332630787, guid: 1a71a23b9c707b9498908de4b1c9148a, type: 3}
   m_PrefabInstance: {fileID: 1346098964}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1215138051 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3940538675084710692, guid: f60624376d7e7ea4086a326b32364105, type: 3}
+  m_PrefabInstance: {fileID: 1000203777329641639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1242545460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3119,36 +3109,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnDeath: 0
   onDestroySpawn: {fileID: 0}
---- !u!1 &1317220637 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1939919932381533129, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
-  m_PrefabInstance: {fileID: 1125614120}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1317220638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5412149037929163145, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
   m_PrefabInstance: {fileID: 1125614120}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1317220639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317220637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b89fddfddc91149a90444be9d4d639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnDeath: 0
-  onDestroySpawn: {fileID: 0}
 --- !u!114 &1317220644 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2174770143432396177, guid: 36fa5b47ac9d5684993083ce680fe257, type: 3}
   m_PrefabInstance: {fileID: 1125614120}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317220637}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98353f151e6a93a46b4f0a1010c5a1d4, type: 3}
@@ -3661,7 +3632,7 @@ GameObject:
   - component: {fileID: 1612792633}
   - component: {fileID: 1612792634}
   - component: {fileID: 1612792635}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InventorySystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4405,7 +4376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851050224}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory_Explore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4437,7 +4408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884219575}
   - component: {fileID: 1884219574}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory_Defence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4456,7 +4427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178bf509c84c66c4f829d001f33c51f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryTogglePrefab: {fileID: 0}
+  inventoryTogglePrefab: {fileID: 5104238632589487680, guid: 7093d95e60dc1574389410d72b0174fa, type: 3}
 --- !u!4 &1884219575
 Transform:
   m_ObjectHideFlags: 0
@@ -5052,6 +5023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 7402037520639356999, guid: f60624376d7e7ea4086a326b32364105, type: 3}
+      propertyPath: innerRenderer
+      value: 
+      objectReference: {fileID: 1215138051}
     - target: {fileID: 8572516750777206121, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_LocalPosition.x
       value: -63.2
