@@ -79,6 +79,7 @@ public class InventorySystem : MonoBehaviour
         return total;
     }
 
+    public List<TypeWithStackSize> GetTileTypesWithStackSize() { return GetTypesWithStackSize(); }
     public List<TypeWithStackSize> GetTypesWithStackSize()
     {
         List <TypeWithStackSize> typesWithStackSize = new List<TypeWithStackSize>();
@@ -90,6 +91,11 @@ public class InventorySystem : MonoBehaviour
             typesWithStackSize.Add(itemData);
         }
         return typesWithStackSize;
+    }
+
+    public InventoryItem GetItemByTileType(TileAction.TileActionTypes actionType)
+    {
+        return tileInventory[actionType].Last();
     }
 
     public void SetupTestInventory()

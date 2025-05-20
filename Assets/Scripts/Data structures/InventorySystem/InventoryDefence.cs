@@ -10,7 +10,7 @@ public class InventoryDefence : MonoBehaviour
     [SerializeField] GameObject inventoryTogglePrefab;
     ToggleGroup toggleGroup;
     private List<GameObject> currentInventorySlots = new List<GameObject>();
-
+    private DefenceInventorySlot currentInventorySlot = null;
     private void Start()
     {
     }
@@ -48,6 +48,28 @@ public class InventoryDefence : MonoBehaviour
             Destroy(gobj);
         }
         currentInventorySlots.Clear();
+    }
+
+    public DefenceInventorySlot GetCurrentInventorySlot()
+    {
+        return currentInventorySlot;
+    }
+
+    public void SetCurrentInventorySlot(DefenceInventorySlot slot)
+    {
+        currentInventorySlot = slot;
+    }
+
+    public DefenceInventorySlot GetInventorySlotByType(TileAction.TileActionTypes actionType)
+    {
+        foreach (GameObject gobj in currentInventorySlots)
+        {
+            if (gobj.GetComponent<DefenceInventorySlot>().GetTileType() == actionType)
+            {
+                return gobj.GetComponent<DefenceInventorySlot>();
+            }
+        }
+        return null;
     }
 
     //We still need the final consume logic:

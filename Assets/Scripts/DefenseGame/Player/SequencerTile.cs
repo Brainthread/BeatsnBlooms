@@ -65,4 +65,18 @@ public class SequencerTile : MonoBehaviour
         // Counterpoint: Never in a getter itself
         return currentAction;
     }
+
+    public TileAction.TileActionTypes GetAndConsumePlantAction()
+    {
+        //Here we can consume the action from inventory
+        //& set tile back to base attack
+
+        //Here we also need to get the slot by type rather than the current slot bc
+        //there is no guarantee that what's being consumed matches the current slot
+        //since user could have switched...
+        InventoryManager.instance.inventoryDefence.GetInventorySlotByType(currentAction).Consume();
+        TileAction.TileActionTypes typeBuffer = currentAction;
+        currentAction = TileAction.TileActionTypes.ATTACK;
+        return typeBuffer;
+    }
 }
