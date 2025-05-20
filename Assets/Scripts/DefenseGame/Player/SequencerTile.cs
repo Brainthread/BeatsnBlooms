@@ -65,7 +65,9 @@ public class SequencerTile : MonoBehaviour
         //Here we also need to get the slot by type rather than the current slot bc
         //there is no guarantee that what's being consumed matches the current slot
         //since user could have switched...
-        InventoryManager.instance.inventoryDefence.GetInventorySlotByType(currentAction).Consume();
+        Debug.Log(InventoryManager.instance.inventoryDefence.GetInventorySlotByType(currentAction));
+        DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetInventorySlotByType(currentAction);
+        if(slot) slot.Consume(); //Should ideally not be null but for now protect for null case
         TileAction.TileActionTypes typeBuffer = currentAction;
         currentAction = TileAction.TileActionTypes.ATTACK;
         return typeBuffer;

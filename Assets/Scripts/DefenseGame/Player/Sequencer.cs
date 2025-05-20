@@ -141,16 +141,22 @@ public class Sequencer : MonoBehaviour
         //Inventory Management
         //If tile stacksize < 1 don't let user add action
         //...
-        tile.SetPlantAction(InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().GetTileType());
-        //decrement availability on inventory slot
-        InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().ReserveAction();
+        DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot();
+        if(slot.GetAvailableStack() > 0)
+        {
+            tile.SetPlantAction(slot.GetTileType());
+            //decrement availability on inventory slot
+            InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().ReserveAction();
+        }
+
     }
     private void ManageInventoryTileUnselected(SequencerTile tile)
     {
         //Inventory Management
         //If the tile is unclicked before the item can be consumed add back to stack size on tile
         Debug.Log("unclick tile");
-        InventoryManager.instance.inventoryDefence.GetInventorySlotByType(tile.GetPlantAction()).UnreserveAction();
+        DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetInventorySlotByType(tile.GetPlantAction());
+        if(slot != null) slot.UnreserveAction(); //Again for now we have to protect against null case
         //also if they did switch rather than turning off tile it should just swap items
     }
     private void OnTileUnclicked(int id)
