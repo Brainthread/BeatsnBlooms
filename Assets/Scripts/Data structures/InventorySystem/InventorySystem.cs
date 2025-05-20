@@ -5,6 +5,13 @@ using System.Linq;
 
 public class InventorySystem : MonoBehaviour
 {
+    /*This is the core of the inventory system.
+     * -Persistent between scenes
+     * -Accessible via static ref
+     * -Manages inventory addition & removal
+     * -Contains abstract class definitions for different inventory item types
+     * -Helpers for getting information about inventory state
+     */
     public static InventorySystem instance;
     private List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<TileAction.TileActionTypes, List<TileItem>> tileInventory = new Dictionary<TileAction.TileActionTypes, List<TileItem>>();
@@ -57,6 +64,7 @@ public class InventorySystem : MonoBehaviour
 
     private bool RemoveTileFromInventory(TileItem item)
     {
+        Debug.Log("Remove Tile");
         if (!tileInventory[item.GetTileType()].Last().Consume())
         {
             return tileInventory[item.GetTileType()].Remove(item);
@@ -75,7 +83,7 @@ public class InventorySystem : MonoBehaviour
         return total;
     }
 
-    public List<TypeWithStackSize> GetTypesWithStackSize()
+    public List<TypeWithStackSize> GetTileTypesWithStackSize()
     {
         List <TypeWithStackSize> typesWithStackSize = new List<TypeWithStackSize>();
         foreach(var key in tileInventory.Keys)
@@ -86,6 +94,11 @@ public class InventorySystem : MonoBehaviour
             typesWithStackSize.Add(itemData);
         }
         return typesWithStackSize;
+    }
+
+    public InventoryItem GetItemByTileType(TileAction.TileActionTypes actionType)
+    {
+        return tileInventory[actionType].Last();
     }
 
     public void SetupTestInventory()
@@ -106,6 +119,8 @@ public class InventorySystem : MonoBehaviour
 }
 
 
+//Only for use for tile items. Later refactor for better separation between
+//tile inventory and regular inventory...
 public struct TypeWithStackSize
 {
     public TileAction.TileActionTypes type;

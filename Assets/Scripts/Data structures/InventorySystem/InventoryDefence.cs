@@ -4,7 +4,16 @@ using System.Collections.Generic;
 
 public class InventoryDefence : MonoBehaviour
 {
+    /*This script handles setting up the inventory GUI for the defence game state
+     * and instantiating the inventory slot objects as well as cleanup when
+     * game state changes.
+     * 
+     * It also holds a refference to the currently selected inventory slot
+     */
+
     private TileAction.TileActionTypes currentType = TileAction.TileActionTypes.ATTACK;
+    private DefenceInventorySlot currentInventorySlot = null;
+
     [SerializeField] GameObject inventoryTogglePrefab;
     ToggleGroup toggleGroup;
     private List<GameObject> currentInventorySlots = new List<GameObject>();
@@ -15,22 +24,23 @@ public class InventoryDefence : MonoBehaviour
         ResetInventorySlots();
 
         //Find inventory items with stack size > 0 & instantiate DefenceToggle prefabs
-        foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTypesWithStackSize())
+        foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTileTypesWithStackSize())
         {
             if (typeWithStack.stackSize < 1) continue;
             //Debug.Log($"Create inventory toggle with - type: {typeWithStack.type} stack: {typeWithStack.stackSize}");
             GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
-            DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
+            DefenceInventorySlot settings = gobj.GetComponent<DefenceInventorySlot>();
             settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, this, toggleGroup);
             currentInventorySlots.Add(gobj);
         }
     }
 
+
     private void ResetInventorySlots()
     {
         foreach (GameObject gobj in currentInventorySlots)
         {
-            gobj.GetComponent<DefenceInventoryToggle>().RemoveToggle();
+            gobj.GetComponent<DefenceInventorySlot>().RemoveToggle();
             Destroy(gobj);
         }
         currentInventorySlots.Clear();
@@ -50,15 +60,26 @@ public class InventoryDefence : MonoBehaviour
     //-Add icons to inventory
     //-Display icons on step sequencer
 
-    public void SetCurrentTileType(TileAction.TileActionTypes type)
+    public DefenceInventorySlot GetCurrentInventorySlot()
     {
-        Debug.Log("Setting Defence Tile: " + type);
-        currentType = InventorySystem.instance.GetTotalTileStackSize(type) > 0 ? type : TileAction.TileActionTypes.ATTACK;
+        return currentInventorySlot;
     }
 
-    public TileAction.TileActionTypes GetCurrentTileType()
+    public void SetCurrentInventorySlot(DefenceInventorySlot slot)
     {
-        return currentType;
+        currentInventorySlot = slot;
+    }
+
+    public DefenceInventorySlot GetInventorySlotByType(TileAction.TileActionTypes actionType)
+    {
+        foreach(GameObject gobj in currentInventorySlots)
+        {
+            if(gobj.GetComponent<DefenceInventorySlot>().GetTileType() == actionType)
+            {
+                return gobj.GetComponent<DefenceInventorySlot>();
+            }
+        }
+        return null;
     }
 
     private void Update()
