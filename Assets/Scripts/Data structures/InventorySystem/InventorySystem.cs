@@ -98,6 +98,7 @@ public class InventorySystem : MonoBehaviour
         return tileInventory[actionType].Last();
     }
 
+
     public void SetupTestInventory()
     {
         //Make the basic attack an inventoryItem as well to minimize confusion
