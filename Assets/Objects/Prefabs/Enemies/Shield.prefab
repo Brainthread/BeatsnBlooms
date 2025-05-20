@@ -73,7 +73,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c061aa0fc3bf5774d838775ee4069574, type: 2}
+  - {fileID: 2100000, guid: 6a5bbd14848622d41865e4dcaac5b2c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -430,7 +430,7 @@ PrefabInstance:
     - target: {fileID: -1206874426333947015, guid: f0fccaa504049d1428a56b505318df84, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 92d1fa7074dceff4a815cffa409a455d, type: 2}
+      objectReference: {fileID: 2100000, guid: 39328e92ebbf61449a66604bf324145e, type: 2}
     - target: {fileID: 919132149155446097, guid: f0fccaa504049d1428a56b505318df84, type: 3}
       propertyPath: m_Name
       value: 05.enemy_rig

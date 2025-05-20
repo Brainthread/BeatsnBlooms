@@ -11,6 +11,7 @@ public class FMODGameHandler : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 144;
         Invoke("InitializeGame", 0.5f);
         EventHandler.current.onBeat += OnBeat;
         beattracker = 0;

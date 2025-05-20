@@ -86,7 +86,8 @@ public class GrowthManager : MonoBehaviour
 
     public void OnLose()
     {
-        reachedLength = growthSpeed.Evaluate(musicManager.GetSongProgression());
+        reachedLength = sufferingFactor;
+            //growthSpeed.Evaluate(musicManager.GetSongProgression());
         lost = true;
     }
 
