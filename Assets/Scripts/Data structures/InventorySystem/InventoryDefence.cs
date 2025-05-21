@@ -1,50 +1,46 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System;
-using static TMPro.Examples.ObjectSpin;
 
 public class InventoryDefence : MonoBehaviour
 {
+    /*This script handles setting up the inventory GUI for the defence game state
+     * and instantiating the inventory slot objects as well as cleanup when
+     * game state changes.
+     * 
+     * It also holds a refference to the currently selected inventory slot
+     */
+
     private TileAction.TileActionTypes currentType = TileAction.TileActionTypes.ATTACK;
+    private DefenceInventorySlot currentInventorySlot = null;
+
     [SerializeField] GameObject inventoryTogglePrefab;
     ToggleGroup toggleGroup;
     private List<GameObject> currentInventorySlots = new List<GameObject>();
-    private DefenceInventorySlot currentInventorySlot = null;
-    private void Start()
-    {
-    }
 
     public void SetupDefenceInventory()
     {
         if (toggleGroup == null) toggleGroup = GetComponentInChildren<ToggleGroup>();
         ResetInventorySlots();
 
-
-
-        { //Hacky solution to place basic attack first in the queue, since Dictionary has no internal ordering.
-            GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
-            DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
-            settings.SetupInfiniteToggle(TileAction.TileActionTypes.ATTACK, 1, this, toggleGroup);
-            currentInventorySlots.Add(gobj);
-        }
-
         //Find inventory items with stack size > 0 & instantiate DefenceToggle prefabs
-        foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTypesWithStackSize())
+        foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTileTypesWithStackSize())
         {
-            if (typeWithStack.stackSize < 1 || typeWithStack.type == TileAction.TileActionTypes.ATTACK) continue;
+            if (typeWithStack.stackSize < 1) continue;
+            //Debug.Log($"Create inventory toggle with - type: {typeWithStack.type} stack: {typeWithStack.stackSize}");
             GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
-            DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
-            settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, this, toggleGroup);
+            DefenceInventorySlot settings = gobj.GetComponent<DefenceInventorySlot>();
+            settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, toggleGroup);
             currentInventorySlots.Add(gobj);
         }
     }
+
 
     private void ResetInventorySlots()
     {
         foreach (GameObject gobj in currentInventorySlots)
         {
-            gobj.GetComponent<DefenceInventoryToggle>().RemoveToggle();
+            gobj.GetComponent<DefenceInventorySlot>().RemoveToggle();
             Destroy(gobj);
         }
         currentInventorySlots.Clear();
@@ -72,29 +68,9 @@ public class InventoryDefence : MonoBehaviour
         return null;
     }
 
-    //We still need the final consume logic:
-
-    //When user uses an action on a sequencer tile
-    //-Decrement stack size in toggle object
-
-    //When sequencer activates action:
-
-    //-Consume from inventory system when step activates
-    //-Remove toggle object if stack size = 0 when last item consumed
-
-    //GUI
-    //-Add icons to inventory
-    //-Display icons on step sequencer
-
-    public void SetCurrentTileType(TileAction.TileActionTypes type)
+    public void RemoveInventorySlot(GameObject inventorySlot)
     {
-        Debug.Log("Setting Defence Tile: " + type);
-        currentType = InventorySystem.instance.GetTotalTileStackSize(type) > 0 ? type : TileAction.TileActionTypes.ATTACK;
-    }
-
-    public TileAction.TileActionTypes GetCurrentTileType()
-    {
-        return currentType;
+        currentInventorySlots.Remove(inventorySlot);
     }
 
     private void Update()
@@ -102,64 +78,6 @@ public class InventoryDefence : MonoBehaviour
         //Use key input to toggle inventory item selection...
     }
 
-    internal void ConsumeItem(TileAction.TileActionTypes actionType)
-    {
-        TestItem myItem = GetActionItemFromInventory(actionType);
-        if (myItem)
-        {
-            InventorySystem.instance.RemoveFromInventory(myItem);
-        }
-        foreach (GameObject gobj in currentInventorySlots)
-        {
-            DefenceInventoryToggle settings = gobj.GetComponent<DefenceInventoryToggle>();
-            if(settings.TileType == actionType)
-                settings.SetStackSize(InventorySystem.instance.GetTotalTileStackSize(myItem.GetTileType()));
-        }
-    }
-
-    internal bool IsStackAvailable(TileAction.TileActionTypes actionType)
-    {
-        TestItem myItem = GetActionItemFromInventory(actionType);
-        if (myItem)
-        {
-            if(InventorySystem.instance.HasStack(myItem))
-                return true;
-        }
-        return false;
-    }
-
-    private TestItem GetActionItemFromInventory (TileAction.TileActionTypes actionType)
-    {
-        TestItem[] testitems = InventorySystem.instance.GetComponents<TestItem>();
-        TestItem myItem = null;
-
-        for (int i = 0; i < testitems.Length; i++)
-        {
-            if (actionType == testitems[i].GetTileType())
-            {
-                myItem = testitems[i];
-            }
-        }
-        return myItem;
-    }
-
-    internal void RefundItem(TileAction.TileActionTypes actionType)
-    {
-        TestItem[] testitems = InventorySystem.instance.GetComponents<TestItem>();
-        TestItem myItem = null;
-
-        for (int i = 0; i < testitems.Length; i++)
-        {
-            if (actionType == testitems[i].GetTileType())
-            {
-                myItem = testitems[i];
-            }
-        }
-        if(myItem!= null)
-        {
-            myItem.SetStackSize(myItem.GetStackSize() + 1);
-        }
-    }
 }
 
 //https://stackoverflow.com/questions/52739763/how-to-get-selected-toggle-from-toggle-group

@@ -20,14 +20,12 @@ public class Bonsai : Growth
 
     public override void Grow()
     {
-        print("AAAAAa");
         leaves.SetActive(true);
     }
     void Update()
     {
         if(leaves.activeSelf&&timeCounter<timeUntilRightSize)
         {
-            print("BBBBBBBBB");
             timeCounter += Time.deltaTime;
             float currentSize = animationCurve.Evaluate(timeCounter/timeUntilRightSize);
             Vector3 size = currentSize*initialScale; 
