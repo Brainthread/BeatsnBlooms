@@ -6,26 +6,31 @@ public class Bonsai : Growth
     private Vector3 targetSize = Vector3.one;
     [SerializeField] private AnimationCurve animationCurve;
     [SerializeField] private float timeUntilRightSize = 1;
+    Vector3 initialScale;
     float timeCounter = 0;
     void Start()
     {
+        initialScale = leaves.transform.localScale;
         leaves.SetActive(false);
         leaves.transform.localScale = Vector3.zero;
         Vector3 rotation = new Vector3(0, Random.Range(0, 360), 0);
         transform.rotation = Quaternion.Euler(rotation);
+
     }
 
     public override void Grow()
     {
+        print("AAAAAa");
         leaves.SetActive(true);
     }
     void Update()
     {
         if(leaves.activeSelf&&timeCounter<timeUntilRightSize)
         {
+            print("BBBBBBBBB");
             timeCounter += Time.deltaTime;
             float currentSize = animationCurve.Evaluate(timeCounter/timeUntilRightSize);
-            Vector3 size = new Vector3(currentSize, currentSize, currentSize); 
+            Vector3 size = currentSize*initialScale; 
             leaves.transform.localScale = size;
         }
     }
