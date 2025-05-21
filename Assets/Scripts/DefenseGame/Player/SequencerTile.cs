@@ -68,6 +68,7 @@ public class SequencerTile : MonoBehaviour
         if (slot != null) slot.Consume(); //"Attack" is a hard coded default action. If we don't have a slot for it we get null here
         TileAction.TileActionTypes typeBuffer = currentAction;
         currentAction = TileAction.TileActionTypes.ATTACK;
+
         return typeBuffer;
     }
 

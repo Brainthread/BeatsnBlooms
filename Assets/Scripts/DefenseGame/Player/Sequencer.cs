@@ -85,8 +85,7 @@ public class Sequencer : MonoBehaviour
                         EventHandler.current.ActivatePlant(i, actionType);
                         if(actionType != TileAction.TileActionTypes.ATTACK && REMOVE_SELECTION_ON_ITEM_USE)
                         {
-                            print("RESET");
-                            OnTileUnclicked(i);
+                            OnTileUnclicked(i * rows + markerIndex);
                         }
                         break;
                 }
