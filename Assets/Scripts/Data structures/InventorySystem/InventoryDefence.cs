@@ -30,7 +30,7 @@ public class InventoryDefence : MonoBehaviour
             //Debug.Log($"Create inventory toggle with - type: {typeWithStack.type} stack: {typeWithStack.stackSize}");
             GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
             DefenceInventorySlot settings = gobj.GetComponent<DefenceInventorySlot>();
-            settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, this, toggleGroup);
+            settings.SetupToggle(typeWithStack.type, typeWithStack.stackSize, toggleGroup);
             currentInventorySlots.Add(gobj);
         }
     }
@@ -45,20 +45,6 @@ public class InventoryDefence : MonoBehaviour
         }
         currentInventorySlots.Clear();
     }
-
-    //We still need the final consume logic:
-
-    //When user uses an action on a sequencer tile
-    //-Decrement stack size in toggle object
-
-    //When sequencer activates action:
-
-    //-Consume from inventory system when step activates
-    //-Remove toggle object if stack size = 0 when last item consumed
-
-    //GUI
-    //-Add icons to inventory
-    //-Display icons on step sequencer
 
     public DefenceInventorySlot GetCurrentInventorySlot()
     {
@@ -80,6 +66,11 @@ public class InventoryDefence : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void RemoveInventorySlot(GameObject inventorySlot)
+    {
+        currentInventorySlots.Remove(inventorySlot);
     }
 
     private void Update()

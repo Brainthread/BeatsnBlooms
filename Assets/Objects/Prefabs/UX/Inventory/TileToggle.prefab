@@ -416,8 +416,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DefenceInventoryToggle, Assembly-CSharp
+      - m_Target: {fileID: -3001335995776679887}
+        m_TargetAssemblyTypeName: DefenceInventorySlot, Assembly-CSharp
         m_MethodName: ToggleOn
         m_Mode: 0
         m_Arguments:

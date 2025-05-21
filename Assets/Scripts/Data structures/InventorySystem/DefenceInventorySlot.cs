@@ -10,6 +10,10 @@ public class DefenceInventorySlot : MonoBehaviour
      * -Removes itself when slot empty
      */
 
+    //ToDo GUI
+    //-Add icons to inventory
+    //-Display icons on step sequencer
+
     [SerializeField] private TileAction.TileActionTypes tileType;
     private int stackSize = 0;
     private TMP_Text stackSizeUI;
@@ -27,12 +31,12 @@ public class DefenceInventorySlot : MonoBehaviour
         onToggleOn.Invoke(this);
     }
 
-    public void SetupToggle(TileAction.TileActionTypes type, int stackAmt, InventoryDefence defenceInstance, ToggleGroup toggleGroup)
+    public void SetupToggle(TileAction.TileActionTypes type, int stackAmt, ToggleGroup toggleGroup)
     {
         Toggle toggle = GetComponent<Toggle>();
         toggle.group = toggleGroup;
         toggleGroup.RegisterToggle(toggle);
-        onToggleOn.AddListener(defenceInstance.SetCurrentInventorySlot);
+        onToggleOn.AddListener(InventoryManager.instance.inventoryDefence.SetCurrentInventorySlot);
         stackSizeUI = GetComponentInChildren<TMP_Text>();
 
         tileType = type;
@@ -66,7 +70,6 @@ public class DefenceInventorySlot : MonoBehaviour
 
     public void UnreserveAction()
     {
-        Debug.Log("Unreserve");
         reserveBuffer--;
         stackSize++;
         stackSizeUI.text = stackSize.ToString();
@@ -82,7 +85,10 @@ public class DefenceInventorySlot : MonoBehaviour
         if (reserveBuffer < 1 && stackSize < 1)
         {
             //Flag for removal, this item is gone...
-            Debug.Log("All item consumed for type: " + tileType);
+            //Debug.Log("All item consumed for type: " + tileType);
+            groupRef.UnregisterToggle(toggleRef);
+            InventoryManager.instance.inventoryDefence.RemoveInventorySlot(gameObject);
+            Destroy(gameObject);
         }
     }
 

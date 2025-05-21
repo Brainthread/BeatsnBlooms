@@ -83,6 +83,7 @@ public class Sequencer : MonoBehaviour
                         TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetAndConsumePlantAction();
                         EventHandler.current.ActivatePlant(i, actionType);
                         break;
+                    //!!! We should ditch this switch statement and merge grow logic with inventory since we will have seeds as pickups!!!
                     case TileAction.TileState.grow:
                         EventHandler.current.GrowPlant(i);
                         break;
@@ -138,26 +139,20 @@ public class Sequencer : MonoBehaviour
 
     private void ManageInventoryTileSelected(SequencerTile tile)
     {
-        //Inventory Management
-        //If tile stacksize < 1 don't let user add action
-        //...
         DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot();
         if (slot.GetAvailableStack() > 0)
         {
             tile.SetPlantAction(slot.GetTileType());
-           //decrement availability on inventory slot
+           //Decrement availability on inventory slot
             InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().ReserveAction();
         }
 
     }
     private void ManageInventoryTileUnselected(SequencerTile tile)
     {
-        //Inventory Management
         //If the tile is unclicked before the item can be consumed add back to stack size on tile
-        Debug.Log("unclick tile");
         DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetInventorySlotByType(tile.GetPlantAction());
-        if (slot != null) slot.UnreserveAction(); //Again for now we have to protect against null case
-        //also if they did switch rather than turning off tile it should just swap items
+        if (slot != null) slot.UnreserveAction(); //Only a problem if "Attack" inventory slot is missing     
     }
     private void OnTileUnclicked(int id)
     {

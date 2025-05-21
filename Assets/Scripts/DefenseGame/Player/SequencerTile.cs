@@ -47,27 +47,25 @@ public class SequencerTile : MonoBehaviour
         borderRenderer.material = material;
     }
 
-    //Inventory Logic Functions
+    
     public void SetInnerMaterial(Material material)
     {
         innerRenderer.material = material;
     }
+
+    //Inventory Logic Functions
     public void SetPlantAction(TileAction.TileActionTypes actionType)
     {
         currentAction = actionType;
-        Debug.Log("Set Tile Action: " + actionType);
+        //Debug.Log("Set Tile Action: " + actionType);
     }
     public TileAction.TileActionTypes GetAndConsumePlantAction()
     {
-        //Here we can consume the action from inventory
-        //& set tile back to base attack
-
-        //Here we also need to get the slot by type rather than the current slot bc
-        //there is no guarantee that what's being consumed matches the current slot
-        //since user could have switched...
-        Debug.Log(InventoryManager.instance.inventoryDefence.GetInventorySlotByType(currentAction));
+        //Consume the action from inventory & set tile back to default attack
+        //Get the slot by type since there is no guarantee that what's being
+        //consumed matches the current selected inventory slot
         DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetInventorySlotByType(currentAction);
-        if (slot) slot.Consume(); //Should ideally not be null but for now protect for null case
+        if (slot != null) slot.Consume(); //"Attack" is a hard coded default action. If we don't have a slot for it we get null here
         TileAction.TileActionTypes typeBuffer = currentAction;
         currentAction = TileAction.TileActionTypes.ATTACK;
         return typeBuffer;
