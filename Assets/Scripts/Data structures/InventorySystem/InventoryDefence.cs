@@ -23,6 +23,16 @@ public class InventoryDefence : MonoBehaviour
         if (toggleGroup == null) toggleGroup = GetComponentInChildren<ToggleGroup>();
         ResetInventorySlots();
 
+        //Create a separate slot that is only used for basic attacks
+        {
+            GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
+            DefenceInventorySlot settings = gobj.GetComponent<DefenceInventorySlot>();
+            settings.IsInfinite = true;
+            settings.SetupToggle(TileAction.TileActionTypes.ATTACK, 999, toggleGroup);
+            currentInventorySlots.Add(gobj);
+        }
+
+
         //Find inventory items with stack size > 0 & instantiate DefenceToggle prefabs
         foreach (TypeWithStackSize typeWithStack in InventorySystem.instance.GetTileTypesWithStackSize())
         {

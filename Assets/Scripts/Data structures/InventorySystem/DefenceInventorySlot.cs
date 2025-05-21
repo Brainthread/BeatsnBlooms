@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
@@ -19,7 +19,8 @@ public class DefenceInventorySlot : MonoBehaviour
     private TMP_Text stackSizeUI;
     private UnityEvent<DefenceInventorySlot> onToggleOn = new UnityEvent<DefenceInventorySlot>();
     private int reserveBuffer = 0;
-
+    private bool isInfinite = false;
+    public bool IsInfinite { get { return isInfinite; } set { isInfinite = value; } }
 
     //Buffer for remove
     private Toggle toggleRef;
@@ -44,6 +45,11 @@ public class DefenceInventorySlot : MonoBehaviour
         stackSizeUI.text = stackAmt.ToString();
 
         SetInstances(toggle, toggleGroup);
+
+        if (isInfinite)
+        {
+            stackSizeUI.text = "∞";
+        }
     }
 
     public TileAction.TileActionTypes GetTileType()
@@ -58,9 +64,13 @@ public class DefenceInventorySlot : MonoBehaviour
 
     public void ReserveAction()
     {
-        stackSize--;
-        reserveBuffer++;
-        stackSizeUI.text = stackSize.ToString();
+        stackSizeUI.text = "∞";
+        if (!isInfinite)
+        {
+            stackSize--;
+            reserveBuffer++;
+            stackSizeUI.text = stackSize.ToString();
+        }
     }
 
     public int GetAvailableStack()
@@ -70,25 +80,32 @@ public class DefenceInventorySlot : MonoBehaviour
 
     public void UnreserveAction()
     {
-        reserveBuffer--;
-        stackSize++;
-        stackSizeUI.text = stackSize.ToString();
+        stackSizeUI.text = "∞";
+        if (!isInfinite)
+        {
+            reserveBuffer--;
+            stackSize++;
+            stackSizeUI.text = stackSize.ToString();
+        }
     }
 
     public void Consume()
     {
-        reserveBuffer--;
-        InventoryItem item = InventorySystem.instance.GetItemByTileType(tileType);
-        if (item == null) Debug.LogError("Something went wrong, nothing in inventory of type: " + tileType);
-        InventorySystem.instance.RemoveFromInventory(item);
-
-        if (reserveBuffer < 1 && stackSize < 1)
+        if (!isInfinite)
         {
-            //Flag for removal, this item is gone...
-            //Debug.Log("All item consumed for type: " + tileType);
-            groupRef.UnregisterToggle(toggleRef);
-            InventoryManager.instance.inventoryDefence.RemoveInventorySlot(gameObject);
-            Destroy(gameObject);
+            reserveBuffer--;
+            InventoryItem item = InventorySystem.instance.GetItemByTileType(tileType);
+            if (item == null) Debug.LogError("Something went wrong, nothing in inventory of type: " + tileType);
+            InventorySystem.instance.RemoveFromInventory(item);
+
+            if (reserveBuffer < 1 && stackSize < 1)
+            {
+                //Flag for removal, this item is gone...
+                //Debug.Log("All item consumed for type: " + tileType);
+                groupRef.UnregisterToggle(toggleRef);
+                InventoryManager.instance.inventoryDefence.RemoveInventorySlot(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 

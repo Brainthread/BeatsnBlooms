@@ -21,6 +21,7 @@ public class Sequencer : MonoBehaviour
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inactiveMaterial;
     [SerializeField] private PlantGrowthHandler plantGrowthManager;
+    private const bool REMOVE_SELECTION_ON_ITEM_USE = true;
 
     private void Start()
     {
@@ -82,10 +83,11 @@ public class Sequencer : MonoBehaviour
                     case TileAction.TileState.attack:
                         TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetAndConsumePlantAction();
                         EventHandler.current.ActivatePlant(i, actionType);
-                        break;
-                    //!!! We should ditch this switch statement and merge grow logic with inventory since we will have seeds as pickups!!!
-                    case TileAction.TileState.grow:
-                        EventHandler.current.GrowPlant(i);
+                        if(actionType != TileAction.TileActionTypes.ATTACK && REMOVE_SELECTION_ON_ITEM_USE)
+                        {
+                            print("RESET");
+                            OnTileUnclicked(i);
+                        }
                         break;
                 }
             }
@@ -158,12 +160,13 @@ public class Sequencer : MonoBehaviour
     {
         if (sequencerBoxActionStates[id] != 0)
         {
-            sequencerBoxActionStates[id] = 0;
             availableTiles += 1;
         }
+        sequencerBoxActionStates[id] = 0;
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
+        ManageInventoryTileUnselected(tile);
     }
 
 }

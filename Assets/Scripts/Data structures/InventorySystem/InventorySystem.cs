@@ -103,6 +103,9 @@ public class InventorySystem : MonoBehaviour
 
     public void SetupTestInventory()
     {
+        //TileItem item0 = gameObject.AddComponent<TestItem>();
+        //item0.SetupInfiniteItem(TileAction.TileActionTypes.ATTACK, 5);
+
         TileItem item1 = gameObject.AddComponent<TestItem>();
         item1.SetupItem(TileAction.TileActionTypes.BARRIER, 10);
 
@@ -112,6 +115,7 @@ public class InventorySystem : MonoBehaviour
         TileItem item3 = gameObject.AddComponent<TestItem>();
         item3.SetupItem(TileAction.TileActionTypes.ROOT, 5);
 
+        //AddToInventory(item0);
         AddToInventory(item1);
         AddToInventory(item2);
         AddToInventory(item3);
@@ -130,6 +134,8 @@ public struct TypeWithStackSize
 
 public abstract class InventoryItem : MonoBehaviour
 {
+    private bool isInfinite;
+    public bool IsInfinite { get { return isInfinite; } set { isInfinite = value; } }
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
@@ -162,6 +168,14 @@ public abstract class TileItem : InventoryItem
         return stackSize;
     }
 
+
+    public void SetupInfiniteItem(TileAction.TileActionTypes type, int stackAmt)
+    {
+        tileType = type;
+        stackSize = stackAmt;
+        IsInfinite = true;
+    }
+
     public void SetupItem(TileAction.TileActionTypes type, int stackAmt)
     {
         tileType = type;
@@ -172,7 +186,10 @@ public abstract class TileItem : InventoryItem
     {
         if (stackSize > 0)
         {
-            stackSize--;
+            if(!IsInfinite)
+            {
+                stackSize--;
+            }
             return true;
         }
         return false;
