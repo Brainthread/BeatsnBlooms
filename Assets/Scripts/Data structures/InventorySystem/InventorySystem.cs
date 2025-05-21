@@ -5,6 +5,13 @@ using System.Linq;
 
 public class InventorySystem : MonoBehaviour
 {
+    /*This is the core of the inventory system.
+     * -Persistent between scenes
+     * -Accessible via static ref
+     * -Manages inventory addition & removal
+     * -Contains abstract class definitions for different inventory item types
+     * -Helpers for getting information about inventory state
+     */
     public static InventorySystem instance;
     private List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<TileAction.TileActionTypes, List<TileItem>> tileInventory = new Dictionary<TileAction.TileActionTypes, List<TileItem>>();
@@ -21,10 +28,15 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+
+    }
+
     //------------------------------Inventory Management------------------------------//
     public void AddToInventory(InventoryItem item)
     {
-        if(item as TileItem != null)
+        if (item as TileItem != null)
         {
             AddTileToInventory(item as TileItem);
             return;
@@ -52,10 +64,7 @@ public class InventorySystem : MonoBehaviour
 
     private bool RemoveTileFromInventory(TileItem item)
     {
-        if(!tileInventory.ContainsKey(item.GetTileType()))
-        {
-            return false;
-        }
+        Debug.Log("Remove Tile");
         if (!tileInventory[item.GetTileType()].Last().Consume())
         {
             return tileInventory[item.GetTileType()].Remove(item);
@@ -63,27 +72,21 @@ public class InventorySystem : MonoBehaviour
         return true;
     }
 
-    internal bool HasStack(TestItem myItem)
-    {
-        return GetTotalTileStackSize(myItem.GetTileType()) > 0;
-    }
-
     //--------------------------------Inventory Helpers-------------------------------//
     public int GetTotalTileStackSize(TileAction.TileActionTypes actionType)
     {
         int total = 0;
-        foreach(TileItem item in tileInventory[actionType])
+        foreach (TileItem item in tileInventory[actionType])
         {
             total += item.GetStackSize();
         }
         return total;
     }
 
-    public List<TypeWithStackSize> GetTileTypesWithStackSize() { return GetTypesWithStackSize(); }
-    public List<TypeWithStackSize> GetTypesWithStackSize()
+    public List<TypeWithStackSize> GetTileTypesWithStackSize()
     {
-        List <TypeWithStackSize> typesWithStackSize = new List<TypeWithStackSize>();
-        foreach(var key in tileInventory.Keys)
+        List<TypeWithStackSize> typesWithStackSize = new List<TypeWithStackSize>();
+        foreach (var key in tileInventory.Keys)
         {
             TypeWithStackSize itemData;
             itemData.type = key;
@@ -98,14 +101,8 @@ public class InventorySystem : MonoBehaviour
         return tileInventory[actionType].Last();
     }
 
-
     public void SetupTestInventory()
     {
-        //Make the basic attack an inventoryItem as well to minimize confusion
-        TileItem item0 = gameObject.AddComponent<TestItem>();
-        item0.SetupItem(TileAction.TileActionTypes.ATTACK, 1);
-        item0.InfiniteUses = true;
-
         TileItem item1 = gameObject.AddComponent<TestItem>();
         item1.SetupItem(TileAction.TileActionTypes.BARRIER, 10);
 
@@ -115,16 +112,15 @@ public class InventorySystem : MonoBehaviour
         TileItem item3 = gameObject.AddComponent<TestItem>();
         item3.SetupItem(TileAction.TileActionTypes.ROOT, 5);
 
-        AddToInventory(item0);
         AddToInventory(item1);
         AddToInventory(item2);
         AddToInventory(item3);
     }
-
-
 }
 
 
+//Only for use for tile items. Later refactor for better separation between
+//tile inventory and regular inventory...
 public struct TypeWithStackSize
 {
     public TileAction.TileActionTypes type;
@@ -155,10 +151,8 @@ public abstract class TileItem : InventoryItem
 {
     [SerializeField] private TileAction.TileActionTypes tileType;
     [SerializeField] private int stackSize = 1;
-    [SerializeField] private bool infiniteUses = false;
-    public bool InfiniteUses { get { return infiniteUses; } set { infiniteUses = value; } }
 
-    public TileAction.TileActionTypes GetTileType() 
+    public TileAction.TileActionTypes GetTileType()
     {
         return tileType;
     }
@@ -166,10 +160,6 @@ public abstract class TileItem : InventoryItem
     public int GetStackSize()
     {
         return stackSize;
-    }
-    public void SetStackSize(int value)
-    {
-        stackSize = value;
     }
 
     public void SetupItem(TileAction.TileActionTypes type, int stackAmt)
@@ -180,8 +170,7 @@ public abstract class TileItem : InventoryItem
 
     public bool Consume()
     {
-        if(infiniteUses) return true;
-        if(stackSize > 0)
+        if (stackSize > 0)
         {
             stackSize--;
             return true;

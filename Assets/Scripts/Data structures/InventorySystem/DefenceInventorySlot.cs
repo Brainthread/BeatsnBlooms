@@ -59,17 +59,17 @@ public class DefenceInventorySlot : MonoBehaviour
         stackSizeUI.text = stackSize.ToString();
     }
 
+    public int GetAvailableStack()
+    {
+        return stackSize;
+    }
+
     public void UnreserveAction()
     {
         Debug.Log("Unreserve");
         reserveBuffer--;
         stackSize++;
         stackSizeUI.text = stackSize.ToString();
-    }
-
-    public int GetAvailableStack()
-    {
-        return stackSize;
     }
 
     public void Consume()

@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 8613318684587063146}
   - component: {fileID: 5890735354079864334}
   - component: {fileID: 2865518671441124665}
-  - component: {fileID: 9055213787066662619}
+  - component: {fileID: -3001335995776679887}
   m_Layer: 0
   m_Name: TileToggle
   m_TagString: Untagged
@@ -416,7 +416,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9055213787066662619}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DefenceInventoryToggle, Assembly-CSharp
         m_MethodName: ToggleOn
         m_Mode: 0
@@ -467,7 +467,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5104238632589487680}
   m_CullTransparentMesh: 1
---- !u!114 &9055213787066662619
+--- !u!114 &-3001335995776679887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5104238632589487680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186e5608df7907a478a81f87c3dd385b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7abe6162a5e0dd6408789baf3acfc339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0

@@ -35,7 +35,7 @@ public class DefenceInventoryToggle : MonoBehaviour
         Toggle toggle = GetComponent<Toggle>();
         toggle.group = toggleGroup;
         toggleGroup.RegisterToggle(toggle);
-        onToggleOn.AddListener(defenceInstance.SetCurrentTileType);
+        //onToggleOn.AddListener(defenceInstance.SetCurrentTileType);
         stackSizeUI = GetComponentInChildren<TMP_Text>();
 
         tileType = type;

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 /* 
  * 
@@ -11,7 +10,7 @@ public class Sequencer : MonoBehaviour
 {
     private MusicManager musicManager;
     private int markerIndex = 0;
-    [SerializeField] private int availableBasicTiles = 4;
+    [SerializeField] private int availableTiles = 4;
     [SerializeField] private int rows = 1;
     [SerializeField] private int columns = 4;
 
@@ -34,9 +33,9 @@ public class Sequencer : MonoBehaviour
 
     private void OnStartSong()
     {
-        availableBasicTiles = 4;
+        availableTiles = 4;
         markerIndex = 0;
-        sequencerBoxActionStates = new int[rows*columns];
+        sequencerBoxActionStates = new int[rows * columns];
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -57,18 +56,18 @@ public class Sequencer : MonoBehaviour
 
     private void OnNewBeat()
     {
-        for(int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
             GameObject rep = representations[i * rows + markerIndex];
-            if(rep.activeSelf)
+            if (rep.activeSelf)
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
         }
         markerIndex += 1;
-        if(markerIndex > columns - 1)
+        if (markerIndex > columns - 1)
         {
             markerIndex = 0;
         }
-        
+
         for (int i = 0; i < rows; i++)
         {
             GameObject rep = representations[i * rows + markerIndex];
@@ -77,14 +76,11 @@ public class Sequencer : MonoBehaviour
                 //Debug.Log(i * rows + markerIndex);
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(activeMaterial);
                 TileAction myState = tileActions[sequencerBoxActionStates[i * rows + markerIndex]];
-                if(sequencerBoxActionStates[i * rows + markerIndex]!=0)
-                {
-                    ConsumeItemTile(i * rows + markerIndex);
-                }
+
                 switch (myState.tileState)
                 {
                     case TileAction.TileState.attack:
-                        TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetPlantAction();
+                        TileAction.TileActionTypes actionType = rep.GetComponent<SequencerTile>().GetAndConsumePlantAction();
                         EventHandler.current.ActivatePlant(i, actionType);
                         break;
                     case TileAction.TileState.grow:
@@ -93,111 +89,88 @@ public class Sequencer : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
-    private void ManageInventoryTileUnselected(SequencerTile tile)
-    {
-        //Inventory Management
-        //If the tile is unclicked before the item can be consumed add back to stack size on tile
-        Debug.Log("unclick tile");
-        InventoryManager.instance.inventoryDefence.GetInventorySlotByType(tile.GetPlantAction()).UnreserveAction();
-        //also if they did switch rather than turning off tile it should just swap items
-    }
 
-    private void ManageInventoryTileSelected(SequencerTile tile)
-    {
-        //Inventory Management
-        tile.SetPlantAction(InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().GetTileType());
-        //decrement availability on inventory slot
-        InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().ReserveAction();
-    }
 
-    public void TileDestroyed (int id)
+    public void TileDestroyed(int id)
     {
         int row = (int)Mathf.Floor((float)id / (float)columns);
-        if(plantGrowthManager)
+        if (plantGrowthManager)
         {
             plantGrowthManager.LosePosition(row);
         }
         TileAction tileAction = tileActions[sequencerBoxActionStates[id]];
         if (tileAction.tileState != TileAction.TileState.unselected && tileAction.tileState != TileAction.TileState.item)
         {
-            availableBasicTiles += 1;
+            availableTiles += 1;
         }
     }
 
     private void OnTileClicked(int id)
     {
-        TileAction.TileActionTypes newType = InventoryManager.instance.inventoryDefence.GetCurrentTileType();
-        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
-        TileAction.TileActionTypes currentType = tile.GetPlantAction();
-
-        //is the thing populated?
-        //  Is it the same?
-        //      Unclick it. 
-        //  Is it a new item?
-        //      Swap
-        if (sequencerBoxActionStates[id] != 0)
+        bool selected = true;
+        if (sequencerBoxActionStates[id] == 0)
         {
-            OnTileUnclicked(id);
-            if (newType == currentType)
+            if (availableTiles == 0)
                 return;
+            sequencerBoxActionStates[id] += 1;
+            availableTiles -= 1;
         }
-        if (!InventoryManager.instance.inventoryDefence.IsStackAvailable(newType))
-            return;
-        if (availableBasicTiles == 0)
-            return;
-
-        sequencerBoxActionStates[id] = 1;
-        availableBasicTiles -= 1;
-
-        //is the thing unpopulated? Check what action is performed. 
+        else
+        {
+            selected = false;
+            sequencerBoxActionStates[id] += 1;
+            if (sequencerBoxActionStates[id] == tileActions.Length)
+            {
+                sequencerBoxActionStates[id] = 0;
+                availableTiles += 1;
+            }
+        }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
-        tile.SetInnerMaterial(state.stateMaterial); //This should be rewritten.
-        //Inventory Management
-        tile.SetPlantAction(InventoryManager.instance.inventoryDefence.GetCurrentTileType());
-        //decrement availability on tile
-        //If tile stacksize < 1 don't let user add action
-        InventoryManager.instance.inventoryDefence.ConsumeItem(newType);
+        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
+        tile.SetInnerMaterial(state.stateMaterial);
+
+        if (selected) ManageInventoryTileSelected(tile);
+        else ManageInventoryTileUnselected(tile);
     }
 
-
-
-    private void OnTileUnclicked(int id)
+    private void ManageInventoryTileSelected(SequencerTile tile)
     {
-        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
-        TileAction.TileActionTypes currentType = tile.GetPlantAction();
-        if (currentType != TileAction.TileActionTypes.ATTACK)
+        //Inventory Management
+        //If tile stacksize < 1 don't let user add action
+        //...
+        DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot();
+        if (slot.GetAvailableStack() > 0)
         {
-            InventoryManager.instance.inventoryDefence.RefundItem(currentType);
+            tile.SetPlantAction(slot.GetTileType());
+           //decrement availability on inventory slot
+            InventoryManager.instance.inventoryDefence.GetCurrentInventorySlot().ReserveAction();
         }
-        UnsetTile(id);
+
+    }
+    private void ManageInventoryTileUnselected(SequencerTile tile)
+    {
         //Inventory Management
         //If the tile is unclicked before the item can be consumed add back to stack size on tile
+        Debug.Log("unclick tile");
+        DefenceInventorySlot slot = InventoryManager.instance.inventoryDefence.GetInventorySlotByType(tile.GetPlantAction());
+        if (slot != null) slot.UnreserveAction(); //Again for now we have to protect against null case
+        //also if they did switch rather than turning off tile it should just swap items
     }
-
-    private void ConsumeItemTile(int id)
-    {
-        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
-        TileAction.TileActionTypes currentType = tile.GetPlantAction();
-        if(currentType != TileAction.TileActionTypes.ATTACK)
-        {
-            UnsetTile(id);
-        }
-    }
-    
-    private void UnsetTile(int id)
+    private void OnTileUnclicked(int id)
     {
         if (sequencerBoxActionStates[id] != 0)
         {
             sequencerBoxActionStates[id] = 0;
-            availableBasicTiles += 1;
+            availableTiles += 1;
         }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
     }
+
 }
 
 
