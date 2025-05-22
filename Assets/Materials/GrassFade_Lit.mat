@@ -130,7 +130,7 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 1.54
     - _Parallax: 0.005
-    - _Progress: 0.5147066
+    - _Progress: 0.6170959
     - _ProgressOffset: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -139,7 +139,7 @@ Material:
     - _SawOffset: 0
     - _SineAmplitude: 0.02
     - _SineFrequency: 3
-    - _SineOffset: 3.2145717
+    - _SineOffset: 4.1340575
     m_Colors:
     - _ForegroundScrollSpeed: {r: -0.025, g: 0, b: 0, a: 0}
     - _MainTexTint: {r: 1, g: 1, b: 1, a: 1}

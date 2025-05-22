@@ -3,7 +3,7 @@ public class RootEntity : MonoBehaviour
 {
     [SerializeField] private int existTime = 4;
     private GameObject hostObject;
-    [SerializeField] private float yOffset = -15;
+    [SerializeField] private float yOffset = -50;
     [SerializeField] private float surfaceSpeed = 40;
     private Vector3 targetPosition = Vector3.zero;
 

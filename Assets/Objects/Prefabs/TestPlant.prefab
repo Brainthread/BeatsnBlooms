@@ -547,6 +547,10 @@ PrefabInstance:
       value: PlantActionHandler
       objectReference: {fileID: 0}
     - target: {fileID: 2237380682629935147, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
+      propertyPath: rootVFX
+      value: 
+      objectReference: {fileID: 3458971108462817113, guid: e5ca38ffb0d8ddf4cb52ce9bdc58e67b, type: 3}
+    - target: {fileID: 2237380682629935147, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
       propertyPath: rootObject
       value: 
       objectReference: {fileID: 2795680499112447210, guid: 0b7dd6c0143a08e4e88e03a9c28043d9, type: 3}
