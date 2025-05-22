@@ -546,6 +546,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantActionHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 2237380682629935147, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
+      propertyPath: rootObject
+      value: 
+      objectReference: {fileID: 2795680499112447210, guid: 0b7dd6c0143a08e4e88e03a9c28043d9, type: 3}
+    - target: {fileID: 2237380682629935147, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 2551554800444741698, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
       propertyPath: lineRenderer
       value: 

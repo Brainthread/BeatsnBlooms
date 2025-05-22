@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa1968b5b685ba4897d35bffb26b989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableBasicTiles: 4
+  availableTiles: 4
   rows: 4
   columns: 4
   tileActions:
@@ -2147,7 +2147,7 @@ Transform:
   m_GameObject: {fileID: 856990571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100.3, y: -20.693565, z: 45.14347}
+  m_LocalPosition: {x: -53, y: -20.693565, z: 45.14347}
   m_LocalScale: {x: 15, y: 10, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3313,6 +3313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376533677}
   - component: {fileID: 1376533678}
+  - component: {fileID: 1376533679}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3359,6 +3360,19 @@ MonoBehaviour:
   enemyManager: {fileID: 459717018}
   growthManager: {fileID: 408011021}
   stage: {fileID: 11400000, guid: 2cb87d708544c8a4e95c0eb140b82858, type: 2}
+--- !u!114 &1376533679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376533676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fccd7b7abdbb9342b9b5889c87d3014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explorationScene: 0
 --- !u!1 &1462850983
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,7 +3513,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 0
   stackSize: 1
-  infiniteUses: 0
 --- !u!4 &1537479257
 Transform:
   m_ObjectHideFlags: 0
@@ -3718,6 +3731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870a502e14afbd34e8b8c2b2e8ac4c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseTestInventory: 1
 --- !u!114 &1612792635
 MonoBehaviour:
   m_ObjectHideFlags: 0

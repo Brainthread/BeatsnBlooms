@@ -38,12 +38,15 @@ public class EnemyMovement : MonoBehaviour
 
     void OnNewBeat()
     {
-        Vector3 pos = transform.position;
-        latestGridPosition = nextGridPosition;
-        Vector2 movementDirection = new Vector2(transform.forward.x, 0).normalized;
-        nextGridPosition = latestGridPosition + movementDirection * movementQueue[movementQueueIndex];
-        movementQueueIndex += 1;
-        if (movementQueueIndex >= movementQueue.Length)
-            movementQueueIndex = 0;
+        if (this.enabled)
+        {
+            Vector3 pos = transform.position;
+            latestGridPosition = nextGridPosition;
+            Vector2 movementDirection = new Vector2(transform.forward.x, 0).normalized;
+            nextGridPosition = latestGridPosition + movementDirection * movementQueue[movementQueueIndex];
+            movementQueueIndex += 1;
+            if (movementQueueIndex >= movementQueue.Length)
+                movementQueueIndex = 0;
+        }
     }
 }

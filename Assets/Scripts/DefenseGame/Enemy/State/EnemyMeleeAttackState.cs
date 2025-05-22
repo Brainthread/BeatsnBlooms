@@ -66,14 +66,17 @@ public class EnemyMeleeAttackState : StateMachineState
 
     public void Attack()
     {
-        transform.position = originalPosition;
-        DetectTarget();
-        if(target == null)
-            return; 
-        targetPosition = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
-        if (target.GetComponent<HealthManager>())
-            target.GetComponent<HealthManager>().ApplyDamage(meleeDamage);
-        targetApproachSpeed = 100f;
+        if (enabled)
+        {
+            transform.position = originalPosition;
+            DetectTarget();
+            if (target == null)
+                return;
+            targetPosition = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
+            if (target.GetComponent<HealthManager>())
+                target.GetComponent<HealthManager>().ApplyDamage(meleeDamage);
+            targetApproachSpeed = 100f;
+        }
     }
 
     public override void EnterState()

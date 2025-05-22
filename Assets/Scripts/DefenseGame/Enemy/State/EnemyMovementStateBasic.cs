@@ -29,10 +29,13 @@ public class EnemyMovementStateBasic : StateMachineState
     // Update is called once per frame
     public override void StateUpdate()
     {
-        float t = EnemyManager.current.GetInterpolationValue();
-        float ev = movementCurve.Evaluate(t);
-        Vector2 intermediaryGridPosition = Vector2.Lerp(latestGridPosition, nextGridPosition, ev);
-        transform.position = GridManager.current.GridPositionToWorldPosition(intermediaryGridPosition);
+        if (enabled)
+        {
+            float t = EnemyManager.current.GetInterpolationValue();
+            float ev = movementCurve.Evaluate(t);
+            Vector2 intermediaryGridPosition = Vector2.Lerp(latestGridPosition, nextGridPosition, ev);
+            transform.position = GridManager.current.GridPositionToWorldPosition(intermediaryGridPosition);
+        }
     }
 
     private void OnDestroy()
@@ -42,6 +45,17 @@ public class EnemyMovementStateBasic : StateMachineState
 
     public override void OnNewBeat()
     {
+        if (enabled)
+        {
+            SetPositioning();
+            if (Physics.Raycast(transform.position, transform.forward, meleeRange, enemyAttackMask))
+            {
+                stateMachine.SwitchState(meleeAttackState);
+            }
+        }
+    }
+    public void SetPositioning()
+    {
         Vector3 pos = transform.position;
         latestGridPosition = nextGridPosition;
         Vector2 movementDirection = new Vector2(transform.forward.x, 0).normalized;
@@ -49,10 +63,6 @@ public class EnemyMovementStateBasic : StateMachineState
         movementQueueIndex += 1;
         if (movementQueueIndex >= movementQueue.Length)
             movementQueueIndex = 0;
-        if(Physics.Raycast(transform.position, transform.forward, meleeRange, enemyAttackMask))
-        {
-            stateMachine.SwitchState(meleeAttackState);
-        }
     }
 
     public override void EnterState()
