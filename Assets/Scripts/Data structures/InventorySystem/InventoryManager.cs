@@ -21,14 +21,18 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            inventoryDefence = GetComponentInChildren<InventoryDefence>();
+            inventoryExplore = GetComponentInChildren<InventoryExplore>();
+
+            InventorySystem.instance.SetupTestInventory(); //Add test tiles to tile inventory
+            if (UseTestInventory) inventoryDefence.SetupDefenceInventory(); //Setup the the GUI for the defence game inventory
+        }
         else Destroy(this);
 
-        inventoryDefence = GetComponentInChildren<InventoryDefence>();
-        inventoryExplore = GetComponentInChildren<InventoryExplore>();
 
-        InventorySystem.instance.SetupTestInventory(); //Add test tiles to tile inventory
-        if (UseTestInventory) inventoryDefence.SetupDefenceInventory(); //Setup the the GUI for the defence game inventory
     }
 
     void SetInventoryState(INVENTORY_STATE state)

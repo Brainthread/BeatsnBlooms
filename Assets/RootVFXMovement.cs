@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RootVFXMovement : MonoBehaviour
 {
-    float lifeTime = 3;
+    float lifeTime = 12;
     [SerializeField] private float movementSpeed = 200;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +14,7 @@ public class RootVFXMovement : MonoBehaviour
     void Update()
     {
         lifeTime -= Time.deltaTime;
-        if(lifeTime < 0 )
+        if(lifeTime < 0)
         {
             Destroy(this.gameObject);
         }
