@@ -558,6 +558,10 @@ PrefabInstance:
       propertyPath: layerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 2293903788057548477, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
+      propertyPath: fgmSeed
+      value: 
+      objectReference: {fileID: 6140336324342556186, guid: 44a2275cec8bbb540a9efd94c0ff0014, type: 3}
     - target: {fileID: 2551554800444741698, guid: 2b768d0c014d7584c99bb2763558120e, type: 3}
       propertyPath: lineRenderer
       value: 

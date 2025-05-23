@@ -10341,7 +10341,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "ff9853a62cbe4cd7ad99d2ebe84b60e6",
     "m_Id": 0,
-    "m_DisplayName": "Tiling",
+    "m_DisplayName": "CosmicTextureTiling",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

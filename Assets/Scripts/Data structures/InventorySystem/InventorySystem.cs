@@ -107,18 +107,20 @@ public class InventorySystem : MonoBehaviour
         //item0.SetupInfiniteItem(TileAction.TileActionTypes.ATTACK, 5);
 
         TileItem item1 = gameObject.AddComponent<TestItem>();
-        item1.SetupItem(TileAction.TileActionTypes.BARRIER, 10);
+        item1.SetupItem(TileAction.TileActionTypes.EXPLOSIVE, 10);
 
         TileItem item2 = gameObject.AddComponent<TestItem>();
-        item2.SetupItem(TileAction.TileActionTypes.BEAM, 20);
+        item2.SetupItem(TileAction.TileActionTypes.ROOT, 20);
 
+        /*
         TileItem item3 = gameObject.AddComponent<TestItem>();
         item3.SetupItem(TileAction.TileActionTypes.ROOT, 5);
+        */
 
         //AddToInventory(item0);
         AddToInventory(item1);
         AddToInventory(item2);
-        AddToInventory(item3);
+        //AddToInventory(item3);
     }
 }
 

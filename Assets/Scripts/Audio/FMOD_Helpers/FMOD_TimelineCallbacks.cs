@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 class FMOD_TimelineCallbacks : MonoBehaviour
 {
+    public static FMOD_TimelineCallbacks instance;
     [SerializeField]
     private FMOD_Instantiator masterMusicEvent;
     private FMOD.Studio.EventInstance eventInstance;
@@ -13,6 +14,8 @@ class FMOD_TimelineCallbacks : MonoBehaviour
     [SerializeField] private UnityEvent<int> onBeatEvent;
     [SerializeField] private UnityEvent<string> onMarkerEvent;
     [SerializeField] private UnityEvent<float> onFrameBeatTime;
+    public UnityEvent<float> OnFrameBeatTime { get { return onFrameBeatTime; } set { onFrameBeatTime = value; } }
+
 
     //Note division enum, whole, half, quarter?
 
@@ -39,6 +42,11 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         public int currentBeat = 0;
         public int beatBuffer = 0;
         public FMOD.StringWrapper lastMarker = new FMOD.StringWrapper();
+    }
+
+    private void Start()
+    {
+        instance = this;
     }
 
     //Data Buffer Instances

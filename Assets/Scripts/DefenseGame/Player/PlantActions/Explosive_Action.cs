@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Explosive_Action : PlantAction
 {
+    [SerializeField] private GameObject fgmSeed;
     public override void Activate(Plant plant)
     {
-        Debug.Log("Explosive Action Execute Goes Here");
+        Instantiate(fgmSeed, transform.position, transform.rotation);
     }
 
     public override Texture2D GetIcon()
