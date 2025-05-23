@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassFade_Lit
-  m_Shader: {fileID: -6465566751694194690, guid: e9e0ad75d95c49449830eb29dde20833, type: 3}
+  m_Name: New Material
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -17,17 +17,14 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Background:
-        m_Texture: {fileID: 2800000, guid: bd257e0a2e53a5a4c8ce8c0632b76120, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,14 +49,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Foreground:
-        m_Texture: {fileID: 2800000, guid: d8ce4830b6a7d974aa5f9f07c91b1cfd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Main:
-        m_Texture: {fileID: 2800000, guid: 9386788f00dbb424cbd0a3f705e6ec3b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -68,20 +57,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Middleground:
-        m_Texture: {fileID: 2800000, guid: 639e5e5bfdb31704d9ea48177313d83f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Secondary:
-        m_Texture: {fileID: 2800000, guid: bd257e0a2e53a5a4c8ce8c0632b76120, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -102,11 +83,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - <noninit>: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Amplitude: 0.03
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -119,37 +98,30 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _ForegroundScrollSpeed: 0.1
-    - _Frequency: 1.02
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrowAmplitude: 0.1
-    - _GrowSpeed: 0.5
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Offset: 1.54
     - _Parallax: 0.005
-    - _Progress: 0.333
-    - _ProgressOffset: 0.05
-    - _QueueControl: 0
     - _QueueOffset: 0
-    - _SawAmplitude: 0.009
-    - _SawFrequency: 2
-    - _SawOffset: 0
-    - _SineAmplitude: 0.02
-    - _SineFrequency: 3
-    - _SineOffset: 0.6437949
+    - _ReceiveShadows: 1
+    - _Smoothness: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 1
     m_Colors:
-    - _ForegroundScrollSpeed: {r: -0.025, g: 0, b: 0, a: 0}
-    - _MainTexTint: {r: 1, g: 1, b: 1, a: 1}
-    - _MiddlegroundScrollSpeed: {r: -0.0175, g: 0, b: 0, a: 0}
-    - _Scrollspeed: {r: -0.0125, g: 0, b: 0, a: 0}
-    - _SecondTexTint: {r: 1, g: 1, b: 1, a: 0}
-    - _Tiling: {r: 7, g: 7, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6842999354676582371
+--- !u!114 &557930173212755853
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
