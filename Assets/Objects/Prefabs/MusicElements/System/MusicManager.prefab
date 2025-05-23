@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6e9ceb47d953a4ea30c5bf97c5d992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMusicEvent: {fileID: 0}
+  masterMusicEvent: {fileID: 2115430906246952994}
   onBeatEvent:
     m_PersistentCalls:
       m_Calls:
@@ -183,6 +183,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onFrameBeatTime:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2115430906246952994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +361,8 @@ MonoBehaviour:
   availableTiles: 4
   rows: 4
   columns: 4
-  sequencerBoxStates: 
+  tileActions: []
+  sequencerBoxActionStates: 
   representations:
   - {fileID: 1870752288234422089}
   - {fileID: 8315360989107751630}
@@ -378,9 +382,7 @@ MonoBehaviour:
   - {fileID: 5522771195141642937}
   activeMaterial: {fileID: 2100000, guid: 7b569d160146980418cbe143fca295a8, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 41530ca87ae5e584dadcb30c513e0bce, type: 2}
-  stateMaterials:
-  - {fileID: 2100000, guid: ee06d776f999e5c49a63d42d8af6158a, type: 2}
-  - {fileID: 2100000, guid: 8b4de2b1544379544821f9814891c2e6, type: 2}
+  plantGrowthManager: {fileID: 0}
 --- !u!114 &3031587280666831880
 MonoBehaviour:
   m_ObjectHideFlags: 0

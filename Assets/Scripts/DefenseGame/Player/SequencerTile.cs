@@ -15,6 +15,9 @@ public class SequencerTile : MonoBehaviour
 
     [SerializeField] private TileAction.TileActionTypes currentAction = TileAction.TileActionTypes.ATTACK;
 
+    //Audio
+    [SerializeField] private string MusicParamName;
+
     public void Start()
     {
         isDestroyed = false;
@@ -32,15 +35,27 @@ public class SequencerTile : MonoBehaviour
     {
         this.id = id;
     }
+    public void SetMusicParamName(string name)
+    {
+        MusicParamName = name;
+    }
+
+    public string GetMusicParam()
+    {
+        return MusicParamName;
+    }
     public void ClickedTile()
     {
         EventHandler.current.ClickSequencerTile(id);
         onTileActivate.Invoke();
+        //FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(MusicParamName, 1);
     }
     public void UnClickedTile()
     {
         EventHandler.current.UnClickSequencerTile(id);
         onTileDeactivate.Invoke();
+        Debug.Log("unclik");
+        //FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(MusicParamName, 0);
     }
     public void SetBorderMaterial(Material material)
     {
