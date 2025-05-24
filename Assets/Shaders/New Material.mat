@@ -115,7 +115,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DistortionAmount: 0.3
+    - _DistortionAmount: 0.4
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -141,6 +141,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 1, g: 0.6384821, b: 0.6273585, a: 1}
+    - _Tint: {r: 0.6132076, g: 0.44022542, b: 0.43676576, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -5189,4 +5189,4 @@ MonoBehaviour:
   penetrating: 1
   shockWave: {fileID: 2688342491266473440}
   shockWaveGrowthSpeed: 40
-  shockWaveFadeSpeed: 1
+  shockWaveFadeSpeed: 1.1
