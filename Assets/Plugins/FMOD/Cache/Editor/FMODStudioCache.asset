@@ -114,38 +114,11 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638836391625076352
+  lastModified: 638836810064633153
   FileSizes:
   - Name: 
-    Value: 2826
+    Value: 3064
   Exists: 1
---- !u!114 &-5966304478069585584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SequencerActions/SequencerTakeDamage
-  m_EditorClassIdentifier: 
-  Path: event:/SequencerActions/SequencerTakeDamage
-  Guid:
-    Data1: 1766951432
-    Data2: 1231636632
-    Data3: 873474443
-    Data4: 2145091187
-  Banks:
-  - {fileID: -3517175738781887895}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-5648021737519243257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +134,7 @@ MonoBehaviour:
   Name: ToggleState
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 2
   Default: 0
   ID:
     data1: 714765660
@@ -246,7 +219,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-3713583162734988190
+--- !u!114 &-4095358466678406146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,14 +229,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SequencerActions/SequencerAttackBase
+  m_Name: event:/Character/Defence/Enemy/EnemyDestroyed
   m_EditorClassIdentifier: 
-  Path: event:/SequencerActions/SequencerAttackBase
+  Path: event:/Character/Defence/Enemy/EnemyDestroyed
   Guid:
-    Data1: 419615523
-    Data2: 1275290950
-    Data3: 520706992
-    Data4: 2082340836
+    Data1: -352783473
+    Data2: 1279839898
+    Data3: 1362176436
+    Data4: -2040808916
   Banks:
   - {fileID: -3517175738781887895}
   IsStream: 0
@@ -288,7 +261,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638836391625036449
+  lastModified: 638836810064607553
   FileSizes: []
   Exists: 1
 --- !u!114 &-2437704345831873291
@@ -309,6 +282,33 @@ MonoBehaviour:
     Data2: 1091667248
     Data3: 1072191162
     Data4: -1917656577
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2228084233551726397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/ExplosiveAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/ExplosiveAttack
+  Guid:
+    Data1: -451479872
+    Data2: 1239511456
+    Data3: 361027771
+    Data4: -76418208
   Banks:
   - {fileID: -3517175738781887895}
   IsStream: 0
@@ -420,6 +420,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1373951326539000964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/ProjectileAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/ProjectileAttack
+  Guid:
+    Data1: 263585233
+    Data2: 1112894669
+    Data3: 116404413
+    Data4: 810617400
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1239393003111151326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,9 +520,14 @@ MonoBehaviour:
   - {fileID: -2437704345831873291}
   - {fileID: -4637901016050805232}
   - {fileID: -1917660359701478536}
-  - {fileID: -5966304478069585584}
-  - {fileID: -3713583162734988190}
   - {fileID: 6057722214366582474}
+  - {fileID: -4095358466678406146}
+  - {fileID: 8033966667031285218}
+  - {fileID: 3564401254982476611}
+  - {fileID: 3595530473791893515}
+  - {fileID: 6807019749872187617}
+  - {fileID: -2228084233551726397}
+  - {fileID: -1373951326539000964}
   EditorParameters:
   - {fileID: 8780321774383956294}
   - {fileID: -2054454159221065282}
@@ -504,7 +536,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638836391625076352
+  cacheTime: 638836810064633153
   SerializableEventsDict:
   - key: event:/Character/Explore/Player/Foots
     index: 0
@@ -524,12 +556,22 @@ MonoBehaviour:
     index: 7
   - key: event:/UI/Defence/SelectSpecialStep
     index: 8
-  - key: event:/SequencerActions/SequencerTakeDamage
-    index: 9
-  - key: event:/SequencerActions/SequencerAttackBase
-    index: 10
   - key: event:/Music/Defence/DefenceMusic_01
+    index: 9
+  - key: event:/Character/Defence/Enemy/EnemyDestroyed
+    index: 10
+  - key: event:/Character/Defence/PlayerSequencer/SequencerTakeDamage
     index: 11
+  - key: event:/Character/Defence/PlayerSequencer/SequencerAttackBase
+    index: 12
+  - key: event:/Character/Defence/PlayerSequencer/RootAttack
+    index: 13
+  - key: event:/Character/Defence/PlayerSequencer/BeamAttack
+    index: 14
+  - key: event:/Character/Defence/PlayerSequencer/ExplosiveAttack
+    index: 15
+  - key: event:/Character/Defence/PlayerSequencer/ProjectileAttack
+    index: 16
 --- !u!114 &1255929085206170910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +672,60 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &3564401254982476611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/SequencerAttackBase
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/SequencerAttackBase
+  Guid:
+    Data1: 419615523
+    Data2: 1275290950
+    Data3: 520706992
+    Data4: 2082340836
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3595530473791893515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/RootAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/RootAttack
+  Guid:
+    Data1: 52679784
+    Data2: 1340170809
+    Data3: -1749305934
+    Data4: 2025413787
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4243745082917107935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +900,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6807019749872187617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/BeamAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/BeamAttack
+  Guid:
+    Data1: 1878225309
+    Data2: 1086313836
+    Data3: 183989382
+    Data4: 1330679401
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7131248230025848093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,6 +975,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &8033966667031285218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/SequencerTakeDamage
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/SequencerTakeDamage
+  Guid:
+    Data1: 1766951432
+    Data2: 1231636632
+    Data3: 873474443
+    Data4: 2145091187
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8038825186692559280
 MonoBehaviour:
   m_ObjectHideFlags: 0

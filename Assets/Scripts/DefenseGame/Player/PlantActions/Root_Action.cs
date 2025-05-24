@@ -26,6 +26,8 @@ public class Root_Action : PlantAction
                 root.GetComponent<RootEntity>().SetHost(hits[i].collider.gameObject); 
             }
         }
+
+        onPlantAction.Invoke();
     }
 
     public override Texture2D GetIcon()

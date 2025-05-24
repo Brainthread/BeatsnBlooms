@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectileEmitter : PlantAction
 {
@@ -15,7 +16,8 @@ public class ProjectileEmitter : PlantAction
     public override void Activate(Plant plant)
     {
         Instantiate(projectile, plant.transform.position, plant.transform.rotation);
-        Debug.Log("Projectile Attack");
+        onPlantAction.Invoke();
+        //Debug.Log("Projectile Attack");
     }
 
     public override Texture2D GetIcon()

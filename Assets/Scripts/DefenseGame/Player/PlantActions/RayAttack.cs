@@ -26,7 +26,8 @@ public class RayAttack : PlantAction
         }
         currentWidth = 1f;
         SetLineRendererWidth(currentWidth);
-        Debug.Log("Ray Attack");
+        onPlantAction.Invoke();
+        //Debug.Log("Ray Attack");
     }
 
     void Update()

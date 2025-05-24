@@ -1,14 +1,14 @@
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 6;
     private float health;
-    [SerializeField] private AudioClip damageClip;
+    [SerializeField] private UnityEvent OnTakeDamage;
     private bool canTakeDamage = true;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         health = maxHealth;
@@ -17,7 +17,7 @@ public class HealthManager : MonoBehaviour
     public void ApplyDamage(float damage, bool overrideInvul)
     {
         if(canTakeDamage||overrideInvul) {
-            GetComponent<AudioSource>().PlayOneShot(damageClip, 1.5f);
+            OnTakeDamage.Invoke();
             health -= damage;
             if (health <= 0)
             {

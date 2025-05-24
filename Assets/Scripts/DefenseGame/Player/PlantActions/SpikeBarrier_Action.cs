@@ -4,6 +4,7 @@ public class SpikeBarrier_Action : PlantAction
 {
     public override void Activate(Plant plant)
     {
+        onPlantAction.Invoke();
         Debug.Log("Spike Barrier Action Execute Goes Here");
     }
 
