@@ -74,7 +74,7 @@ public class ExplosiveProjectile : MonoBehaviour
     {
         FMOD_TimelineCallbacks.instance.OnFrameBeatTime.RemoveListener(OnFrameBeatTime);
         EventHandler.current.onBeat -= OnBeat;
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     public void OnBeat()
