@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Old/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/StartingLevelScene.unity
+    path: Assets/Scenes/Old/StartingLevelScene.unity
     guid: 711b3fb28473bbf4ab7cc644ea779628
   - enabled: 0
-    path: Assets/Scenes/DemoCombatScene.unity
+    path: Assets/Scenes/Old/DemoCombatScene.unity
     guid: 2ea76538f7ed9d94c983ca28fc94e50e
   - enabled: 1
-    path: Assets/Scenes/DemoCombatFMODImplementation.unity
+    path: Assets/Scenes/Old/DemoCombatFMODImplementation.unity
     guid: 56daa222ca432054bab7b89be9a64118
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 220c67fe46d7c0d4791ac67ad4245f1c, type: 2}
