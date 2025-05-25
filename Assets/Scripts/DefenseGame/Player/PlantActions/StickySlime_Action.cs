@@ -4,6 +4,7 @@ public class NewMonoBehaviourScript : PlantAction
 {
     public override void Activate(Plant plant)
     {
+        onPlantAction.Invoke();
         Debug.Log("Sticky Slime Action Execute Goes Here");
     }
 

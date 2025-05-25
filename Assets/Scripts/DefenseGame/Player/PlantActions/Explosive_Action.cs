@@ -6,6 +6,7 @@ public class Explosive_Action : PlantAction
     public override void Activate(Plant plant)
     {
         Instantiate(fgmSeed, transform.position, transform.rotation);
+        onPlantAction.Invoke();
     }
 
     public override Texture2D GetIcon()

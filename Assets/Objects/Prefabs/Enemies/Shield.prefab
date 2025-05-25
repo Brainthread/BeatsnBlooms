@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1620293489216676046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2933584226855901466}
+  - component: {fileID: 3847217570358410381}
+  m_Layer: 6
+  m_Name: EnemyDamaged
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2933584226855901466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620293489216676046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2350063894563255912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3847217570358410381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620293489216676046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90b94921eb6f24e9f92c9b458a24c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  evRef:
+    Guid:
+      Data1: -2090651997
+      Data2: 1075590335
+      Data3: -1744002155
+      Data4: -508642051
+    Path: event:/Character/Defence/Enemy/EnemyTakeDamage
+  is3D: 0
+  pos3D_Override: {fileID: 0}
+  playOnStart: 0
+  fadeOutOnDestroy: 1
+  playDelay: 0
+  paramNames: 
+  printLengthOnStart: 0
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventInstantiated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3803572050703599025
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +103,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2350063894563255912}
   - {fileID: 6986353878692569769}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
@@ -129,7 +194,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
-  damageClip: {fileID: 8300000, guid: a488b2e5b3b61004c9b89c2ed73cd56b, type: 3}
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3847217570358410381}
+        m_TargetAssemblyTypeName: FMOD_Instantiator, Assembly-CSharp
+        m_MethodName: playEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3275333333547142616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +223,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnDeath: 1
   onDestroySpawn: {fileID: 0}
+  onEnemyDestroyed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6840627428866742929}
+        m_TargetAssemblyTypeName: FMOD_Instantiator, Assembly-CSharp
+        m_MethodName: playEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &1183493643650027858
 AudioSource:
   m_ObjectHideFlags: 0
@@ -280,6 +374,21 @@ MonoBehaviour:
   movementState: {fileID: 7970292500077697175}
   target: {fileID: 0}
   targetApproachSpeed: 3
+  onMeleeAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3281520676146831820}
+        m_TargetAssemblyTypeName: FMOD_Instantiator, Assembly-CSharp
+        m_MethodName: playEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7970292500077697175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +476,168 @@ MonoBehaviour:
   standardMaterial: {fileID: 2100000, guid: c061aa0fc3bf5774d838775ee4069574, type: 2}
   shieldEnabledQueue: 0100
   renderer: {fileID: 594027312992050747}
+--- !u!1 &3967427517506259516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1737535781550493388}
+  - component: {fileID: 3281520676146831820}
+  m_Layer: 6
+  m_Name: EnemyMelee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1737535781550493388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967427517506259516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2350063894563255912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3281520676146831820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967427517506259516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90b94921eb6f24e9f92c9b458a24c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  evRef:
+    Guid:
+      Data1: -1431203721
+      Data2: 1120531081
+      Data3: 270783361
+      Data4: 1338466184
+    Path: event:/Character/Defence/Enemy/EnemyMeleeAttackBase
+  is3D: 0
+  pos3D_Override: {fileID: 0}
+  playOnStart: 0
+  fadeOutOnDestroy: 0
+  playDelay: 0
+  paramNames: 
+  printLengthOnStart: 0
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventInstantiated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &5400136162119630254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2350063894563255912}
+  m_Layer: 6
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2350063894563255912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400136162119630254}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5022146811823246210}
+  - {fileID: 2933584226855901466}
+  - {fileID: 1737535781550493388}
+  m_Father: {fileID: 4171842978414801014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8161344942534436023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5022146811823246210}
+  - component: {fileID: 6840627428866742929}
+  m_Layer: 6
+  m_Name: EnemyDestroy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5022146811823246210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161344942534436023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2350063894563255912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6840627428866742929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161344942534436023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90b94921eb6f24e9f92c9b458a24c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  evRef:
+    Guid:
+      Data1: -352783473
+      Data2: 1279839898
+      Data3: 1362176436
+      Data4: -2040808916
+    Path: event:/Character/Defence/Enemy/EnemyDestroyed
+  is3D: 0
+  pos3D_Override: {fileID: 0}
+  playOnStart: 0
+  fadeOutOnDestroy: 1
+  playDelay: 0
+  paramNames: 
+  printLengthOnStart: 0
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventInstantiated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7457462539624498498
 PrefabInstance:
   m_ObjectHideFlags: 0

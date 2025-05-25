@@ -169,6 +169,11 @@ class FMOD_TimelineCallbacks : MonoBehaviour
         eventInstance.setCallback(timelineDataCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         //FMOD.Studio.EVENT_CALLBACK_TYPE... //add other callback types if necessary
     }
+
+    public FMOD_Instantiator GetMusicEvent()
+    {
+        return masterMusicEvent;
+    }
 }
 
 //Some resources for more complex needs

@@ -30,6 +30,7 @@ public class DefenceInventorySlot : MonoBehaviour
     {
         if (!on) return;
         onToggleOn.Invoke(this);
+        InventoryAudioRef.instance.PlaySlotSelectSound();
     }
 
     public void SetupToggle(TileAction.TileActionTypes type, int stackAmt, ToggleGroup toggleGroup)

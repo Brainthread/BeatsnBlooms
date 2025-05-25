@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: StartDialogue
   m_EditorClassIdentifier: 
   npcName: Stranger
-  npcPortrait: {fileID: -112418883, guid: afe972d422eca004a8f0211040727f63, type: 3}
+  npcPortrait: {fileID: 21300000, guid: 84e0f52af585a0e49961b8f502f64c7d, type: 3}
   dialogueLines:
-  - Hello there traveller!
-  - You are not from these lands, are you?
-  - I suggest you leave, there is naught but a cursed blight ahead of you.
+  - ...Stranger... come... this way...
+  - This land has not seen living breath in ages... Stranger, who are you? Where
+    do you come from?
+  - Judging by your attire... perhaps you are... a musician?
+  - Then maybe you can help. Music revitalizes us plants.
+  - We used to live in peace in prosperity. But one night...
+  - The stars fell from the sky... They spread a sickness across our lands, corrupting
+    everything it touched.
+  - If you go to the cave to the left, you will reach the corrupted land.
+  - Go now. Perhaps you can still save this world...
   typingSpeed: 0.05
-  autoProgressLines: 010100
+  autoProgressLines: 0101010101010100
   autoProgressDelay: 1.5

@@ -23,6 +23,14 @@ public class Sequencer : MonoBehaviour
     [SerializeField] private PlantGrowthHandler plantGrowthManager;
     private const bool REMOVE_SELECTION_ON_ITEM_USE = true;
 
+    //Audio
+    private string[] MusicParams = { 
+        "A_1_1_1", "A_1_2_1", "A_1_3_1", "A_1_4_1",
+        "B_1_1_1", "B_1_2_1", "B_1_3_1", "B_1_4_1",
+        "C_1_1_1", "C_1_2_1", "C_1_3_1", "C_1_4_1",
+        "D_1_1_1", "D_1_2_1", "D_1_3_1", "D_1_4_1",
+    };
+
     private void Start()
     {
         EventHandler.current.onBeat += OnNewBeat;
@@ -45,6 +53,7 @@ public class Sequencer : MonoBehaviour
                 sequencerBoxActionStates[indexer] = 0;
                 SequencerTile tile = representations[indexer].GetComponent<SequencerTile>();
                 tile.SetID(indexer);
+                tile.SetMusicParamName(MusicParams[indexer]);
                 tile.SetBorderMaterial(inactiveMaterial);
                 tile.SetInnerMaterial(tileActions[0].stateMaterial);
                 tile.Sequencer = this;
@@ -133,6 +142,9 @@ public class Sequencer : MonoBehaviour
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
+        //Audio
+        if(selected)FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 1);
+        else FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 0);
 
         if (selected) ManageInventoryTileSelected(tile);
         else ManageInventoryTileUnselected(tile);

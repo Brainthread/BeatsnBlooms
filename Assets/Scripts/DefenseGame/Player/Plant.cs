@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Plant : MonoBehaviour
 {
@@ -56,4 +57,6 @@ public abstract class PlantAction : MonoBehaviour
     [SerializeField] private Texture2D icon; 
     public abstract void Activate(Plant plant);
     public abstract Texture2D GetIcon();
+
+    public UnityEvent onPlantAction;
 }
