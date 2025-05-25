@@ -15,11 +15,13 @@ public class InventoryAudioRef : MonoBehaviour
 
     public void PlaySlotSelectSound()
     {
+        /*
         if (!isSetup)
         {
             isSetup = true;
             return;
         }
+        */
         slotSelect.playEvent();
     }
 }

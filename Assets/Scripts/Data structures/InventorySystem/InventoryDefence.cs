@@ -26,9 +26,10 @@ public class InventoryDefence : MonoBehaviour
         //Create a separate slot that is only used for basic attacks
         {
             GameObject gobj = Instantiate(inventoryTogglePrefab, toggleGroup.transform);
-            DefenceInventorySlot settings = gobj.GetComponent<DefenceInventorySlot>();
-            settings.IsInfinite = true;
-            settings.SetupToggle(TileAction.TileActionTypes.ATTACK, 999, toggleGroup);
+            DefenceInventorySlot slot = gobj.GetComponent<DefenceInventorySlot>();
+            slot.IsInfinite = true;
+            slot.SetupToggle(TileAction.TileActionTypes.ATTACK, 999, toggleGroup);
+            currentInventorySlot = slot;
             currentInventorySlots.Add(gobj);
         }
 
