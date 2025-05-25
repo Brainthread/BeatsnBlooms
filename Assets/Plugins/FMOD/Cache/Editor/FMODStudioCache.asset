@@ -114,7 +114,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638837737974714846
+  lastModified: 638837757376470876
   FileSizes:
   - Name: 
     Value: 3190
@@ -288,7 +288,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638837737974675037
+  lastModified: 638837757376460905
   FileSizes: []
   Exists: 1
 --- !u!114 &-2449358407383511886
@@ -593,7 +593,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638837737974714846
+  cacheTime: 638837757376470876
   SerializableEventsDict:
   - key: event:/Character/Explore/Player/Foots
     index: 0
