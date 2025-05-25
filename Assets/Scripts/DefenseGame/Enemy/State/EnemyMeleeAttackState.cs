@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyMeleeAttackState : StateMachineState
 {
@@ -12,6 +13,9 @@ public class EnemyMeleeAttackState : StateMachineState
     private Vector3 targetPosition;
     private Vector3 originalPosition;
     [SerializeField] private float targetApproachSpeed = 3f;
+
+    //Audio
+    [SerializeField] private UnityEvent onMeleeAttack;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Initialize(StateMachine stateMachine)
@@ -76,6 +80,7 @@ public class EnemyMeleeAttackState : StateMachineState
             if (target.GetComponent<HealthManager>())
                 target.GetComponent<HealthManager>().ApplyDamage(meleeDamage);
             targetApproachSpeed = 100f;
+            onMeleeAttack.Invoke();
         }
     }
 

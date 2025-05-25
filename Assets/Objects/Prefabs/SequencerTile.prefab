@@ -96,7 +96,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4425100844565862174}
   - component: {fileID: 6548911695185138756}
-  - component: {fileID: 5556282683855017715}
   m_Layer: 7
   m_Name: ToggleOff
   m_TagString: Untagged
@@ -133,17 +132,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evRef:
     Guid:
-      Data1: -1697649109
-      Data2: 1282447976
-      Data3: 529726597
-      Data4: -1965988573
-    Path: event:/UI/Defence/ToggleStep
+      Data1: 1964896075
+      Data2: 1288149394
+      Data3: -2142634572
+      Data4: -289362085
+    Path: event:/UI/Defence/ToggleOff
   is3D: 0
   pos3D_Override: {fileID: 0}
   playOnStart: 0
   fadeOutOnDestroy: 0
   playDelay: 0
-  paramNames: 00000000
+  paramNames: 
   printLengthOnStart: 0
   onPlay:
     m_PersistentCalls:
@@ -151,21 +150,6 @@ MonoBehaviour:
   onEventInstantiated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5556282683855017715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4438027183337276987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5242d8febf0ce8a4d82957b6ef5d2528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fmodEv: {fileID: 6548911695185138756}
-  paramName: 0
-  value: 0
 --- !u!1 &4861218942196305063
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2963531842074186211}
   - component: {fileID: 8330749241366435293}
-  - component: {fileID: 6480517808675971937}
   m_Layer: 7
   m_Name: ToggleOn
   m_TagString: Untagged
@@ -246,17 +229,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evRef:
     Guid:
-      Data1: -1697649109
-      Data2: 1282447976
-      Data3: 529726597
-      Data4: -1965988573
-    Path: event:/UI/Defence/ToggleStep
+      Data1: 223427570
+      Data2: 1180333208
+      Data3: 368029611
+      Data4: -346846189
+    Path: event:/UI/Defence/ToggleOn
   is3D: 0
   pos3D_Override: {fileID: 0}
   playOnStart: 0
   fadeOutOnDestroy: 0
   playDelay: 0
-  paramNames: 00000000
+  paramNames: 
   printLengthOnStart: 0
   onPlay:
     m_PersistentCalls:
@@ -264,21 +247,6 @@ MonoBehaviour:
   onEventInstantiated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6480517808675971937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816512686806197967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5242d8febf0ce8a4d82957b6ef5d2528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fmodEv: {fileID: 8330749241366435293}
-  paramName: 0
-  value: 1
 --- !u!1 &6652922833226753459
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +408,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   currentAction: 4
+  MusicParamName: 
 --- !u!114 &6795976507190029282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +422,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
-  damageClip: {fileID: 0}
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1233517888545618447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +439,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnDeath: 0
   onDestroySpawn: {fileID: 7250114793411685677, guid: 9dcc55b6d9437624db643f181ab85ecf, type: 3}
+  onEnemyDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7709623845177363030
 PrefabInstance:
   m_ObjectHideFlags: 0

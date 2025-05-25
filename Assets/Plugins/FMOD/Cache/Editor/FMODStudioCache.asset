@@ -114,11 +114,38 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638836810064633153
+  lastModified: 638837737974714846
   FileSizes:
   - Name: 
-    Value: 3064
+    Value: 3190
   Exists: 1
+--- !u!114 &-6291349825411770724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/SelectInventorySlot
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/SelectInventorySlot
+  Guid:
+    Data1: 2082490096
+    Data2: 1276514958
+    Data3: -916470133
+    Data4: -115198129
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5648021737519243257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +272,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 949
 --- !u!114 &-3517175738781887895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,9 +288,36 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638836810064607553
+  lastModified: 638837737974675037
   FileSizes: []
   Exists: 1
+--- !u!114 &-2449358407383511886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/SequencerDestroy
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/SequencerDestroy
+  Guid:
+    Data1: 429705488
+    Data2: 1317726434
+    Data3: 1957141178
+    Data4: 179787305
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2437704345831873291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +363,33 @@ MonoBehaviour:
     Data2: 1239511456
     Data3: 361027771
     Data4: -76418208
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2067057538072977715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/ToggleOff
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/ToggleOff
+  Guid:
+    Data1: 1964896075
+    Data2: 1288149394
+    Data3: -2142634572
+    Data4: -289362085
   Banks:
   - {fileID: -3517175738781887895}
   IsStream: 0
@@ -366,33 +447,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-1917660359701478536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/Defence/SelectSpecialStep
-  m_EditorClassIdentifier: 
-  Path: event:/UI/Defence/SelectSpecialStep
-  Guid:
-    Data1: 2082490096
-    Data2: 1276514958
-    Data3: -916470133
-    Data4: -115198129
-  Banks:
-  - {fileID: -3517175738781887895}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-1848175029896489431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +573,6 @@ MonoBehaviour:
   - {fileID: 4243745082917107935}
   - {fileID: -2437704345831873291}
   - {fileID: -4637901016050805232}
-  - {fileID: -1917660359701478536}
   - {fileID: 6057722214366582474}
   - {fileID: -4095358466678406146}
   - {fileID: 8033966667031285218}
@@ -528,6 +581,10 @@ MonoBehaviour:
   - {fileID: 6807019749872187617}
   - {fileID: -2228084233551726397}
   - {fileID: -1373951326539000964}
+  - {fileID: -2449358407383511886}
+  - {fileID: -6291349825411770724}
+  - {fileID: -2067057538072977715}
+  - {fileID: 7551997068856042774}
   EditorParameters:
   - {fileID: 8780321774383956294}
   - {fileID: -2054454159221065282}
@@ -536,7 +593,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638836810064633153
+  cacheTime: 638837737974714846
   SerializableEventsDict:
   - key: event:/Character/Explore/Player/Foots
     index: 0
@@ -554,24 +611,30 @@ MonoBehaviour:
     index: 6
   - key: event:/Ambience/Explore/Looping/Weather
     index: 7
-  - key: event:/UI/Defence/SelectSpecialStep
-    index: 8
   - key: event:/Music/Defence/DefenceMusic_01
-    index: 9
+    index: 8
   - key: event:/Character/Defence/Enemy/EnemyDestroyed
-    index: 10
+    index: 9
   - key: event:/Character/Defence/PlayerSequencer/SequencerTakeDamage
-    index: 11
+    index: 10
   - key: event:/Character/Defence/PlayerSequencer/SequencerAttackBase
-    index: 12
+    index: 11
   - key: event:/Character/Defence/PlayerSequencer/RootAttack
-    index: 13
+    index: 12
   - key: event:/Character/Defence/PlayerSequencer/BeamAttack
-    index: 14
+    index: 13
   - key: event:/Character/Defence/PlayerSequencer/ExplosiveAttack
-    index: 15
+    index: 14
   - key: event:/Character/Defence/PlayerSequencer/ProjectileAttack
+    index: 15
+  - key: event:/Character/Defence/PlayerSequencer/SequencerDestroy
     index: 16
+  - key: event:/UI/Defence/SelectInventorySlot
+    index: 17
+  - key: event:/UI/Defence/ToggleOff
+    index: 18
+  - key: event:/UI/Defence/ToggleOn
+    index: 19
 --- !u!114 &1255929085206170910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,6 +1038,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7551997068856042774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/ToggleOn
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/ToggleOn
+  Guid:
+    Data1: 223427570
+    Data2: 1180333208
+    Data3: 368029611
+    Data4: -346846189
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8033966667031285218
 MonoBehaviour:
   m_ObjectHideFlags: 0

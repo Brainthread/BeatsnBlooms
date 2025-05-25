@@ -6,6 +6,8 @@ using System;
 
 public class DefenceInventoryToggle : MonoBehaviour
 {
+    //DEPRECATED
+    /*
     [SerializeField] private TileAction.TileActionTypes tileType;
     public TileAction.TileActionTypes TileType { get { return tileType; } }
     [SerializeField] private int stackSize = 0;
@@ -19,8 +21,10 @@ public class DefenceInventoryToggle : MonoBehaviour
 
     public void ToggleOn(bool on)
     {
+        Debug.Log("tog " + on);
         if (!on) return;
         onToggleOn.Invoke(tileType);
+        InventoryAudioRef.instance.PlaySlotSelectSound();
     }
 
     public void SetupInfiniteToggle(TileAction.TileActionTypes type, int stackAmt, InventoryDefence defenceInstance, ToggleGroup toggleGroup)
@@ -64,4 +68,5 @@ public class DefenceInventoryToggle : MonoBehaviour
         stackSize = v;
         stackSizeUI.text = v.ToString();
     }
+    */
 }
