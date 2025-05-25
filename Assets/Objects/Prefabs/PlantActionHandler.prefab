@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evRef:
     Guid:
-      Data1: 52679784
-      Data2: 1340170809
-      Data3: -1749305934
-      Data4: 2025413787
+      Data1: 2010365759
+      Data2: 1165309339
+      Data3: -201656912
+      Data4: 587682591
     Path: event:/Character/Defence/PlayerSequencer/RootAttack
   is3D: 0
   pos3D_Override: {fileID: 0}

@@ -90,5 +90,3 @@ public class InventoryDefence : MonoBehaviour
     }
 
 }
-
-//https://stackoverflow.com/questions/52739763/how-to-get-selected-toggle-from-toggle-group
