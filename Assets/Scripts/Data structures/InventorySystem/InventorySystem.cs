@@ -113,14 +113,14 @@ public class InventorySystem : MonoBehaviour
         item2.SetupItem(TileAction.TileActionTypes.ROOT, 20);
 
         
-        TileItem item3 = gameObject.AddComponent<TestItem>();
-        item3.SetupItem(TileAction.TileActionTypes.BEAM, 5);
+        //TileItem item3 = gameObject.AddComponent<TestItem>();
+        //item3.SetupItem(TileAction.TileActionTypes.BEAM, 5);
         
 
         //AddToInventory(item0);
         AddToInventory(item1);
         AddToInventory(item2);
-        AddToInventory(item3);
+        //AddToInventory(item3);
     }
 }
 

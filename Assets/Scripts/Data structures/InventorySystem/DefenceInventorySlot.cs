@@ -15,6 +15,7 @@ public class DefenceInventorySlot : MonoBehaviour
     //-Display icons on step sequencer
 
     [SerializeField] private TileAction.TileActionTypes tileType;
+    [SerializeField] private Image icon;
     private int stackSize = 0;
     private TMP_Text stackSizeUI;
     private UnityEvent<DefenceInventorySlot> onToggleOn = new UnityEvent<DefenceInventorySlot>();
@@ -51,6 +52,7 @@ public class DefenceInventorySlot : MonoBehaviour
         {
             stackSizeUI.text = "∞";
         }
+        icon.sprite = MaterialTextureLookup.instance.GetTextureFromActionType(type);
     }
 
     public TileAction.TileActionTypes GetTileType()

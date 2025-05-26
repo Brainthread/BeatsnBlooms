@@ -7,6 +7,7 @@ public class SequencerTile : MonoBehaviour
     [SerializeField] private Renderer borderRenderer;
     [SerializeField] private Renderer innerRenderer;
     [SerializeField] private Sequencer sequencer;
+    [SerializeField] private GameObject plane;
     public Sequencer Sequencer { set { sequencer = value; } }
     private bool isDestroyed;
 
@@ -81,6 +82,12 @@ public class SequencerTile : MonoBehaviour
     {
         currentAction = actionType;
         //Debug.Log("Set Tile Action: " + actionType);
+        SetPlaneMaterial(MaterialTextureLookup.instance.GetMaterialFromActionType(actionType));
+    }
+
+    public void SetPlaneMaterial(Material material)
+    {
+        plane.GetComponent<Renderer>().material = material;
     }
     public TileAction.TileActionTypes GetAndConsumePlantAction()
     {

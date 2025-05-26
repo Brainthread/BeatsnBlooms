@@ -453,7 +453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4462254996052255759, guid: 2a5ebfa93f2374c4ba84531c7fbe8332, type: 3}
       propertyPath: onBeatEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462254996052255759, guid: 2a5ebfa93f2374c4ba84531c7fbe8332, type: 3}
       propertyPath: onBeatEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4462254996052255759, guid: 2a5ebfa93f2374c4ba84531c7fbe8332, type: 3}
       propertyPath: onBeatEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462254996052255759, guid: 2a5ebfa93f2374c4ba84531c7fbe8332, type: 3}
       propertyPath: onFrameBeatTime.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3711,17 +3711,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1849099707}
     m_Modifications:
-    - target: {fileID: 3086585593063566526, guid: f60624376d7e7ea4086a326b32364105, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6652922833226753459, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_Name
       value: Tile
-      objectReference: {fileID: 0}
-    - target: {fileID: 6652922833226753459, guid: f60624376d7e7ea4086a326b32364105, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8572516750777206121, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3854,6 +3846,7 @@ GameObject:
   - component: {fileID: 1376533677}
   - component: {fileID: 1376533678}
   - component: {fileID: 1376533679}
+  - component: {fileID: 1376533680}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3913,6 +3906,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explorationScene: 0
+--- !u!114 &1376533680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376533676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1604b408851f8314c8a6e2790f73040e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nullMaterial: {fileID: 2100000, guid: 44f428f72f046044e8084bef168c4f92, type: 2}
+  rayMaterial: {fileID: 2100000, guid: 5003bf4d74c1b434b9f860eaa12fbb47, type: 2}
+  rootMaterial: {fileID: 2100000, guid: 7981ab529894e554c98cc5c105975d36, type: 2}
+  nukeMaterial: {fileID: 2100000, guid: dce5134fa4947894289acc6beef28204, type: 2}
+  nullTex: {fileID: 21300000, guid: 2e01e35f783c5e64fb4557dac1cf9c8a, type: 3}
+  rayTex: {fileID: 21300000, guid: 6d49671e0d1e7c14fbc165805ed399c7, type: 3}
+  rootTex: {fileID: 21300000, guid: f8ca89655e2bcf64aa1881796834df94, type: 3}
+  nukeTex: {fileID: 21300000, guid: 42a8f4364e7c0a042b2647e9bbedc73a, type: 3}
 --- !u!1 &1462850983
 GameObject:
   m_ObjectHideFlags: 0
@@ -5788,6 +5801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 6856384300076629529, guid: f60624376d7e7ea4086a326b32364105, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8572516750777206121, guid: f60624376d7e7ea4086a326b32364105, type: 3}
       propertyPath: m_LocalPosition.x
       value: -63.2
@@ -5828,7 +5845,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6856384300076629529, guid: f60624376d7e7ea4086a326b32364105, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

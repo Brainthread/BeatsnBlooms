@@ -39,14 +39,14 @@ public class EnemyManager : MonoBehaviour
 
     void onNewBeat(int beat)
     {
-        int currentBeat;
+        int currentBeat = beat;
         if(MusicManager.instance)
         {
             currentBeat = (int)Mathf.Floor(MusicManager.instance.GetBeat());
         }
         else
         {
-            currentBeat = beat;
+            currentBeat = this.beat;
         }
         for (int i = 0; i < enemySpawns.Length; i++)
         {
@@ -60,7 +60,7 @@ public class EnemyManager : MonoBehaviour
                 enemySpawnIndex += 1;
             }
         }
-        beat += 1;
+        this.beat += 1;
     }
 
     void SpawnEnemy(GameObject enemy, Vector3 spawnPosition)

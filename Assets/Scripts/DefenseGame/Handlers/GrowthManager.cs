@@ -24,6 +24,7 @@ public class GrowthManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        renderMaterial.SetFloat("_Progress", 0);
     }
 
     public void Initialize()

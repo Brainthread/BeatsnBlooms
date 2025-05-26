@@ -118,6 +118,7 @@ public class Sequencer : MonoBehaviour
     private void OnTileClicked(int id)
     {
         bool selected = true;
+        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         if (sequencerBoxActionStates[id] == 0)
         {
             if (availableTiles == 0)
@@ -134,9 +135,10 @@ public class Sequencer : MonoBehaviour
                 sequencerBoxActionStates[id] = 0;
                 availableTiles += 1;
             }
+            tile.SetPlantAction(TileAction.TileActionTypes.NONE);
         }
         TileAction state = tileActions[sequencerBoxActionStates[id]];
-        SequencerTile tile = representations[id].GetComponent<SequencerTile>();
+
         tile.SetInnerMaterial(state.stateMaterial);
         //Audio
         if(selected)FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 1);
@@ -174,6 +176,7 @@ public class Sequencer : MonoBehaviour
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
+        tile.SetPlantAction(TileAction.TileActionTypes.NONE);
         if (selected) FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 1);
         else FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 0);
         ManageInventoryTileUnselected(tile);
@@ -199,6 +202,7 @@ public class TileAction
 
     public enum TileActionTypes
     {
+        NONE,
         //Defence
         ROOT,
         BARRIER,

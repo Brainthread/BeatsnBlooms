@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
+  icon: {fileID: 2159332256403873452}
 --- !u!1 &5578073441121183213
 GameObject:
   m_ObjectHideFlags: 0
