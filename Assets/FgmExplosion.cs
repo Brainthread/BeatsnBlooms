@@ -10,9 +10,11 @@ public class FgmExplosion : MonoBehaviour
     [SerializeField] private float shockWaveFadeSpeed = 5;
     private float distortionAmount = 0;
     [SerializeField] private bool vfx = true;
+    [SerializeField] FMOD_Instantiator splodeAudio;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        splodeAudio.playEvent();
         if(vfx)
             VFXManager.current.PlayImpactFrames();
         distortionAmount = shockWave.GetComponent<MeshRenderer>().sharedMaterial.GetFloat("_DistortionAmount");

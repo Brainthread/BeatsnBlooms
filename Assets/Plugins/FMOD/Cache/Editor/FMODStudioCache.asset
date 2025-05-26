@@ -1,5 +1,101 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8844665617117402322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/D_1_1_1
+  m_EditorClassIdentifier: 
+  Name: D_1_1_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2133017991
+    data2: 267026826
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-8566230929664142863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/GregorProgression
+  m_EditorClassIdentifier: 
+  Name: GregorProgression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1314995728
+    data2: 2060169471
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-8464181062830762260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/A_1_1_1
+  m_EditorClassIdentifier: 
+  Name: A_1_1_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3195224876
+    data2: 3938257846
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7916708388954511653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/B_1_4_1
+  m_EditorClassIdentifier: 
+  Name: B_1_4_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2993596470
+    data2: 2436946448
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-7728356077674205898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,6 +123,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7345627359494997373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/B_1_2_1
+  m_EditorClassIdentifier: 
+  Name: B_1_2_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 783377691
+    data2: 1448332319
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-7306365363512573170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,10 +234,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638838483603965502
+  lastModified: 638838632955213638
   FileSizes:
   - Name: 
-    Value: 3090
+    Value: 3396
   Exists: 1
 --- !u!114 &-6394571597108215334
 MonoBehaviour:
@@ -140,12 +260,92 @@ MonoBehaviour:
   Banks:
   - {fileID: -3517175738781887895}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -5690684581613559758}
+  - {fileID: 5318493413909907625}
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
+--- !u!114 &-6163639346993567719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Explore/ItemPickup
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Explore/ItemPickup
+  Guid:
+    Data1: -2011445683
+    Data2: 1140085343
+    Data3: -947504756
+    Data4: -716632212
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1025
+--- !u!114 &-6007984729734502129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Defence/PlayerSequencer/GeneratorDestroyed
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Defence/PlayerSequencer/GeneratorDestroyed
+  Guid:
+    Data1: -157869308
+    Data2: 1181782964
+    Data3: 1643914938
+    Data4: 1041970202
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4100
+--- !u!114 &-5690684581613559758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ExploreAmbience/WindAmt
+  m_EditorClassIdentifier: 
+  Name: WindAmt
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 546288198
+    data2: 3928928427
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5648021737519243257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,9 +438,9 @@ MonoBehaviour:
     Data4: 1108169527
   Banks:
   - {fileID: -3517175738781887895}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: -5511612416996878718}
   MinDistance: 1
@@ -288,7 +488,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638838483603925611
+  lastModified: 638838632955173746
   FileSizes: []
   Exists: 1
 --- !u!114 &-2449358407383511886
@@ -498,6 +698,54 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-819185071599709199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/C_1_3_1
+  m_EditorClassIdentifier: 
+  Name: C_1_3_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4211072991
+    data2: 37883287
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-749985228610192225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/A_1_3_1
+  m_EditorClassIdentifier: 
+  Name: A_1_3_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4014692007
+    data2: 3890253727
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-476168931464823164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +834,10 @@ MonoBehaviour:
   - {fileID: -476168931464823164}
   - {fileID: 3259493988876669883}
   - {fileID: -6394571597108215334}
+  - {fileID: -6007984729734502129}
+  - {fileID: 7976220204475095744}
+  - {fileID: 8875246348754540533}
+  - {fileID: -6163639346993567719}
   EditorParameters:
   - {fileID: 8780321774383956294}
   - {fileID: -2054454159221065282}
@@ -594,7 +846,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638838483603965502
+  cacheTime: 638838632955213638
   SerializableEventsDict:
   - key: event:/Character/Explore/Player/Foots
     index: 0
@@ -638,6 +890,14 @@ MonoBehaviour:
     index: 19
   - key: event:/Ambience/Explore/Looping/ExploreAmbience
     index: 20
+  - key: event:/Character/Defence/PlayerSequencer/GeneratorDestroyed
+    index: 21
+  - key: event:/Music/Defence/Gregor/DefenceMusic_Gregor
+    index: 22
+  - key: event:/Ambience/Explore/Looping/MagicCave
+    index: 23
+  - key: event:/UI/Explore/ItemPickup
+    index: 24
 --- !u!114 &1255929085206170910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,6 +946,78 @@ MonoBehaviour:
   ID:
     data1: 783377691
     data2: 1448332319
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1648804760420533454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/A_1_4_1
+  m_EditorClassIdentifier: 
+  Name: A_1_4_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1879879721
+    data2: 3014281982
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1869485004722285139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/A_1_2_1
+  m_EditorClassIdentifier: 
+  Name: A_1_2_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4077963505
+    data2: 2103646325
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2197577358792223944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/C_1_1_1
+  m_EditorClassIdentifier: 
+  Name: C_1_1_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2082187693
+    data2: 3057744581
   Type: 1
   IsGlobal: 0
   Labels: []
@@ -792,6 +1124,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3590361228402630815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/C_1_2_1
+  m_EditorClassIdentifier: 
+  Name: C_1_2_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3514216578
+    data2: 1151939284
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &3595530473791893515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,8 +1196,8 @@ MonoBehaviour:
   Banks:
   - {fileID: -3517175738781887895}
   IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
+  Is3D: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: 4276817136018710210}
   MinDistance: 1
@@ -898,6 +1254,78 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6000
+--- !u!114 &4697411845956631281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/C_1_4_1
+  m_EditorClassIdentifier: 
+  Name: C_1_4_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 347693162
+    data2: 1365292647
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4704659624120130891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/B_1_3_1
+  m_EditorClassIdentifier: 
+  Name: B_1_3_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1905429901
+    data2: 808951107
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5318493413909907625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ExploreAmbience/WorldHealProgression
+  m_EditorClassIdentifier: 
+  Name: WorldHealProgression
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3602353189
+    data2: 858746823
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &5343410123562816552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,6 +1421,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6443166659585174542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/D_1_2_1
+  m_EditorClassIdentifier: 
+  Name: D_1_2_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 593941010
+    data2: 2012596656
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &6807019749872187617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,6 +1520,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7748547375764673773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/B_1_1_1
+  m_EditorClassIdentifier: 
+  Name: B_1_1_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3407607725
+    data2: 3109762180
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7806209639234537320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,6 +1571,50 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7976220204475095744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Defence/Gregor/DefenceMusic_Gregor
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Defence/Gregor/DefenceMusic_Gregor
+  Guid:
+    Data1: -1560130021
+    Data2: 1248541215
+    Data3: 238330045
+    Data4: 1504733580
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -8464181062830762260}
+  - {fileID: 2197577358792223944}
+  - {fileID: -8844665617117402322}
+  - {fileID: 7748547375764673773}
+  - {fileID: 4704659624120130891}
+  - {fileID: -819185071599709199}
+  - {fileID: 9169242146597681354}
+  - {fileID: 6443166659585174542}
+  - {fileID: -749985228610192225}
+  - {fileID: 8545347023886060180}
+  - {fileID: 1869485004722285139}
+  - {fileID: 1648804760420533454}
+  - {fileID: 4697411845956631281}
+  - {fileID: 3590361228402630815}
+  - {fileID: -7345627359494997373}
+  - {fileID: -7916708388954511653}
+  - {fileID: -8566230929664142863}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 14769
 --- !u!114 &8033966667031285218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,6 +1666,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &8545347023886060180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/D_1_3_1
+  m_EditorClassIdentifier: 
+  Name: D_1_3_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2461048126
+    data2: 3664612981
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &8780321774383956294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1714,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &8875246348754540533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Explore/Looping/MagicCave
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Explore/Looping/MagicCave
+  Guid:
+    Data1: 1718914632
+    Data2: 1206300173
+    Data3: -222090314
+    Data4: -2128540554
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4880
 --- !u!114 &8971187190526730722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1809,30 @@ MonoBehaviour:
   ID:
     data1: 3407607725
     data2: 3109762180
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &9169242146597681354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DefenceMusic_Gregor/D_1_4_1
+  m_EditorClassIdentifier: 
+  Name: D_1_4_1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 474785111
+    data2: 643366279
   Type: 1
   IsGlobal: 0
   Labels: []
