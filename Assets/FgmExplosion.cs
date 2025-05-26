@@ -14,7 +14,7 @@ public class FgmExplosion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        splodeAudio.playEvent();
+        if(splodeAudio != null) splodeAudio.playEvent();
         if(vfx)
             VFXManager.current.PlayImpactFrames();
         distortionAmount = shockWave.GetComponent<MeshRenderer>().sharedMaterial.GetFloat("_DistortionAmount");

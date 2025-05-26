@@ -4138,6 +4138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cd980e04f9b0144a9af5064bc9ff9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPickup:
+    m_PersistentCalls:
+      m_Calls: []
   tileType: 0
   stackSize: 1
 --- !u!4 &1537479257
@@ -5628,11 +5631,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evRef:
     Guid:
-      Data1: 193942602
-      Data2: 1253514580
-      Data3: 1092379564
-      Data4: 980796106
-    Path: event:/Ambience/Defence/DefenceArenaAmbience
+      Data1: -760646177
+      Data2: 1135927327
+      Data3: -660504423
+      Data4: -417841798
+    Path: event:/Ambience/Defence/Wind
   is3D: 0
   pos3D_Override: {fileID: 0}
   playOnStart: 1

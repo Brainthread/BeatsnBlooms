@@ -234,10 +234,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638838632955213638
+  lastModified: 638838661077427388
   FileSizes:
   - Name: 
-    Value: 3396
+    Value: 3442
   Exists: 1
 --- !u!114 &-6394571597108215334
 MonoBehaviour:
@@ -488,7 +488,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638838632955173746
+  lastModified: 638838661077367558
   FileSizes: []
   Exists: 1
 --- !u!114 &-2449358407383511886
@@ -838,6 +838,7 @@ MonoBehaviour:
   - {fileID: 7976220204475095744}
   - {fileID: 8875246348754540533}
   - {fileID: -6163639346993567719}
+  - {fileID: 9207556620679703448}
   EditorParameters:
   - {fileID: 8780321774383956294}
   - {fileID: -2054454159221065282}
@@ -846,7 +847,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638838632955213638
+  cacheTime: 638838661077427388
   SerializableEventsDict:
   - key: event:/Character/Explore/Player/Foots
     index: 0
@@ -898,6 +899,8 @@ MonoBehaviour:
     index: 23
   - key: event:/UI/Explore/ItemPickup
     index: 24
+  - key: event:/Ambience/Defence/Wind
+    index: 25
 --- !u!114 &1255929085206170910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,6 +1792,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &9064115695113497577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Wind/WindAmt
+  m_EditorClassIdentifier: 
+  Name: WindAmt
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 546288198
+    data2: 3928928427
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &9068139016074539391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,3 +1864,31 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &9207556620679703448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Defence/Wind
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Defence/Wind
+  Guid:
+    Data1: -760646177
+    Data2: 1135927327
+    Data3: -660504423
+    Data4: -417841798
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 9064115695113497577}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
