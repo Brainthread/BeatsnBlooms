@@ -4877,6 +4877,38 @@ Transform:
   - {fileID: 2077875441}
   m_Father: {fileID: 585302600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1872705182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1872705183}
+  m_Layer: 0
+  m_Name: DefenceAmbience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1872705183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872705182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -45.38714, y: -32.165405, z: -12.77829}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2068759556}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1907681429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5279,6 +5311,70 @@ Transform:
   - {fileID: 21708655}
   m_Father: {fileID: 585302600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2068759555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068759556}
+  - component: {fileID: 2068759557}
+  m_Layer: 0
+  m_Name: AmbEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2068759556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068759555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1872705183}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2068759557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068759555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90b94921eb6f24e9f92c9b458a24c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  evRef:
+    Guid:
+      Data1: 193942602
+      Data2: 1253514580
+      Data3: 1092379564
+      Data4: 980796106
+    Path: event:/Ambience/Defence/DefenceArenaAmbience
+  is3D: 0
+  pos3D_Override: {fileID: 0}
+  playOnStart: 1
+  fadeOutOnDestroy: 0
+  playDelay: 0
+  paramNames: 
+  printLengthOnStart: 0
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventInstantiated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2077192067
 GameObject:
   m_ObjectHideFlags: 0
@@ -5670,3 +5766,4 @@ SceneRoots:
   - {fileID: 673265075}
   - {fileID: 172282504}
   - {fileID: 1502814105348607927}
+  - {fileID: 1872705183}

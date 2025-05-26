@@ -114,11 +114,38 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638838068115236687
+  lastModified: 638838483603965502
   FileSizes:
   - Name: 
-    Value: 3190
+    Value: 3090
   Exists: 1
+--- !u!114 &-6394571597108215334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Explore/Looping/ExploreAmbience
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Explore/Looping/ExploreAmbience
+  Guid:
+    Data1: 2112362969
+    Data2: 1145612835
+    Data3: 1169163956
+    Data4: -664245901
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10000
 --- !u!114 &-5648021737519243257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +288,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638838068115206882
+  lastModified: 638838483603925611
   FileSizes: []
   Exists: 1
 --- !u!114 &-2449358407383511886
@@ -332,10 +359,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Character/Defence/PlayerSequencer/ExplosiveAttack
   Guid:
-    Data1: -451479872
-    Data2: 1239511456
-    Data3: 361027771
-    Data4: -76418208
+    Data1: -1282372442
+    Data2: 1309258021
+    Data3: -466072130
+    Data4: 1431338843
   Banks:
   - {fileID: -3517175738781887895}
   IsStream: 0
@@ -344,7 +371,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 5600
 --- !u!114 &-2054454159221065282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,7 +584,8 @@ MonoBehaviour:
   - {fileID: -2449358407383511886}
   - {fileID: 7806209639234537320}
   - {fileID: -476168931464823164}
-  - {fileID: 7608067633112729107}
+  - {fileID: 3259493988876669883}
+  - {fileID: -6394571597108215334}
   EditorParameters:
   - {fileID: 8780321774383956294}
   - {fileID: -2054454159221065282}
@@ -566,7 +594,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6623154682084260685}
   cacheVersion: 131847
-  cacheTime: 638838068115236687
+  cacheTime: 638838483603965502
   SerializableEventsDict:
   - key: event:/Character/Explore/Player/Foots
     index: 0
@@ -608,6 +636,8 @@ MonoBehaviour:
     index: 18
   - key: event:/UI/Defence/SelectInventorySlot
     index: 19
+  - key: event:/Ambience/Explore/Looping/ExploreAmbience
+    index: 20
 --- !u!114 &1255929085206170910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +738,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &3259493988876669883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Defence/SelectInventorySlot
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Defence/SelectInventorySlot
+  Guid:
+    Data1: 2082490096
+    Data2: 1276514958
+    Data3: -916470133
+    Data4: -115198129
+  Banks:
+  - {fileID: -3517175738781887895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3564401254982476611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,33 +1068,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &7608067633112729107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/Defence/SelectInventorySlot
-  m_EditorClassIdentifier: 
-  Path: event:/UI/Defence/SelectInventorySlot
-  Guid:
-    Data1: 2082490096
-    Data2: 1276514958
-    Data3: -916470133
-    Data4: -115198129
-  Banks:
-  - {fileID: -3517175738781887895}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &7806209639234537320
 MonoBehaviour:
   m_ObjectHideFlags: 0

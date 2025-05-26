@@ -8,7 +8,7 @@
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 0
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000002281FDF3168 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001DF704CE098 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -19,10 +19,40 @@
 [LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
 [LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SoundI::release                          :  (000001DC4AF1B118)
+[LOG] SoundI::release                          :     AmbLivelyBase01 (000001DC4B33D898)
+[LOG] SoundI::release                          :  (000001DC4AF1AB98)
+[LOG] SoundI::release                          :     AmbLivelyBase03 (000001DC4B33D118)
+[LOG] SoundI::release                          :  (000001DC4AF1AE58)
+[LOG] SoundI::release                          :     AmbLivelyBase04 (000001DC4B33C698)
+[LOG] SoundI::release                          :  (000001DC4AF1B7F8)
+[LOG] SoundI::release                          :     PlayerFoots01 (000001DC4B33C218)
+[LOG] SoundI::release                          :  (000001DC4AF1A618)
+[LOG] SoundI::release                          :     PlayerFoots02 (000001DC56965398)
+[LOG] SoundI::release                          :  (000001DC4AF1BC18)
+[LOG] SoundI::release                          :     PlayerFoots03 (000001DC4B33CC98)
+[LOG] SoundI::release                          :  (000001DC4AF1B958)
+[LOG] SoundI::release                          :     PlayerFoots04 (000001DC4B33CB18)
+[LOG] SoundI::release                          :  (000001DC4AF1ACF8)
+[LOG] SoundI::release                          :     PlayerFoots05 (000001DC4B33C398)
+[LOG] SoundI::release                          :  (000001DC4AF1A4B8)
+[LOG] SoundI::release                          :     PlayerFoots06 (000001DC56963E98)
+[LOG] SoundI::release                          :  (000001DC4AF1BD78)
+[LOG] SoundI::release                          :     PlayerFoots07 (000001DC4B33DE98)
+[LOG] SoundI::release                          :  (000001DC4AF1A778)
+[LOG] SoundI::release                          :     PlayerFoots08 (000001DC4B33DA18)
+[LOG] SoundI::release                          :  (000001DC4AF1BED8)
+[LOG] SoundI::release                          :     PlayerFoots09 (000001DC56964C18)
+[LOG] SoundI::release                          :  (000001DC4AF1B698)
+[LOG] SoundI::release                          :     SelectSlot (000001DC56965098)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::closeInternal                   : Closed.
+[ERR] ~Global                                  : assertion: 'gSystemInitCount == 0' failed
