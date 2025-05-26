@@ -431,10 +431,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evRef:
     Guid:
-      Data1: -451479872
-      Data2: 1239511456
-      Data3: 361027771
-      Data4: -76418208
+      Data1: -1282372442
+      Data2: 1309258021
+      Data3: -466072130
+      Data4: 1431338843
     Path: event:/Character/Defence/PlayerSequencer/ExplosiveAttack
   is3D: 0
   pos3D_Override: {fileID: 0}

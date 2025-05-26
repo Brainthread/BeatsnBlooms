@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerController3D : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody rb;
     private Vector2 moveInput;
+    [SerializeField] private UnityEvent<bool> OnWalkingState;
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject character;
     [SerializeField] private float characterRotationSpeed = 180;
@@ -18,6 +20,8 @@ public class PlayerController3D : MonoBehaviour
     void Update()
     {
         rb.linearVelocity = moveInput * moveSpeed;
+        if (moveInput.magnitude > 0) OnWalkingState.Invoke(true);
+        else OnWalkingState.Invoke(false);
         bool moving = moveInput * moveSpeed != Vector2.zero;
         anim.SetBool("Moving", moving);
         if(moving)

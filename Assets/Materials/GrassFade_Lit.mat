@@ -139,7 +139,7 @@ Material:
     - _SawOffset: 0
     - _SineAmplitude: 0.02
     - _SineFrequency: 3
-    - _SineOffset: 1.7924193
+    - _SineOffset: 1.8312943
     m_Colors:
     - _ForegroundScrollSpeed: {r: -0.025, g: 0, b: 0, a: 0}
     - _MainTexTint: {r: 1, g: 1, b: 1, a: 1}
