@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3086585593063566526}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0.846, z: 0}
+  m_LocalPosition: {x: 0, y: 0.593, z: 0}
   m_LocalScale: {x: 0.75, y: 0.1, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -318,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 41530ca87ae5e584dadcb30c513e0bce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnDeath: 0
-  onDestroySpawn: {fileID: 7250114793411685677, guid: 9dcc55b6d9437624db643f181ab85ecf, type: 3}
+  onDestroySpawn: {fileID: 7261200952328522053, guid: 22c967f068105864c940ade0caa55a44, type: 3}
   onEnemyDestroyed:
     m_PersistentCalls:
       m_Calls: []
@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 18614c61a11367a43b3b769f0b5b7553, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.266
+      value: 0.013
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 18614c61a11367a43b3b769f0b5b7553, type: 3}
       propertyPath: m_LocalPosition.z

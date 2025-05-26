@@ -8,6 +8,9 @@ public class PlayerController3D : MonoBehaviour
     private Rigidbody rb;
     private Vector2 moveInput;
     [SerializeField] private UnityEvent<bool> OnWalkingState;
+    [SerializeField] private Animator anim;
+    [SerializeField] private GameObject character;
+    [SerializeField] private float characterRotationSpeed = 180;
     
     void Start()
     {
@@ -19,6 +22,18 @@ public class PlayerController3D : MonoBehaviour
         rb.linearVelocity = moveInput * moveSpeed;
         if (moveInput.magnitude > 0) OnWalkingState.Invoke(true);
         else OnWalkingState.Invoke(false);
+        bool moving = moveInput * moveSpeed != Vector2.zero;
+        anim.SetBool("Moving", moving);
+        if(moving)
+        {
+            Vector2 movementDirection = -new Vector3(moveInput.x, moveInput.y, 0).normalized;
+            Quaternion rotation = Quaternion.LookRotation(movementDirection, -Vector3.forward);
+            character.transform.rotation = Quaternion.RotateTowards(character.transform.rotation, 
+                rotation, 
+                characterRotationSpeed * Time.deltaTime);
+        }
+       
+
     }
 
     public void Move(InputAction.CallbackContext context)

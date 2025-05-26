@@ -44,12 +44,21 @@ public class RootEntity : MonoBehaviour
         }
     }
 
+    internal void Nullify()
+    {
+        hostObject = null;
+    }
+
     internal void SetHost(GameObject gameObject)
     {
         hostObject = gameObject;
-        print(hostObject.name);
         if (hostObject != null)
         {
+            foreach (RootEntity child in hostObject.transform.GetComponentsInChildren<RootEntity>())
+            {
+                child.Nullify();
+            }
+            transform.parent = hostObject.transform;
             hostObject.GetComponent<EnemyMovementStateBasic>().enabled = false;
             hostObject.GetComponent<EnemyMeleeAttackState>().enabled = false;
             hostObject.GetComponent<EnemyMovementStateBasic>().SetPositioning();

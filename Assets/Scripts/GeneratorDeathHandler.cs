@@ -26,11 +26,14 @@ public class GeneratorDeathHandler : MonoBehaviour
                 t += Random.Range(0.3f/x, 1.2f/x);
                 Invoke("Explode", t);
             }
-            Invoke("DestroyGenerator", t + 0.5f);
+            Invoke("DestroyGenerator", t + 1f);
         }
     }
     void DestroyGenerator()
     {
+        Vector3 spawnPosition = transform.position;
+        spawnPosition.y += Random.Range(-explosionArea.y, explosionArea.y) + 15;
+        Instantiate(largeExplosion, spawnPosition, Quaternion.identity);
         EventHandler.current.Lose();
         Destroy(gameObject);
     }
@@ -39,7 +42,7 @@ public class GeneratorDeathHandler : MonoBehaviour
         Vector3 spawnPosition = transform.position;
         spawnPosition.x += Random.Range(-explosionArea.x, explosionArea.x);
         spawnPosition.z += Random.Range(-explosionArea.z, explosionArea.z);
-        spawnPosition.y += Random.Range(-explosionArea.y, explosionArea.y);
+        spawnPosition.y += Random.Range(-explosionArea.y, explosionArea.y) + 15;
         Instantiate(smallExplosion, spawnPosition, Quaternion.identity);
     }
 }
