@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         latestRayPosition = transform.position;
         EventHandler.current.onBeat += OnNewBeat;
         nextGridPosition = GridManager.current.WorldPositionToGridPosition(transform.position);
-        OnNewBeat();
+        OnNewBeat(0);
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class Projectile : MonoBehaviour
         EventHandler.current.onBeat -= OnNewBeat;
     }
 
-    void OnNewBeat()
+    void OnNewBeat(int beat)
     {
         beating = true;
         Vector3 pos = transform.position;

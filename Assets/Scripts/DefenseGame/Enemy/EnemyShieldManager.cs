@@ -27,7 +27,7 @@ public class EnemyShieldManager : MonoBehaviour
         EventHandler.current.onBeat -= OnBeat;
     }
 
-    private void OnBeat()
+    private void OnBeat(int beat)
     {
         queueIndex++;
         if(queueIndex>=shieldEnabledQueue.Length)

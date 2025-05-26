@@ -36,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
         EventHandler.current.onBeat -= OnNewBeat;
     }
 
-    void OnNewBeat()
+    void OnNewBeat(int beat)
     {
         if (this.enabled)
         {

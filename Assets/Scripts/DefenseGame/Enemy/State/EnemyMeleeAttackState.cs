@@ -42,7 +42,7 @@ public class EnemyMeleeAttackState : StateMachineState
         EventHandler.current.onBeat -= OnNewBeat;
     }
 
-    public override void OnNewBeat()
+    public override void OnNewBeat(int beat)
     {
         if(target == null)
         {

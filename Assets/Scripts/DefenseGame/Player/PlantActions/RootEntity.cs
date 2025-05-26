@@ -15,7 +15,7 @@ public class RootEntity : MonoBehaviour
         transform.position= newPos;
         EventHandler.current.onBeat += OnBeat;
     }
-    private void OnBeat()
+    private void OnBeat(int beat)
     {
         existTime -= 1;
         if(existTime <= 0)

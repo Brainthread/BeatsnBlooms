@@ -78,7 +78,7 @@ public class MusicManager : MonoBehaviour
     }
     private void NewBeat()
     {
-        EventHandler.current.NewBeat();
+        EventHandler.current.NewBeat(0);
     }
     private void OnLoss()
     {

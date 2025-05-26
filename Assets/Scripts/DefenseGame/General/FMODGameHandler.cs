@@ -24,7 +24,7 @@ public class FMODGameHandler : MonoBehaviour
         growthManager.Initialize();
     }
 
-    void OnBeat()
+    void OnBeat(int beat)
     {
         growthManager.SetDiscreteProgression((float)beattracker/(float)stage.victoryBeat);
         beattracker += 1;

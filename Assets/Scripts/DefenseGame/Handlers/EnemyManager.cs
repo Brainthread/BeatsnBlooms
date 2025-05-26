@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void onNewBeat()
+    void onNewBeat(int beat)
     {
         int currentBeat;
         if(MusicManager.instance)

@@ -15,12 +15,12 @@ public class EventHandler : MonoBehaviour
         current = this;
     }
 
-    public event Action onBeat;
-    public void NewBeat()
+    public event Action<int> onBeat;
+    public void NewBeat(int beat)
     {
         if(onBeat != null)
         {
-            onBeat();
+            onBeat(beat);
         }
     }
 

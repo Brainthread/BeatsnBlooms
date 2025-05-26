@@ -77,7 +77,7 @@ public class ExplosiveProjectile : MonoBehaviour
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-    public void OnBeat()
+    public void OnBeat(int beat)
     {
         stage += 1;
         latestBeatPosition = transform.position;

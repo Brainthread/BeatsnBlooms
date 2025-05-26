@@ -27,9 +27,9 @@ public class StateMachine : MonoBehaviour
         state.EnterState();
         current_state = state;
     }
-    public void OnNewBeat()
+    public void OnNewBeat(int beat)
     {
-        current_state.OnNewBeat();
+        current_state.OnNewBeat(beat);
     }
     public void OnDestroy()
     {

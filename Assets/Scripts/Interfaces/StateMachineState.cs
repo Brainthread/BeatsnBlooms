@@ -12,5 +12,5 @@ public abstract class StateMachineState : MonoBehaviour
     public abstract void ExitState();
     public abstract void StateUpdate();
     public abstract void OnStateFixedUpdate();
-    public abstract void OnNewBeat();
+    public abstract void OnNewBeat(int beat);
 }

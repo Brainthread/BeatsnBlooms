@@ -64,7 +64,7 @@ public class Sequencer : MonoBehaviour
         //musicManager = MusicManager.instance;
     }
 
-    private void OnNewBeat()
+    private void OnNewBeat(int beat)
     {
         for (int i = 0; i < rows; i++)
         {
@@ -72,11 +72,7 @@ public class Sequencer : MonoBehaviour
             if (rep.activeSelf)
                 rep.GetComponent<SequencerTile>().SetBorderMaterial(inactiveMaterial);
         }
-        markerIndex += 1;
-        if (markerIndex > columns - 1)
-        {
-            markerIndex = 0;
-        }
+        markerIndex = beat - 1;
 
         for (int i = 0; i < rows; i++)
         {
