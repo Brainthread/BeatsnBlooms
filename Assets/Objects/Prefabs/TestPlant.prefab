@@ -56,7 +56,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b59bf2bff84cf547a7371389c7fbed6, type: 2}
+  - {fileID: 2100000, guid: 34e12291682e79d469fe181c0399aad7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -384,6 +384,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  onPlantAction:
+    m_PersistentCalls:
+      m_Calls: []
   projectile: {fileID: 6140336324342556186, guid: dbae6dc363810b541be5550be05accc3, type: 3}
   spawnLocation: {fileID: 7325348510909381817}
 --- !u!114 &2668530991192541310

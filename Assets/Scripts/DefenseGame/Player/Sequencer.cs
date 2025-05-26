@@ -57,8 +57,8 @@ public class Sequencer : MonoBehaviour
                 tile.SetBorderMaterial(inactiveMaterial);
                 tile.SetInnerMaterial(tileActions[0].stateMaterial);
                 tile.Sequencer = this;
-                representations[indexer].name = "Tile" + indexer;
-                representations[indexer].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(j, i));
+                representations[indexer].name = "Tile" + indexer + " " + MusicParams[indexer];
+                representations[indexer].transform.position = GridManager.current.GridPositionToWorldPosition(new Vector2(j, i)) + Vector3.up*3;
             }
         }
         //musicManager = MusicManager.instance;
@@ -169,6 +169,7 @@ public class Sequencer : MonoBehaviour
     }
     private void OnTileUnclicked(int id)
     {
+        bool selected = false;
         if (sequencerBoxActionStates[id] != 0)
         {
             availableTiles += 1;
@@ -177,6 +178,8 @@ public class Sequencer : MonoBehaviour
         TileAction state = tileActions[sequencerBoxActionStates[id]];
         SequencerTile tile = representations[id].GetComponent<SequencerTile>();
         tile.SetInnerMaterial(state.stateMaterial);
+        if (selected) FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 1);
+        else FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(tile.GetMusicParam(), 0);
         ManageInventoryTileUnselected(tile);
     }
 

@@ -21,8 +21,16 @@ public class SequencerTile : MonoBehaviour
     public void Start()
     {
         isDestroyed = false;
+        EventHandler.current.onLoss += OnGeneratorDestroyed;
         GetComponent<HealthManager>().onHealthDepleted += OnHealthDepleted;
     }
+
+    private void OnGeneratorDestroyed()
+    {
+        GetComponent<HealthManager>().ApplyDamage(100);
+        EventHandler.current.onLoss -= OnGeneratorDestroyed;
+    }
+
     public void OnHealthDepleted()
     {
         sequencer.TileDestroyed(id);
@@ -54,7 +62,7 @@ public class SequencerTile : MonoBehaviour
     {
         EventHandler.current.UnClickSequencerTile(id);
         onTileDeactivate.Invoke();
-        Debug.Log("unclik");
+        Debug.Log("unclick");
         //FMOD_TimelineCallbacks.instance.GetMusicEvent().setParam(MusicParamName, 0);
     }
     public void SetBorderMaterial(Material material)
