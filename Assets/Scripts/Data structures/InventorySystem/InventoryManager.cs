@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
             inventoryDefence = GetComponentInChildren<InventoryDefence>();
             inventoryExplore = GetComponentInChildren<InventoryExplore>();
         }
-        else Destroy(this);
+        else Destroy(gameObject);
 
 
     }
