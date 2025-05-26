@@ -32,8 +32,7 @@ public class FMOD_Instantiator : MonoBehaviour
 
         //3D
         if (pos3D_Override != null) transform.position = pos3D_Override.transform.position;
-        if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, gameObject, GetComponent<Rigidbody>());
-
+        if (is3D) evInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody>()));
         //Param Setup        
         for (int i = 0; i < paramNames.Count; i++)
         {
@@ -68,11 +67,13 @@ public class FMOD_Instantiator : MonoBehaviour
     {
         if (playDelay > 0)
         {
+            if (is3D) evInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody>()));
             onPlay.Invoke();
             StartCoroutine(playWithDelay());
             return;
         }
 
+        if (is3D) evInst.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody>()));
         onPlay.Invoke();
         if (is3D) FMODUnity.RuntimeManager.AttachInstanceToGameObject(evInst, gameObject, GetComponent<Rigidbody>());
         evInst.start();

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEngine.Events;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -136,12 +137,14 @@ public struct TypeWithStackSize
 
 public abstract class InventoryItem : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnPickup;
+    
     private bool isInfinite;
     public bool IsInfinite { get { return isInfinite; } set { isInfinite = value; } }
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-
+        OnPickup.Invoke();
         InventorySystem.instance.AddToInventory(this);
         Destroy(gameObject);
     }
@@ -149,7 +152,7 @@ public abstract class InventoryItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-
+        OnPickup.Invoke();
         InventorySystem.instance.AddToInventory(this);
         Destroy(gameObject);
     }

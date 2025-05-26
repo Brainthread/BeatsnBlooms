@@ -21,6 +21,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1185731371543854252, guid: 6a0cc9bc206910341afa4bef5ebeaf4a, type: 3}
+      propertyPath: splodeAudio
+      value: 
+      objectReference: {fileID: 6682957880494568816}
+    - target: {fileID: 1185731371543854252, guid: 6a0cc9bc206910341afa4bef5ebeaf4a, type: 3}
       propertyPath: explosiveRange
       value: 60
       objectReference: {fileID: 0}
@@ -104,8 +108,49 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7271990675839582962, guid: 6a0cc9bc206910341afa4bef5ebeaf4a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7250114793411685677, guid: 6a0cc9bc206910341afa4bef5ebeaf4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6682957880494568816}
   m_SourcePrefab: {fileID: 100100000, guid: 6a0cc9bc206910341afa4bef5ebeaf4a, type: 3}
+--- !u!1 &7261200952328522053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7250114793411685677, guid: 6a0cc9bc206910341afa4bef5ebeaf4a, type: 3}
+  m_PrefabInstance: {fileID: 25160358727427176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6682957880494568816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261200952328522053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90b94921eb6f24e9f92c9b458a24c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  evRef:
+    Guid:
+      Data1: -157869308
+      Data2: 1181782964
+      Data3: 1643914938
+      Data4: 1041970202
+    Path: event:/Character/Defence/PlayerSequencer/GeneratorDestroyed
+  is3D: 0
+  pos3D_Override: {fileID: 0}
+  playOnStart: 0
+  fadeOutOnDestroy: 0
+  playDelay: 0.2
+  paramNames: 
+  printLengthOnStart: 0
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventInstantiated:
+    m_PersistentCalls:
+      m_Calls: []
